@@ -1,1 +1,8 @@
-{"name":"Aspen Pool","ticker":"Aspen","description":"A Cardano staking pool by Woodland Pools. The best in the West!","homepage":"https://woodland-ada-pools.github.io/aspen","nonce":"1608681553"}
+{
+  "name": "Aspen Pool",
+  "ticker": "Aspen",
+  "description": "A Cardano staking pool by Woodland Pools. The best in the West!",
+  "homepage": "https://woodland-ada-pools.github.io/aspen",
+  "nonce": "1608681553"
+}
+
