@@ -1,0 +1,99 @@
+@import '~bulma/bulma';
+
+$header-height: 100px;
+
+p {
+	margin: 12px 0;
+}
+
+h2 {
+	font-size: 18px;
+	font-weight: bold;
+	margin-top: 8px;
+	margin-bottom: 24px;
+}
+
+h3 {
+	font-weight: bold;
+	margin-top: 8px;
+	margin-bottom: 16px;
+}
+
+.App {
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+	font-family: 'Open Sans', sans-serif;
+
+	header {
+		background-color: $white-ter;
+		height: $header-height;
+		padding: 0 32px;
+		display: flex;
+		align-items: center;
+		box-shadow: 2px 2px 4px 0 rgba(0,0,0,.03);
+
+		.columns {
+			width: 100%;
+		}
+
+		.logoAndSubtitle {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			width: 50%;
+		}
+
+		.logo {
+			font-family: Pacifico, cursive, sans-serif;
+			font-size: 42px;
+			height: 64px;
+		}
+
+		.subtitle {
+			position: relative;
+			top: 8px;
+			left: 16px;
+			font-size: 16px;
+			flex-grow: 0;
+		}
+
+		.checkUsOutContainer {
+			display: flex;
+			align-items: center;
+			justify-content: flex-end;
+			height: 100%;
+
+			.checkUsOut {
+				background-color: $grey-lighter;
+				border-radius: 3px;
+				padding: 12px;
+			}
+		}
+	}
+
+	main {
+		display: flex;
+		background-color: #79c490;
+		flex-shrink: 0;
+		flex-grow: 1;
+		padding: 128px;
+		color: $grey-dark;
+		flex-direction: row;
+		justify-content: space-between;
+	}
+
+	section {
+		background-color: $white;
+		padding: 24px 32px 32px;
+		width: auto;
+		border-radius: 2px;
+		margin: 24px;
+	}
+
+	.poolInformation {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+}
