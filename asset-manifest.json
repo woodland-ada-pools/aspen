@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/aspen/static/css/main.1ec1cac1.chunk.css",
+    "main.css": "/aspen/static/css/main.1b5cbde1.chunk.css",
     "main.js": "/aspen/static/js/main.98054d41.chunk.js",
     "main.js.map": "/aspen/static/js/main.98054d41.chunk.js.map",
     "runtime-main.js": "/aspen/static/js/runtime-main.d9ad8eea.js",
@@ -10,13 +10,13 @@
     "static/js/3.a1a83932.chunk.js": "/aspen/static/js/3.a1a83932.chunk.js",
     "static/js/3.a1a83932.chunk.js.map": "/aspen/static/js/3.a1a83932.chunk.js.map",
     "index.html": "/aspen/index.html",
-    "static/css/main.1ec1cac1.chunk.css.map": "/aspen/static/css/main.1ec1cac1.chunk.css.map",
+    "static/css/main.1b5cbde1.chunk.css.map": "/aspen/static/css/main.1b5cbde1.chunk.css.map",
     "static/js/2.94b19dc6.chunk.js.LICENSE.txt": "/aspen/static/js/2.94b19dc6.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.d9ad8eea.js",
     "static/js/2.94b19dc6.chunk.js",
-    "static/css/main.1ec1cac1.chunk.css",
+    "static/css/main.1b5cbde1.chunk.css",
     "static/js/main.98054d41.chunk.js"
   ]
 }
