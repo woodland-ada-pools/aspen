@@ -1,6 +1,6 @@
 @import '~bulma/bulma';
 
-$headerHeight: 120px;
+$headerHeight: 150px;
 $headerColor: #574d4c;
 $backgroundColor: #7C96A6;
 $heroHeight: 350px;
@@ -72,7 +72,7 @@ button {
 
 	header {
 		background-color: $headerColor;
-		height: $headerHeight;
+		min-height: $headerHeight;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -82,26 +82,57 @@ button {
 
 		>.columns {
 			width: calc(100% - 64px);
-			height: $headerHeight;
+			min-height: $headerHeight;
 			margin: 0;
 		}
 
-		.logo {
-			width: 100%;
-		}
-
 		.logoColumn {
+			min-height: $headerHeight;
 			max-width: 210px;
+
+			.logo {
+				width: 100%;
+			}
 		}
 
 		.logoTextColumn {
-			height: 100%;
+			min-height: $headerHeight;
 			display: flex;
 			align-items: center;
+
+			.logoText {
+				height: 64px;
+			}
 		}
 
-		.logoText {
-			height: 32px;
+		.socialColumn {
+			height: $headerHeight;
+			display: flex;
+			align-items: center;
+			max-width: 100px;
+			font-size: 32px;
+
+			>.columns {
+				width: 100%;
+			}
+		}
+
+		.mobileSocial {
+			font-size: 32px;
+			position: absolute;
+			top: 32px;
+			right: 32px;
+		}
+
+		.socialColumn, .mobileSocial {
+			a, a:visited, a:active, a:focus {
+				color: #efebff;
+				transition: color 200ms ease-in-out;
+			}
+
+			a:hover {
+				color: darken(#efebff, 5%);
+			}
 		}
 	}
 
@@ -114,12 +145,12 @@ button {
 		}
 
 		.heroDelegationInfo {
-			margin: $pageMargin;
+			margin: ($pageMargin / 2) $pageMargin $pageMargin $pageMargin;
 			position: relative;
-			background-color: rgba(0, 0, 0, 0.6);
+			background-color: rgba(0, 0, 0, 0.8);
+			backdrop-filter: blur(2px);
 			border-radius: $borderRadius;
 			padding: 16px;
-			width: 50%;
 			color: $white-ter;
 
 			h2 {
@@ -132,48 +163,68 @@ button {
 				font-size: 14px;
 			}
 
-			.poolIDWrapper {
+			.poolIDRow {
 				margin-left: 16px;
 				display: block;
 				margin-top: 24px;
 				font-size: 14px;
 			}
 
+			.poolIDWrapper {
+				margin-top: 8px;
+			}
+
 			.poolID {
 				font-size: 12px;
-				line-height: 12px;
 				background-color: $grey-darker;
 				border: 1px solid #BD7E59;
 				color: $white;
 				padding: 2px 6px 2px 12px;
-				position: relative;
-				left: 4px;
-				top: -1px;
 				border-radius: $borderRadius + 1;
 				box-shadow: 3px 3px 1px 0 rgba(0, 0, 0, 0.1);
 				transition: border 100ms ease-in-out;
+				max-width: 440px;
+				position: relative;
 
 				&.copied {
 					border: 1px solid #6DA385;
 				}
 
-				.copyPoolID {
-					display: inline-block;
-					text-align: right;
-					width: 40px;
-					margin-left: 18px;
-					cursor: pointer;
-					user-select: none;
-					-moz-user-select: none;
-					-webkit-user-select: none;
+				.copyPoolIDBox {
+					display: flex;
+					flex-direction: row;
+					justify-content: center;
+					align-items: center;
 
-					&:hover {
+					.copyPoolIDText {
+						display: flex;
+						flex-grow: 0;
+						flex-shrink: 1;
+						max-width: 90%;
+						white-space: normal;
+						line-break: anywhere;
+					}
+
+					.copyPoolIDBButton {
+						flex-grow: 0;
+						flex-shrink: 0;
+						display: inline-block;
+						text-align: right;
+						width: 40px;
+						margin-left: 18px;
+						cursor: pointer;
+						user-select: none;
+						-moz-user-select: none;
+						-webkit-user-select: none;
+
+						&:hover {
+							color: $cyan;
+						}
+					}
+
+					.copied {
 						color: $cyan;
 					}
-				}
-
-				.copied {
-					color: $cyan;
 				}
 			}
 		}

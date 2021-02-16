@@ -6,12 +6,16 @@ import LogoTextSvg from './static/logo_text.svg';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faCopy} from '@fortawesome/free-regular-svg-icons'
-import {faYoutube} from '@fortawesome/free-brands-svg-icons'
+import {faYoutube, faTwitter} from '@fortawesome/free-brands-svg-icons'
+
+const youtubeUrl = 'https://www.youtube.com/channel/UCuJTfA0vHfG3Fy4_VtFrpYw',
+      twitterUrl = 'https://twitter.com/WoodlandPools',
+      youtubeApiKey = 'AIzaSyD1qVHQsFzoKHFjTchBZ0Kr1aPSI4Mr2pk',
+      youtubeChannelID = 'UCuJTfA0vHfG3Fy4_VtFrpYw',
+      poolID = 'pool1qku2yhky7sv4dfjfv42uyvauhehuqevk25aw952d7ulzqzx3jcu';
 
 function getRecentVideos() {
-	const apiKey = 'AIzaSyD1qVHQsFzoKHFjTchBZ0Kr1aPSI4Mr2pk';
-
-	return fetch(`https://www.googleapis.com/youtube/v3/search?key=${apiKey}&channelId=UCuJTfA0vHfG3Fy4_VtFrpYw&part=snippet,id&order=date&maxResults=3`)
+	return fetch(`https://www.googleapis.com/youtube/v3/search?key=${youtubeApiKey}&channelId=${youtubeChannelID}&part=snippet,id&order=date&maxResults=3`)
 		.then(response => response.json())
 		.then(response => {
 			return (response.items || [])
@@ -64,14 +68,41 @@ function Header() {
 				<div className="column logoTextColumn">
 					<LogoText/>
 				</div>
+				<div className="column socialColumn is-hidden-mobile">
+					<div className="columns">
+						<div className="column youtube">
+							<ExternalLink href={youtubeUrl}>
+								<FontAwesomeIcon icon={faYoutube} />
+							</ExternalLink>
+						</div>
+						<div className="column twitter">
+							<ExternalLink href={twitterUrl}>
+								<FontAwesomeIcon icon={faTwitter} />
+							</ExternalLink>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div className="mobileSocial is-hidden-tablet is-hidden-desktop is-hidden-fullhd">
+				<div className="columns">
+					<div className="column youtube">
+						<ExternalLink href={youtubeUrl}>
+							<FontAwesomeIcon icon={faYoutube} />
+						</ExternalLink>
+					</div>
+					<div className="column twitter">
+						<ExternalLink href={twitterUrl}>
+							<FontAwesomeIcon icon={faTwitter} />
+						</ExternalLink>
+					</div>
+				</div>
 			</div>
 		</header>
 	)
 }
 
 class PoolID extends Component {
-	poolID = 'pool1qku2yhky7sv4dfjfv42uyvauhehuqevk25aw952d7ulzqzx3jcu';
-
 	state = {
 		copied: false
 	}
@@ -85,18 +116,20 @@ class PoolID extends Component {
 	render() {
 		const {copied} = this.state;
 
-		return <span className={`poolID ${copied ? 'copied' : ''}`}>
-			<CopyToClipboard text={this.poolID}
+		return <div className={`poolID ${copied ? 'copied' : ''}`}>
+			<CopyToClipboard text={poolID}
 			                 onCopy={() => this.onCopy()}>
-				<span>
-					{this.poolID}
+				<span className="copyPoolIDBox">
+					<span className="copyPoolIDText">
+						{poolID}
+					</span>
 
-					<span className="copyPoolID">
+					<span className="copyPoolIDBButton">
 						{copied ? <span className="copied">Copied!</span> : <FontAwesomeIcon icon={faCopy}/>}
 					</span>
 				</span>
 			</CopyToClipboard>
-		</span>
+		</div>
 	}
 }
 
@@ -106,24 +139,33 @@ function Hero() {
 			<Background className="hero" blue={{min: 1, max: 3}}>
 				<img src="img/background.png"/>
 			</Background>
-			<div className="heroDelegationInfo">
-				<h2>Curious about staking?</h2>
+			<div className="columns">
+				<div className="column is-half-fullhd is-two-thirds-desktop is-full-tablet is-full-mobile">
+					<div className="heroDelegationInfo">
+						<h2>Curious about staking?</h2>
 
-				<p>Not sure where to begin? Have a look at our series of videos on staking with <ExternalLink
-					href="https://www.youtube.com/watch?v=8u7ba3FIwi0">Adalite</ExternalLink>,&nbsp;
-					<ExternalLink href="https://www.youtube.com/watch?v=Q1ZJS7KvwGc">Yoroi</ExternalLink>,
-					or <ExternalLink href="https://www.youtube.com/watch?v=nbYvXnfPiSM">Daedalus</ExternalLink>!</p>
+						<p>Not sure where to begin? Have a look at our series of videos on staking with <ExternalLink
+							href="https://www.youtube.com/watch?v=8u7ba3FIwi0">Adalite</ExternalLink>,&nbsp;
+							<ExternalLink href="https://www.youtube.com/watch?v=Q1ZJS7KvwGc">Yoroi</ExternalLink>,
+							or <ExternalLink href="https://www.youtube.com/watch?v=nbYvXnfPiSM">Daedalus</ExternalLink>!</p>
 
-				<p>
-					Feel free to check us out on <ExternalLink
-					href="https://pooltool.io/pool/05b8a25ec4f41956a6496555c233bcbe6fc06596553ae2d14df73e20">PoolTool.io</ExternalLink> or <ExternalLink
-					href="https://adapools.org/pool/05b8a25ec4f41956a6496555c233bcbe6fc06596553ae2d14df73e20">ADApools.org</ExternalLink> for more detailed information about our stake pool.
-				</p>
+						<p>
+							Feel free to check us out on <ExternalLink
+							href="https://pooltool.io/pool/05b8a25ec4f41956a6496555c233bcbe6fc06596553ae2d14df73e20">PoolTool.io</ExternalLink> or <ExternalLink
+							href="https://adapools.org/pool/05b8a25ec4f41956a6496555c233bcbe6fc06596553ae2d14df73e20">ADApools.org</ExternalLink> for more detailed information about our stake pool.
+						</p>
 
-				<div className="poolIDWrapper">
-					Ready to get started? You'll need our pool ID! <PoolID/>
+						<div className="poolIDRow">
+							Ready to get started? You'll need our pool ID!
+
+							<div className="poolIDWrapper">
+								<PoolID/>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
+
 		</Parallax>
 	)
 }
@@ -199,7 +241,7 @@ class YoutubeChannel extends Component {
 									<p>Whoops! Looks like there was a problem loading these videos. Never fear, you can visit our channel directly by clicking the button below!</p>
 
 									<button className="button">
-										<ExternalLink href="https://www.youtube.com/channel/UCuJTfA0vHfG3Fy4_VtFrpYw">
+										<ExternalLink href={youtubeUrl}>
 											<FontAwesomeIcon icon={faYoutube}/> Woodland Pools Channel
 										</ExternalLink>
 									</button>
