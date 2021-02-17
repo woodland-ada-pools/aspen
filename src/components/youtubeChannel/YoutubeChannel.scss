@@ -1,0 +1,45 @@
+@import '../../style/variables.scss';
+
+.youtubeChannel {
+	background-color: $white;
+	padding: 24px;
+	border-radius: $borderRadius;
+	width: calc(100% + 64px);
+
+	iframe, img {
+		border-radius: $borderRadius;
+	}
+
+	h3 {
+		margin-top: 0;
+	}
+
+	ul {
+		list-style-type: none;
+
+		li {
+			&:not(:last-child) {
+				margin-bottom: 12px;
+			}
+
+			.videoTitle {
+				font-size: 13px;
+				font-weight: bold;
+			}
+
+			.videoDesc {
+				font-size: 13px;
+				display: -webkit-box;
+				-webkit-line-clamp: 3;
+				-moz-line-clamp: 3;
+				line-clamp: 3;
+				-webkit-box-orient: vertical;
+				-moz-box-orient: vertical;
+				box-orient: vertical;
+				overflow: hidden;
+			}
+		}
+	}
+
+
+}

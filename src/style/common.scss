@@ -1,0 +1,79 @@
+@import './variables.scss';
+
+p {
+	margin: 12px 0;
+	font-size: 14px;
+}
+
+h2 {
+	font-size: 24px;
+	font-weight: bold;
+	margin-top: 8px;
+	margin-bottom: 24px;
+	font-family: 'Noto Sans', sans-serif;
+	font-variant: all-small-caps;
+	color: #5A6173;
+
+	&.sectionHeader {
+		&:before {
+			content: '';
+			display: inline-block;
+			width: 5px;
+			height: 14px;
+			background-color: $headerColor;
+			border-radius: 1px;
+			position: relative;
+			top: 1px;
+			margin-right: 5px;
+			opacity: 0.5;
+			transition: opacity 300ms ease-in-out;
+		}
+
+		&:hover:before {
+			opacity: 0.6;
+		}
+	}
+}
+
+h3 {
+	font-weight: bold;
+	margin-top: 8px;
+	margin-bottom: 16px;
+	color: transparentize($grey-dark, 0.3);
+}
+
+.externalLink {
+	a, a:active {
+		color: $cyan;
+	}
+
+	a:hover {
+		color: lighten($cyan, 12%);
+	}
+
+	a:visited {
+		color: $blue;
+	}
+
+	a:visited:hover {
+		color: darken($blue, 10%);
+	}
+
+	.material-icons {
+		font-size: 14px;
+		position: relative;
+		top: 2px;
+		margin-left: 2px;
+		opacity: 0.8;
+	}
+}
+
+button {
+	a, a:visited, a:active {
+		color: $blue;
+
+		&:hover {
+			color: $blue !important;
+		}
+	}
+}
