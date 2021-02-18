@@ -1,0 +1,138 @@
+@import '../../style/variables.scss';
+@import "~react-datepicker/dist/react-datepicker.css";
+
+.modal-content {
+	width: 600px;
+	height: 800px;
+	background-color: $white;
+	padding: 32px;
+}
+
+.payoutCalculator {
+	h2 {
+		margin-top: 0;
+	}
+
+	.disclaimer {
+		border-left: 3px solid $orange;
+		background-color: $grey-lightest;
+		padding: 4px 4px 4px 8px;
+		border-radius: $borderRadius;
+		font-size: 12px;
+	}
+
+	.estimatorTool {
+		margin-top: 24px;
+
+		.dateInput {
+			background-color: $grey-lightest;
+			padding: 12px;
+			border-radius: $borderRadius;
+
+			h4 {
+				font-size: 14px;
+				line-height: 14px;
+				font-weight: bold;
+			}
+
+			small {
+				display: block;
+				margin: 4px 0 6px 0;
+			}
+
+			.react-datepicker-wrapper {
+				display: inline-block;
+			}
+
+			button {
+				display: inline-block;
+			}
+		}
+	}
+
+	.results {
+		margin-top: 12px;
+		box-shadow: 3px 3px 3px 0 rgba(0, 0, 0, 0.1);
+
+		.resultRow {
+			width: 100%;
+			background-color: $white-bis;
+			border-radius: $borderRadius;
+
+			&:not(:first-child) {
+				margin-top: -1px;
+			}
+
+			.resultContent {
+				height: 90px;
+				border: 1px solid $grey-lighter;
+				border-left: none;
+
+				.epochHeader {
+					padding: 2px 12px;
+					background-color: $grey-lightest;
+					width: 100%;
+
+					.epochNumber {
+						font-size: 18px;
+						font-weight: bold;
+						margin-bottom: 24px;
+						font-family: 'Noto Sans', sans-serif;
+						font-variant: all-small-caps;
+						color: #5A6173;
+					}
+
+					.epochDate {
+						padding-left: 12px;
+						font-size: 14px;
+					}
+				}
+
+				p {
+					padding: 0 12px;
+					margin-top: 8px;
+					font-size: 14px;
+					opacity: 0.9;
+				}
+			}
+
+			&:nth-child(1) {
+				border-left: 4px solid $grey-dark;
+				border-top-left-radius: $borderRadius;
+
+				.resultContent {
+					border-top-right-radius: $borderRadius;
+				}
+			}
+
+			&:nth-child(2) {
+				border-left: 4px solid $blue;
+			}
+
+			&:nth-child(3) {
+				border-left: 4px solid $purple;
+			}
+
+			&:nth-child(4) {
+				border-left: 4px solid $orange;
+			}
+
+			&:nth-child(5) {
+				border-left: 4px solid $green;
+				border-bottom-left-radius: $borderRadius;
+
+				.resultContent {
+					border-bottom-right-radius: $borderRadius;
+				}
+
+				p {
+					font-weight: bold;
+				}
+
+				.fa-star {
+					color: darken($yellow, 20%);
+				}
+			}
+		}
+	}
+}

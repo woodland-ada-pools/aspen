@@ -71,119 +71,152 @@
 		}
 	}
 
-	.react-parallax {
-		min-height: $heroHeight;
-		width: 100%;
+	main {
+		position: relative;
 
-		.react-parallax-background-children {
-			width: 100%;
-		}
+		.heroBoxes {
+			background-attachment: fixed;
+			background-position-y: 30%;
+			background-image: url('static/background.png');
+			padding: ($pageMargin / 2) $pageMargin ($pageMargin / 2) $pageMargin;
+			height: $heroHeight;
 
-		.heroDelegationInfo {
-			margin: ($pageMargin / 2) $pageMargin $pageMargin $pageMargin;
-			position: relative;
-			background-color: rgba(0, 0, 0, 0.8);
-			backdrop-filter: blur(2px);
-			border-radius: $borderRadius;
-			padding: 16px;
-			color: $white-ter;
-
-			h2 {
-				color: $grey-light;
-				margin-bottom: 24px;
-			}
-
-			p {
-				margin-left: 16px;
-				font-size: 14px;
-			}
-
-			.poolIDRow {
-				margin-left: 16px;
-				display: block;
-				margin-top: 24px;
-				font-size: 14px;
-			}
-
-			.poolIDWrapper {
-				margin-top: 8px;
-			}
-
-			.poolID {
-				font-size: 12px;
-				background-color: $grey-darker;
-				border: 1px solid #BD7E59;
-				color: $white;
-				padding: 2px 6px 2px 12px;
-				border-radius: $borderRadius + 1;
-				box-shadow: 3px 3px 1px 0 rgba(0, 0, 0, 0.1);
-				transition: border 100ms ease-in-out;
-				max-width: 440px;
+			.heroInfoColumn {
 				position: relative;
+				background-color: transparentize($grey-darker, 0.1);
+				backdrop-filter: blur(2px);
+				border-radius: $borderRadius;
+				border-top: 3px solid mix($grey-darker, $headerColor, 50%);
+				padding: 16px;
+				color: $white-ter;
+				height: 100%;
 
-				&.copied {
-					border: 1px solid #6DA385;
+				h2 {
+					display: inline-block;
+					color: $grey-lightest;
+					margin-top: 0;
+					margin-bottom: 16px;
 				}
 
-				.copyPoolIDBox {
-					display: flex;
-					flex-direction: row;
-					justify-content: center;
-					align-items: center;
+				p {
+					margin-left: 16px;
+					font-size: 14px;
+				}
 
-					.copyPoolIDText {
-						display: flex;
-						flex-grow: 0;
-						flex-shrink: 1;
-						max-width: 90%;
-						white-space: normal;
-						line-break: anywhere;
+				button {
+					background-color: $black-ter;
+					color: $white-ter;
+					border: 1px solid #8c3546;
+					transition: all 200ms ease-in-out;
+
+					&:hover {
+						background-color: lighten($black-ter, 3%);
+						color: $white;
+					}
+				}
+			}
+
+			.heroDelegationInfo {
+				.poolIDRow {
+					margin-left: 16px;
+					display: block;
+					margin-top: 24px;
+					font-size: 14px;
+				}
+
+				.poolIDWrapper {
+					margin-top: 8px;
+				}
+
+				.poolID {
+					font-size: 12px;
+					background-color: $grey-darker;
+					border: 1px solid #BD7E59;
+					color: $white;
+					padding: 2px 6px 2px 12px;
+					border-radius: $borderRadius + 1;
+					box-shadow: 3px 3px 1px 0 rgba(0, 0, 0, 0.1);
+					transition: border 100ms ease-in-out;
+					max-width: 440px;
+					position: relative;
+
+					&.copied {
+						border: 1px solid #6DA385;
 					}
 
-					.copyPoolIDBButton {
-						flex-grow: 0;
-						flex-shrink: 0;
-						display: inline-block;
-						text-align: right;
-						width: 40px;
-						margin-left: 18px;
-						cursor: pointer;
-						user-select: none;
-						-moz-user-select: none;
-						-webkit-user-select: none;
+					.copyPoolIDBox {
+						display: flex;
+						flex-direction: row;
+						justify-content: center;
+						align-items: center;
 
-						&:hover {
+						.copyPoolIDText {
+							display: flex;
+							flex-grow: 0;
+							flex-shrink: 1;
+							max-width: 90%;
+							white-space: normal;
+							line-break: anywhere;
+						}
+
+						.copyPoolIDBButton {
+							flex-grow: 0;
+							flex-shrink: 0;
+							display: inline-block;
+							text-align: right;
+							width: 40px;
+							margin-left: 18px;
+							cursor: pointer;
+							user-select: none;
+							-moz-user-select: none;
+							-webkit-user-select: none;
+
+							&:hover {
+								color: $cyan;
+							}
+						}
+
+						.copied {
 							color: $cyan;
 						}
 					}
+				}
+			}
 
-					.copied {
-						color: $cyan;
+			.payoutInfo {
+				.payoutButton {
+					margin-top: 24px;
+
+					button {
+						outline: none !important;
+						box-shadow: none !important;
+
+						.fa-calendar {
+							margin-right: 8px;
+						}
+
+						span {
+							font-size: 16px;
+							position: relative;
+							top: -1px;
+							font-variant: all-small-caps;
+						}
 					}
 				}
 			}
 		}
 
-		.hero {
+		.mainContentWrapper {
+			display: flex;
+			flex-direction: column;
+			background-color: $backgroundColor;
+			background-image: url('static/bright-squares.png');
+			border-top: 5px solid desaturate(darken($backgroundColor, 10%), 10%);
+			color: $grey-dark;
+			justify-content: center;
+			align-items: center;
 			width: 100%;
-			height: $heroHeight;
-
-			img {
-				width: 100%;
-				position: relative;
-				left: -1px;
-			}
 		}
-	}
-
-	main {
-		display: flex;
-		background-color: $backgroundColor;
-		background-image: url('static/bright-squares.png');
-		border-top: 5px solid desaturate(darken($backgroundColor, 10%), 10%);
-		color: $grey-dark;
-		justify-content: center;
-		width: 100%;
 
 		.mainContent {
 			background-color: $grey-lightest;
@@ -192,6 +225,7 @@
 			box-shadow: 4px 4px 4px 2px rgba(0, 0, 0, 0.1);
 			position: relative;
 			top: -($heroHeight / 6);
+			margin-top: ($pageMargin / 2);
 			width: calc(100% - #{$pageMargin * 2});
 
 			> .columns {
