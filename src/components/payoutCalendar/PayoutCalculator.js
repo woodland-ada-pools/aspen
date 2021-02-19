@@ -129,6 +129,8 @@ export class PayoutCalculator extends Component {
 			<div className={`modal ${isOpen ? 'is-active' : ''}`}>
 				<div className="modal-background"/>
 				<div className="modal-content">
+					<button className="modal-close is-large" aria-label="close" onClick={close}/>
+
 					<div className="payoutCalculator">
 						<div className="informationSection">
 							<h2 className="sectionHeader">Payout Date Estimator</h2>
@@ -181,7 +183,6 @@ export class PayoutCalculator extends Component {
 						</div>
 					</div>
 				</div>
-				<button className="modal-close is-large" aria-label="close" onClick={close}/>
 			</div>
 		)
 	}
