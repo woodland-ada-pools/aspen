@@ -156,8 +156,9 @@ class App extends Component {
 								<div className="heroInfoColumn payoutInfo">
 									<h2>When will I get my rewards?</h2>
 
-									<p>So you've just started delegating to a stake pool (maybe even ours) - congratulations!
-										<br />Now, when do you get paid? Click the button below to launch our payout date estimator and find out!</p>
+									<p>So you've just started delegating to a stake pool (maybe even ours) - congratulations!</p>
+
+									<p>Now, when do you get paid? Click the button below to launch our payout date estimator and find out!</p>
 
 									<p className="payoutButton">
 										<button className="button" onClick={() => this.openPayoutCalculator()}>
