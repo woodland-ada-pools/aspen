@@ -1,5 +1,4 @@
 import './App.scss';
-import {Background, Parallax} from "react-parallax";
 import {Component} from "react/cjs/react.production.min";
 import LogoSvg from './static/logo_no_text.svg';
 import LogoTextSvg from './static/logo_text.svg';
@@ -8,7 +7,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faCopy, faCalendar} from '@fortawesome/free-regular-svg-icons'
 import {faYoutube, faTwitter} from '@fortawesome/free-brands-svg-icons'
 import YoutubeChannel from './components/youtubeChannel/YoutubeChannel';
-import {Bullet, Card, ExternalLink} from "./components/CommonComponent";
+import {Card, ExternalLink} from "./components/CommonComponent";
 import {PayoutCalculator} from "./components/payoutCalendar/PayoutCalculator";
 
 const {youtubeUrl, twitterUrl, poolID} = require('./config/config.json');
