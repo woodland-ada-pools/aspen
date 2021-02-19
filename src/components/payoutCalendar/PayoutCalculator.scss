@@ -1,6 +1,26 @@
 @import '../../style/variables.scss';
 @import "~react-datepicker/dist/react-datepicker.css";
 
+.fade {
+	&-enter {
+		opacity: 0;
+	}
+
+	&-enter-active {
+		opacity: 1;
+		transition: opacity 250ms ease-in-out;
+	}
+
+	&-exit {
+		opacity: 1;
+	}
+
+	&-exit-active {
+		opacity: 0;
+		transition: opacity 250ms ease-in-out;
+	}
+}
+
 .modal-content {
 	width: 700px;
 	height: 800px;

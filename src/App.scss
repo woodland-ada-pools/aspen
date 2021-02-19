@@ -79,7 +79,7 @@
 			background-position-y: 30%;
 			background-image: url('static/background.png');
 			padding: ($pageMargin / 2) $pageMargin ($pageMargin / 2) $pageMargin;
-			height: $heroHeight;
+			min-height: $heroHeight;
 
 			.heroInfoColumn {
 				position: relative;

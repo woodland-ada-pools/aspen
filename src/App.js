@@ -177,7 +177,7 @@ class App extends Component {
 									<div className="columnContent">
 										<h2 className="sectionHeader">Our Mission</h2>
 
-										<p>We strive to provide the Cardano community with the latest Cardano news, tutorials, and the information you need to grow your investment with confidence.</p>
+										<p>We strive to provide the Cardano community with the latest news, tutorials, and the information you need to grow your investment with confidence.</p>
 
 										<p>Check out our <ExternalLink href={youtubeUrl}>Youtube channel</ExternalLink> to learn more!</p>
 

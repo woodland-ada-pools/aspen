@@ -7,6 +7,7 @@ import {faStar, faSpinner} from "@fortawesome/free-solid-svg-icons";
 import './PayoutCalculator.scss';
 import enUS from 'date-fns/locale/en-US';
 import {faCalendar} from "@fortawesome/free-regular-svg-icons";
+import {CSSTransition} from 'react-transition-group';
 
 const maxDate = new Date(Date.UTC(2100, 12, 31));
 
@@ -68,23 +69,23 @@ export class PayoutCalculator extends Component {
 
 		const text = {
 			0: {
-				past: `You started delegating on ${formattedStakeDate}`,
+				past:   `You started delegating on ${formattedStakeDate}`,
 				future: `You will start delegating on ${formattedStakeDate}`
 			},
 			1: {
-				past: `A snapshot of the stake pool was taken at the start of this epoch`,
+				past:   `A snapshot of the stake pool was taken at the start of this epoch`,
 				future: `A snapshot of the stake pool will be taken at the start of this epoch`,
 			},
 			2: {
-				past: `Blocks may have been produced during this epoch with your delegation included`,
+				past:   `Blocks may have been produced during this epoch with your delegation included`,
 				future: `Blocks may be produced during this epoch with your delegation included`
 			},
 			3: {
-				past: `Rewards were calculated at the start of this epoch based on the blocks produced in the previous epoch, if any`,
+				past:   `Rewards were calculated at the start of this epoch based on the blocks produced in the previous epoch, if any`,
 				future: `Rewards will be calculated at the start of this epoch based on the blocks produced in the previous epoch, if any`
 			},
 			4: {
-				past: `If any blocks were produced by your stake pool in epoch ${result[2].number}, your rewards payout should have occurred at the start of this epoch!`,
+				past:   `If any blocks were produced by your stake pool in epoch ${result[2].number}, your rewards payout should have occurred at the start of this epoch!`,
 				future: `If any blocks were produced by your stake pool in epoch ${result[2].number}, your rewards payout should occur at the start of this epoch!`,
 			}
 		};
@@ -101,7 +102,7 @@ export class PayoutCalculator extends Component {
 					<p>
 						{index === 4 && (
 							<FontAwesomeIcon icon={faStar}/>
-						)} {text[index][isFuture ? 'future': 'past']}
+						)} {text[index][isFuture ? 'future' : 'past']}
 					</p>
 				</div>
 			</div>
@@ -126,64 +127,73 @@ export class PayoutCalculator extends Component {
 		      {stakeDate, result, localeString, loading} = this.state;
 
 		return (
-			<div className={`modal ${isOpen ? 'is-active' : ''}`}>
-				<div className="modal-background"/>
-				<div className="modal-content">
-					<button className="modal-close is-large" aria-label="close" onClick={close}/>
+			<CSSTransition in={isOpen}
+			               timeout={250}
+			               classNames="fade"
+			               mountOnEnter
+			               unmountOnExit>
+				<div className={`modal fade is-active`}>
+					<div className="modal-background" onClick={close}/>
+					<div className="modal-content">
+						<button className="modal-close is-large" aria-label="close" onClick={close}/>
 
-					<div className="payoutCalculator">
-						<div className="informationSection">
-							<h2 className="sectionHeader">Payout Date Estimator</h2>
-							<div className="disclaimer">
-								This tool provides a "best guess" as to when your rewards will be distributed based on
-								the date you input.
-								The estimate provided here is not guaranteed to be accurate nor a guarantee of any rewards. None of this
-								information should be considered financial or investment advice.
-							</div>
+						<div className="payoutCalculator">
+							<div className="informationSection">
+								<h2 className="sectionHeader">Payout Date Estimator</h2>
+								<div className="disclaimer">
+									This tool provides a "best guess" as to when your rewards will be distributed based
+									on
+									the date you input.
+									The estimate provided here is not guaranteed to be accurate nor a guarantee of any
+									rewards. None of this
+									information should be considered financial or investment advice.
+								</div>
 
-							<div className="dateInput">
-								<h4>Staking Start Date</h4>
-								<small>When did you start or intend to start staking?</small>
+								<div className="dateInput">
+									<h4>Staking Start Date</h4>
+									<small>When did you start or intend to start staking?</small>
 
-								<div className="columns is-mobile">
-									<div className="column is-narrow">
-										<DatePicker
-											selected={stakeDate}
-											onChange={date => this.updateStakeDate(date)}
-											className="input"
-											dateFormat="P"
-											locale={localeString}
-											minDate={startEpochDate}
-											maxDate={maxDate}
-											utcOffset="0"
-											disabled={loading}
-										/>
-									</div>
-									<div className="column">
-										<button className="button is-info"
-										        onClick={() => this.updateStakeDate()}
-										        disabled={loading}
-										>Go</button>
+									<div className="columns is-mobile">
+										<div className="column is-narrow">
+											<DatePicker
+												selected={stakeDate}
+												onChange={date => this.updateStakeDate(date)}
+												className="input"
+												dateFormat="P"
+												locale={localeString}
+												minDate={startEpochDate}
+												maxDate={maxDate}
+												utcOffset="0"
+												disabled={loading}
+											/>
+										</div>
+										<div className="column">
+											<button className="button is-info"
+											        onClick={() => this.updateStakeDate()}
+											        disabled={loading}
+											>Go
+											</button>
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
 
-						<div className="results">
-							{!loading && !result.length && this.renderPlaceholder()}
-							{!loading && result.map((epoch, index) => this.renderEpochRow(epoch, index))}
+							<div className="results">
+								{!loading && !result.length && this.renderPlaceholder()}
+								{!loading && result.map((epoch, index) => this.renderEpochRow(epoch, index))}
 
-							{loading && (
-								<div className="placeholder">
-									<div className="placeholderIcon loading">
-										<FontAwesomeIcon icon={faSpinner} />
+								{loading && (
+									<div className="placeholder">
+										<div className="placeholderIcon loading">
+											<FontAwesomeIcon icon={faSpinner}/>
+										</div>
 									</div>
-								</div>
-							)}
+								)}
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
+			</CSSTransition>
 		)
 	}
 }

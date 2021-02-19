@@ -40,12 +40,11 @@ export default class YoutubeChannel extends Component {
 		return (
 			<>
 				<h2 className="sectionHeader">Our Channel</h2>
-
 				<div className="youtubeChannel">
 					<div className="columns">
 						<div className="column">
 							<iframe width="100%" height="315"
-							        src="https://www.youtube-nocookie.com/embed/o-kZHX7JRGw"
+							        src="https://www.youtube-nocookie.com/embed/wF0adviOgSs"
 							        frameBorder="0"
 							        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 							        allowFullScreen/>
