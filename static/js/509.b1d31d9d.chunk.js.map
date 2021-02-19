@@ -1,1 +1,0 @@
-{"version":3,"sources":["../node_modules/date-fns/locale/ar-MA/index.d.ts"],"names":[],"mappings":"kGAAA,oBAGe,YAAI","file":"static/js/509.b1d31d9d.chunk.js","sourcesContent":["// This file is generated automatically by `scripts/build/typings.js`. Please, don't change it.\n\nimport { arMA } from 'date-fns/locale'\nexport default arMA\n"],"sourceRoot":""}
