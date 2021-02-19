@@ -1,15 +1,19 @@
-const {add, sub, set} = require('date-fns');
+const {add} = require('date-fns');
 
-const startEpochDate   = new Date('2020-07-29T21:44:51+0000'),
-      startEpochTimestamp = startEpochDate.getTime(),
-      startEpochNumber = 208,
-      fiveDaysInMillis = 432000000;
+export const startEpochDate      = new Date(Date.UTC(2020, 6, 29, 21, 44, 51, 0)), //new Date('2020-07-29T21:44:51+0000'),
+             startEpochTimestamp = startEpochDate.getTime(),
+             startEpochNumber    = 208,
+             oneDayInMillis      = 86400000,
+             fiveDaysInMillis    = 432000000;
 
-export function dateIsOnEpochBoundary(date) {
-	const timestamp = date.getTime(),
-	      differenceInMillis = timestamp - startEpochTimestamp;
+export function timestampIsOnEpochBoundary(timestamp) {
+	const differenceInMillis = timestamp - startEpochTimestamp;
 
 	return differenceInMillis % fiveDaysInMillis === 0;
+}
+
+export function dateIsOnEpochBoundary(date) {
+	return timestampIsOnEpochBoundary(date.getTime());
 }
 
 export function getEpochNumber(date) {
@@ -21,29 +25,25 @@ export function getEpochNumber(date) {
 }
 
 export function findNearestEpochBoundaryFromDate(date) {
-	date = set(date, {
-		hours:   startEpochDate.getHours()-1,
-		minutes: startEpochDate.getMinutes(),
-		seconds: startEpochDate.getSeconds(),
-		milliseconds: 0
-	});
+	date = normalizeDateToBoundary(date);
 
 	if (dateIsOnEpochBoundary(date)) {
 		return date;
 	}
 
-	for (let x = 0; x < 5; x++) {
-		date = sub(date, {
-			days: 1
-		});
+	for (let x = 1; x < 5; x++) {
+		const nextDate = new Date(date.getTime() - (oneDayInMillis * x));
 
-		if (dateIsOnEpochBoundary(date)) {
-			return date;
+		if (timestampIsOnEpochBoundary(nextDate)) {
+			console.log(`Found epoch boundary at ${nextDate.toISOString()}`, `Epoch number is ${getEpochNumber(nextDate)}`);
+			return nextDate;
 		}
 	}
 }
 
 export function getNextFourEpochsFromDate(date) {
+	date = normalizeDateToBoundary(date);
+
 	if (!dateIsOnEpochBoundary(date)) {
 		date = findNearestEpochBoundaryFromDate(date);
 	}
@@ -59,7 +59,7 @@ export function getNextFourEpochsFromDate(date) {
 		});
 
 		epochs.push({
-			date: date,
+			date:   date,
 			number: getEpochNumber(date)
 		});
 	}
@@ -72,15 +72,16 @@ export function findPayoutFromStakingDate(date) {
 
 	return fiveEpochs[fiveEpochs.length - 1];
 }
-/*
 
-const today = new Date('2020-12-25T23:44:51+0000');
+function normalizeDateToBoundary(date) {
+	const {year, month, day, hours, minutes, seconds} = {
+		year:    date.getFullYear(),
+		month:   date.getMonth(),
+		day:     date.getDate(),
+		hours:   21,
+		minutes: 44,
+		seconds: 51
+	};
 
-console.log(findNearestEpochBoundaryFromDate(today));
-
-console.log(getNextFourEpochsFromDate(today));
-
-const payoutDate = findPayoutFromStakingDate(today);
-
-console.log('If you staked on', today, `(epoch ${getEpochNumber(today)})`, 'you will be paid on', payoutDate.date, `(epoch ${payoutDate.number})`);
-*/
+	return new Date(Date.UTC(year, month, day, hours, minutes, seconds, 0));
+}
