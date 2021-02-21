@@ -1,1 +1,0 @@
-{"version":3,"sources":["../node_modules/date-fns/locale/uz/index.d.ts"],"names":[],"mappings":"kGAAA,oBAGe,YAAE","file":"static/js/579.e71b1a71.chunk.js","sourcesContent":["// This file is generated automatically by `scripts/build/typings.js`. Please, don't change it.\n\nimport { uz } from 'date-fns/locale'\nexport default uz\n"],"sourceRoot":""}

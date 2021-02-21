@@ -1,0 +1,1 @@
+{"version":3,"sources":["../node_modules/date-fns/locale/pt-BR/index.d.ts"],"names":[],"mappings":"kGAAA,oBAGe,YAAI","file":"static/js/564.f3f27820.chunk.js","sourcesContent":["// This file is generated automatically by `scripts/build/typings.js`. Please, don't change it.\n\nimport { ptBR } from 'date-fns/locale'\nexport default ptBR\n"],"sourceRoot":""}
