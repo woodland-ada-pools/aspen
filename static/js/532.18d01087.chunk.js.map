@@ -1,0 +1,1 @@
+{"version":3,"sources":["../node_modules/date-fns/locale/fa-IR/index.d.ts"],"names":[],"mappings":"kGAAA,oBAGe,YAAI","file":"static/js/532.18d01087.chunk.js","sourcesContent":["// This file is generated automatically by `scripts/build/typings.js`. Please, don't change it.\n\nimport { faIR } from 'date-fns/locale'\nexport default faIR\n"],"sourceRoot":""}
