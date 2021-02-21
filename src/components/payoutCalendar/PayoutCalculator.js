@@ -137,7 +137,7 @@ export class PayoutCalculator extends Component {
 					<div className="modal-content">
 						<button className="modal-close is-large" aria-label="close" onClick={close}/>
 
-						<div className="payoutCalculator">
+						<div id="payoutCalculator" className="payoutCalculator">
 							<div className="informationSection">
 								<h2 className="sectionHeader">Payout Date Estimator</h2>
 								<div className="disclaimer">
