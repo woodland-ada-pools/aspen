@@ -187,8 +187,7 @@ class App extends Component {
 										<p>Our pool is run by two software engineers based in the United States working in the
 											healthcare industry.</p>
 
-										<p>The Aspen pool is configured with two relay nodes and a core node, and all of our
-											servers are located in New York.</p>
+										<p>The Aspen pool is configured with two relay nodes and a core node, continuous backups, and 24/7 monitoring.</p>
 
 										<div className="columns nodeInformation">
 											<div className="column">
