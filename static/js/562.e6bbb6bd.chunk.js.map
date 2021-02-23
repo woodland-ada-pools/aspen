@@ -1,1 +1,0 @@
-{"version":3,"sources":["../node_modules/date-fns/locale/nn/index.d.ts"],"names":[],"mappings":"kGAAA,oBAGe,YAAE","file":"static/js/562.e6bbb6bd.chunk.js","sourcesContent":["// This file is generated automatically by `scripts/build/typings.js`. Please, don't change it.\n\nimport { nn } from 'date-fns/locale'\nexport default nn\n"],"sourceRoot":""}

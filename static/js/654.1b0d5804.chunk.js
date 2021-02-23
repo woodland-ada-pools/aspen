@@ -1,2 +1,0 @@
-(this.webpackJsonpaspen=this.webpackJsonpaspen||[]).push([[654],{821:function(s,e,p){"use strict";p.r(e),e.default=p.p+"static/media/index.js.e5ec878c.flow"}}]);
-//# sourceMappingURL=654.1b0d5804.chunk.js.map
