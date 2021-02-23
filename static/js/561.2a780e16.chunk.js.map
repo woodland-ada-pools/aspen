@@ -1,1 +1,0 @@
-{"version":3,"sources":["../node_modules/date-fns/locale/nl/index.d.ts"],"names":[],"mappings":"kGAAA,oBAGe,YAAE","file":"static/js/561.2a780e16.chunk.js","sourcesContent":["// This file is generated automatically by `scripts/build/typings.js`. Please, don't change it.\n\nimport { nl } from 'date-fns/locale'\nexport default nl\n"],"sourceRoot":""}

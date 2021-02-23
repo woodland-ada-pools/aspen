@@ -1,0 +1,2 @@
+(this.webpackJsonpaspen=this.webpackJsonpaspen||[]).push([[303],{275:function(e,a,p){"use strict";Object.defineProperty(a,"__esModule",{value:!0}),a.default=function(e,a,p,s){return t[e]};var t={lastWeek:"eeee 'lepas pada jam' p",yesterday:"'Semalam pada jam' p",today:"'Hari ini pada jam' p",tomorrow:"'Esok pada jam' p",nextWeek:"eeee 'pada jam' p",other:"P"};e.exports=a.default}}]);
+//# sourceMappingURL=303.c7c3cc47.chunk.js.map

@@ -1,0 +1,1 @@
+{"version":3,"sources":["../node_modules/date-fns/locale/sr-Latn/index.d.ts"],"names":[],"mappings":"kGAAA,oBAGe,YAAM","file":"static/js/570.0b635876.chunk.js","sourcesContent":["// This file is generated automatically by `scripts/build/typings.js`. Please, don't change it.\n\nimport { srLatn } from 'date-fns/locale'\nexport default srLatn\n"],"sourceRoot":""}
