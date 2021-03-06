@@ -1,0 +1,1 @@
+{"version":3,"sources":["../node_modules/date-fns/locale/zh-TW/index.d.ts"],"names":[],"mappings":"kGAAA,oBAGe,YAAI","file":"static/js/582.33fdfdb7.chunk.js","sourcesContent":["// This file is generated automatically by `scripts/build/typings.js`. Please, don't change it.\n\nimport { zhTW } from 'date-fns/locale'\nexport default zhTW\n"],"sourceRoot":""}
