@@ -43,20 +43,12 @@ h3 {
 }
 
 .externalLink {
-	a, a:active {
+	a, a:active, a:visited {
 		color: $cyan;
 	}
 
-	a:hover {
+	a:hover, a:visited:hover {
 		color: lighten($cyan, 12%);
-	}
-
-	a:visited {
-		color: $blue;
-	}
-
-	a:visited:hover {
-		color: darken($blue, 10%);
 	}
 
 	.material-icons {

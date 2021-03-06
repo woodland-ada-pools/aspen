@@ -1,17 +1,61 @@
-import {Component} from "react/cjs/react.production.min";
+import {Component} from "react";
 import DatePicker, {registerLocale} from "react-datepicker";
-import {getNextFourEpochsFromDate, startEpochDate} from './payoutFunctions';
+import {getNextFourEpochsFromDate, startEpochDate} from './PayoutCalendarFunctions';
 import {format, isAfter} from 'date-fns';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faStar, faSpinner} from "@fortawesome/free-solid-svg-icons";
-import './PayoutCalculator.scss';
-import enUS from 'date-fns/locale/en-US';
-import {faCalendar} from "@fortawesome/free-regular-svg-icons";
+import {faStar} from "@fortawesome/free-solid-svg-icons/faStar";
+import {faSpinner} from "@fortawesome/free-solid-svg-icons/faSpinner";
+import './PayoutCalendar.scss';
+import {faCalendar} from "@fortawesome/free-regular-svg-icons/faCalendar";
 import {CSSTransition} from 'react-transition-group';
+import enUS from 'date-fns/locale/en-US';
+import enGB from 'date-fns/locale/en-GB';
+import enCA from 'date-fns/locale/en-CA';
+import enIN from 'date-fns/locale/en-IN';
+import zhCN from 'date-fns/locale/zh-CN';
+import zhTW from 'date-fns/locale/zh-TW';
+import ru from 'date-fns/locale/ru';
+import fr from 'date-fns/locale/fr';
+import es from 'date-fns/locale/es';
+import de from 'date-fns/locale/de';
+import ptBR from 'date-fns/locale/pt-BR';
+import pt from 'date-fns/locale/pt';
+import it from 'date-fns/locale/it';
+import ja from 'date-fns/locale/ja';
+
+const supportedLocales = {
+	'zh-CN': zhCN,
+	'zh-TW': zhTW,
+	'zh':    zhCN,
+	'ru-RU': ru,
+	'ru':    ru,
+	'fr-FR': fr,
+	'fr':    fr,
+	'es-ES': es,
+	'es-MX': es,
+	'es':    es,
+	'en-US': enUS,
+	'en-GB': enGB,
+	'en-IN': enIN,
+	'en-CA': enCA,
+	'en':    enUS,
+	'de-DE': de,
+	'de':    de,
+	'pt-BR': ptBR,
+	'pt':    pt,
+	'it-IT': it,
+	'it':    it,
+	'ja-JP': ja,
+	'ja':    ja
+};
+
+Object.entries(supportedLocales).forEach(async ([localeCode, locale]) => {
+	registerLocale(localeCode, locale);
+});
 
 const maxDate = new Date(Date.UTC(2100, 12, 31));
 
-export class PayoutCalculator extends Component {
+export class PayoutCalendar extends Component {
 	state = {
 		stakeDate:    new Date(),
 		result:       [],
@@ -24,18 +68,19 @@ export class PayoutCalculator extends Component {
 		if (navigator.languages !== undefined) {
 			const localeString = navigator.languages[0];
 
-			if (!!localeString) {
+			if (!!localeString && supportedLocales[localeString]) {
 				try {
-					const locale = await import(`date-fns/locale/${localeString}`);
-
-					this.setState({locale, localeString});
+					this.setState({
+						locale: supportedLocales[localeString],
+						localeString
+					});
 
 					console.log(`Locale was set to ${localeString}`);
-
-					registerLocale(localeString, locale);
 				} catch (e) {
 					console.log('Locale does not exist in date-fns', localeString);
 				}
+			} else {
+				console.log('Locale not supported: ' + localeString);
 			}
 		}
 	}

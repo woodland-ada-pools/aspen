@@ -13,6 +13,7 @@
 		"@testing-library/user-event": "^12.6.0",
 		"bulma": "^0.9.1",
 		"date-fns": "^2.17.0",
+		"gulp-clean": "^0.4.0",
 		"react": "^17.0.1",
 		"react-copy-to-clipboard": "^5.0.3",
 		"react-datepicker": "^3.5.0",
@@ -23,8 +24,8 @@
 	},
 	"scripts": {
 		"start": "react-scripts start",
-		"predeploy": "npm run build",
-		"deploy": "react-scripts build && gulp deploy",
+		"predeploy": "gulp clean && npm run build",
+		"deploy": "gulp deploy",
 		"build": "react-scripts build",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject"

@@ -4,11 +4,13 @@ import LogoSvg from './static/logo_no_text.svg';
 import LogoTextSvg from './static/logo_text.svg';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faCopy, faCalendar} from '@fortawesome/free-regular-svg-icons'
-import {faYoutube, faTwitter} from '@fortawesome/free-brands-svg-icons'
+import {faCopy} from '@fortawesome/free-regular-svg-icons/faCopy';
+import {faCalendar} from '@fortawesome/free-regular-svg-icons/faCalendar';
+import {faYoutube} from '@fortawesome/free-brands-svg-icons/faYoutube';
+import {faTwitter} from '@fortawesome/free-brands-svg-icons/faTwitter';
 import YoutubeChannel from './components/youtubeChannel/YoutubeChannel';
 import {Card, ExternalLink} from "./components/CommonComponent";
-import {PayoutCalculator} from "./components/payoutCalendar/PayoutCalculator";
+import {PayoutCalendar} from "./components/payoutCalendar/PayoutCalendar";
 
 const {youtubeUrl, twitterUrl, poolID} = require('./config/config.json');
 
@@ -101,78 +103,121 @@ class PoolID extends Component {
 
 class App extends Component {
 	state = {
-		payoutCalculatorOpen: false
+		payoutCalendarOpen: false,
+		payoutEstimatorOpen: false
 	};
 
-	openPayoutCalculator() {
+	openPayoutCalendar() {
 		this.setState({
-			payoutCalculatorOpen: true
+			payoutCalendarOpen: true,
+			payoutEstimatorOpen: false
 		});
 	}
 
-	closePayoutCalculator() {
+	openPayoutEstimator() {
 		this.setState({
-			payoutCalculatorOpen: false
+			payoutCalendarOpen: false,
+			payoutEstimatorOpen: true
+		});
+	}
+
+	closeActiveTool() {
+		this.setState({
+			payoutCalendarOpen: false,
+			payoutEstimatorOpen: false
 		});
 	}
 
 	render() {
-		const {payoutCalculatorOpen} = this.state;
+		const {payoutCalendarOpen} = this.state;
 
 		return (
 			<div className="App">
 				<Header/>
 
 				<main>
-					<div className="heroBoxes">
-						<div className="columns is-multiline">
-							<div className="column is-half-fullhd is-two-thirds-desktop is-full-tablet is-full-mobile">
-								<div className="heroInfoColumn heroDelegationInfo">
-									<h2>Curious about staking?</h2>
+					<div className="mainContentWrapper">
+						<div className="mainContent">
+							<nav className="navbar" role="navigation" aria-label="main navigation">
+								<div id="navbarMainMenu" className="navbar-menu is-active">
+									<div className="navbar-start">
+										<a className="navbar-item">
+											Home
+										</a>
 
-									<p>Not sure where to begin? Have a look at our series of videos on staking with <ExternalLink
-										href="https://www.youtube.com/watch?v=8u7ba3FIwi0">Adalite</ExternalLink>,&nbsp;
-										<ExternalLink href="https://www.youtube.com/watch?v=Q1ZJS7KvwGc">Yoroi</ExternalLink>,
-										or <ExternalLink href="https://www.youtube.com/watch?v=nbYvXnfPiSM">Daedalus</ExternalLink>!
-									</p>
+										<a className="navbar-item">
+											FAQ
+										</a>
 
-									<p>
-										Feel free to check us out on <ExternalLink
-										href="https://pooltool.io/pool/05b8a25ec4f41956a6496555c233bcbe6fc06596553ae2d14df73e20">PoolTool.io</ExternalLink> or <ExternalLink
-										href="https://adapools.org/pool/05b8a25ec4f41956a6496555c233bcbe6fc06596553ae2d14df73e20">ADApools.org</ExternalLink> for
-										more detailed information about our stake pool.
-									</p>
+										<div className="navbar-item has-dropdown is-hoverable">
+											<a className="navbar-link">
+												Tools
+											</a>
 
-									<div className="poolIDRow">
-										Ready to get started? You'll need our pool ID!
+											<div className="navbar-dropdown">
+												<a className="navbar-item">
+													Payout Date Estimator
+												</a>
+												<a className="navbar-item">
+													Epoch Rewards Estimator
+												</a>
+											</div>
+										</div>
+									</div>
+									<div className="navbar-end">
 
-										<div className="poolIDWrapper">
-											<PoolID/>
+									</div>
+								</div>
+							</nav>
+
+
+							<div className="heroBoxes">
+								<div className="columns is-multiline">
+									<div className="column is-5-fullhd is-12-desktop is-12-tablet is-12-mobile">
+										<div className="heroInfoColumn columnContent heroDelegationInfo">
+											<h2>Curious about staking?</h2>
+
+											<p>Not sure where to begin? Have a look at our series of videos on staking with <ExternalLink
+												href="https://www.youtube.com/watch?v=8u7ba3FIwi0">Adalite</ExternalLink>,&nbsp;
+												<ExternalLink href="https://www.youtube.com/watch?v=Q1ZJS7KvwGc">Yoroi</ExternalLink>,
+												or <ExternalLink href="https://www.youtube.com/watch?v=nbYvXnfPiSM">Daedalus</ExternalLink>!
+											</p>
+
+											<p>
+												Feel free to check us out on <ExternalLink
+												href="https://pooltool.io/pool/05b8a25ec4f41956a6496555c233bcbe6fc06596553ae2d14df73e20">PoolTool.io</ExternalLink> or <ExternalLink
+												href="https://adapools.org/pool/05b8a25ec4f41956a6496555c233bcbe6fc06596553ae2d14df73e20">ADApools.org</ExternalLink> for
+												more detailed information about our stake pool.
+											</p>
+
+											<div className="poolIDRow">
+												Ready to get started? You'll need our pool ID!
+
+												<div className="poolIDWrapper">
+													<PoolID/>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div className="column is-7-fullhd is-12-desktop is-12-tablet is-12-mobile">
+										<div className="heroInfoColumn columnContent payoutInfo">
+											<h2>When will I get my rewards?</h2>
+
+											<p>So you've just started delegating to a stake pool (maybe even ours) - congratulations!</p>
+
+											<p>Now, when do you get paid? Click the button below to launch our payout date estimator and find out!</p>
+
+											<p className="payoutButton">
+												<button className="button" onClick={() => this.openPayoutCalendar()}>
+													<FontAwesomeIcon icon={faCalendar} />
+													<span>Payout Date Estimator</span>
+												</button>
+											</p>
 										</div>
 									</div>
 								</div>
 							</div>
-							<div className="column is-half-fullhd is-one-third-desktop is-full-tablet is-full-mobile">
-								<div className="heroInfoColumn payoutInfo">
-									<h2>When will I get my rewards?</h2>
 
-									<p>So you've just started delegating to a stake pool (maybe even ours) - congratulations!</p>
-
-									<p>Now, when do you get paid? Click the button below to launch our payout date estimator and find out!</p>
-
-									<p className="payoutButton">
-										<button className="button" onClick={() => this.openPayoutCalculator()}>
-											<FontAwesomeIcon icon={faCalendar} />
-											<span>Payout Date Estimator</span>
-										</button>
-									</p>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div className="mainContentWrapper">
-						<div className="mainContent">
 							<div className="columns is-multiline">
 								<div className="column is-5-fullhd is-12-desktop is-12-tablet is-12-mobile">
 									<div className="columnContent">
@@ -188,31 +233,6 @@ class App extends Component {
 											healthcare industry.</p>
 
 										<p>The Aspen pool is configured with two relay nodes and a core node, continuous backups, and 24/7 monitoring.</p>
-
-										<div className="columns nodeInformation">
-											<div className="column">
-												<Card>
-													<h3>Core Node</h3>
-													<ul>
-														<li>4 vCPUs</li>
-														<li>8GB of RAM</li>
-														<li>160GB SSD</li>
-														<li>5TB transfer & 1Gbps bandwidth</li>
-													</ul>
-												</Card>
-											</div>
-											<div className="column">
-												<Card>
-													<h3>Relay Nodes</h3>
-													<ul>
-														<li>1 vCPUs</li>
-														<li>4GB of RAM</li>
-														<li>80GB SSD</li>
-														<li>4TB transfer & 1Gbps bandwidth</li>
-													</ul>
-												</Card>
-											</div>
-										</div>
 
 										<div className="poolInformation">
 											<h3>At a Glance</h3>
@@ -233,7 +253,7 @@ class App extends Component {
 					</div>
 				</main>
 
-				<PayoutCalculator isOpen={payoutCalculatorOpen} close={() => this.closePayoutCalculator()} />
+				<PayoutCalendar isOpen={payoutCalendarOpen} close={() => this.closeActiveTool()} />
 			</div>
 		);
 	}
