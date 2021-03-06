@@ -205,10 +205,10 @@ class App extends Component {
 												<Card>
 													<h3>Relay Nodes</h3>
 													<ul>
-														<li>1 vCPUs</li>
-														<li>4GB of RAM</li>
+														<li>4 vCPUs</li>
+														<li>8GB of RAM</li>
 														<li>80GB SSD</li>
-														<li>4TB transfer & 1Gbps bandwidth</li>
+														<li>5TB transfer & 1Gbps bandwidth</li>
 													</ul>
 												</Card>
 											</div>
