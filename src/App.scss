@@ -2,6 +2,14 @@
 @import '~bulma/bulma';
 @import './style/common';
 
+:root {
+	--page-margin: #{$pageMargin};
+
+	@media screen and (max-width: $tablet) {
+		--page-margin: 0px;
+	}
+}
+
 .App {
 	font-family: 'Open Sans', sans-serif;
 
@@ -16,7 +24,7 @@
 		z-index: 1;
 
 		>.columns {
-			width: calc(100% - 64px);
+			width: calc(100% - var(--page-margin));
 			min-height: $headerHeight;
 			margin: 0;
 		}
@@ -78,7 +86,7 @@
 			background-attachment: fixed;
 			background-position-y: 30%;
 			background-image: url('static/background.png');
-			padding: ($pageMargin / 2) $pageMargin ($pageMargin / 2) $pageMargin;
+			padding: calc(var(--page-margin) / 2) var(--page-margin) calc(var(--page-margin) / 2) var(--page-margin);
 			min-height: $heroHeight;
 
 			.heroInfoColumn {
@@ -90,6 +98,10 @@
 				padding: 16px;
 				color: $white-ter;
 				height: 100%;
+
+				@media screen and (max-width: $tablet) {
+					border-radius: 0;
+				}
 
 				h2 {
 					display: inline-block;
@@ -228,14 +240,21 @@
 			margin-top: ($pageMargin / 2);
 			width: calc(100% - #{$pageMargin * 2});
 
+			@media screen and (max-width: $tablet) {
+				top: 0;
+				width: 100%;
+			}
+
 			> .columns {
 				> .column {
 					.columnContent {
 						width: 100%;
 						padding: ($pageMargin / 2) $pageMargin;
-
 						text-align: left;
 
+						@media screen and (max-width: $tablet) {
+							padding: ($pageMargin / 2);
+						}
 					}
 				}
 			}
