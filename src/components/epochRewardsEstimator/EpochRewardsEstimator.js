@@ -134,13 +134,21 @@ export class EpochRewardsEstimator extends Component {
 	}
 
 	onStakeAmountChanged(event) {
-		const {currentCalculation, selectedEpoch} = this.state;
+		const {calculated, currentCalculation} = this.state;
 
 		this.setState({
 			stakeAmount: event.target.value
 		}, () => {
-			if (!!currentCalculation.rewards) {
-				this.calculateForEpoch(selectedEpoch);
+			if (calculated) {
+				this.setState({loading: true});
+
+				this.calculateForEpoch(currentCalculation.epoch);
+
+				setTimeout(() => {
+					this.setState({
+						loading: false
+					});
+				}, 300);
 			}
 		});
 	}
