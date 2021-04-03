@@ -121,13 +121,13 @@ function Navigation({openPayoutCalendar, openEpochRewardsEstimator}) {
 		<nav className="navbar" role="navigation" aria-label="main navigation">
 			<div id="navbarMainMenu" className="navbar-menu is-active">
 				<div className="navbar-start">
-					<a className="navbar-item">
+{/*					<a className="navbar-item">
 						Home
-					</a>
+					</a>*/}
 
 					<div className="navbar-item has-dropdown is-hoverable">
 						<a className="navbar-link">
-							Tools
+							Delegator Tools
 						</a>
 
 						<div className="navbar-dropdown">
