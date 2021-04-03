@@ -135,7 +135,7 @@ function Navigation({openPayoutCalendar, openEpochRewardsEstimator}) {
 								Payout Date Estimator
 							</a>
 							<a className="navbar-item" onClick={openEpochRewardsEstimator}>
-								Epoch Rewards Calculator
+								Epoch Rewards Estimator
 							</a>
 						</div>
 					</div>

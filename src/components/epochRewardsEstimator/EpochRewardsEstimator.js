@@ -346,7 +346,7 @@ export class EpochRewardsEstimator extends Component {
 									</div>
 									<div className="column is-two-thirds itemValueColumn">
 										<div className="itemValue">
-											<div className="sign"></div>
+											<div className="sign">=</div>
 											<span>
 												{formatAdaValue(lovelaceToAda(currentCalculation.total))}
 											</span>
