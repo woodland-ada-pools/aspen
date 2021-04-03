@@ -85,3 +85,16 @@ function normalizeDateToBoundary(date) {
 
 	return new Date(Date.UTC(year, month, day, hours, minutes, seconds, 0));
 }
+
+export function findEpochStartDateFromEpochNumber(epochNumber) {
+	const epochDifference = epochNumber - startEpochNumber;
+
+	if (epochDifference < 0) {
+		throw new Error(`Epoch must be greater than ${startEpochNumber}`);
+	}
+
+	const differenceInMillis = epochDifference * fiveDaysInMillis,
+	      epochStartDate = startEpochTimestamp + differenceInMillis;
+
+	return new Date(epochStartDate);
+}

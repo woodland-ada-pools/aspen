@@ -125,10 +125,6 @@ function Navigation({openPayoutCalendar, openEpochRewardsEstimator}) {
 						Home
 					</a>
 
-					<a className="navbar-item">
-						FAQ
-					</a>
-
 					<div className="navbar-item has-dropdown is-hoverable">
 						<a className="navbar-link">
 							Tools
@@ -210,7 +206,7 @@ class App extends Component {
 
 							<div className="heroBoxes">
 								<div className="columns is-multiline">
-									<div className="column is-5-fullhd is-12-desktop is-12-tablet is-12-mobile">
+									<div className="column is-5-fullhd is-6-desktop is-12-tablet is-12-mobile">
 										<div className="heroInfoColumn columnContent heroDelegationInfo">
 											<h2>Curious about staking?</h2>
 
@@ -239,7 +235,7 @@ class App extends Component {
 											</div>
 										</div>
 									</div>
-									<div className="column is-7-fullhd is-12-desktop is-12-tablet is-12-mobile">
+									<div className="column is-7-fullhd is-6-desktop is-12-tablet is-12-mobile">
 										<div className="heroInfoColumn columnContent payoutInfo">
 											<h2>When will I get my rewards?</h2>
 

@@ -177,7 +177,7 @@ export class PayoutCalendar extends Component {
 			               classNames="fade"
 			               mountOnEnter
 			               unmountOnExit>
-				<div className={`modal fade is-active`}>
+				<div className={`modal fade is-active payoutCalendarModal`}>
 					<div className="modal-background" onClick={close}/>
 					<div className="modal-content">
 						<button className="modal-close is-large" aria-label="close" onClick={close}/>

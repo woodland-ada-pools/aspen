@@ -22,13 +22,13 @@ class Autocomplete extends Component {
 	}
 
 	componentDidMount() {
-		const {onClear = noop} = this.props;
+		const {onDropdownClose = noop} = this.props;
 
 		this.windowClickListener = function(event) {
 			const wasDropdownClick = event.composedPath().some(element => element instanceof Element && element.matches('.dropdown-menu'));
 
 			if (!wasDropdownClick) {
-				onClear();
+				onDropdownClose();
 			}
 		};
 
@@ -68,17 +68,18 @@ class Autocomplete extends Component {
 	}
 
 	handleSelection(event, selection) {
-		const {onClear = noop} = this.props;
+		const {onDropdownClose = noop, onSelect = noop} = this.props;
 
 		event.preventDefault();
 
 		this.setState({
 			activeIndex: 0,
-			query:       selection.id,
+			query:       selection.label,
 			selected:    true
 		});
 
-		onClear();
+		onSelect(selection);
+		onDropdownClose();
 	}
 
 	updateQuery(e) {

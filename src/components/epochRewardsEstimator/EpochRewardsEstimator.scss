@@ -1,24 +1,26 @@
 @import '../../style/variables.scss';
 @import "~react-datepicker/dist/react-datepicker.css";
 
-.modal-content {
-	width: 700px;
-	max-width: 100%;
-	height: 800px;
-	max-height: 100%;
-	overflow-y: auto;
-	background-color: $white;
-	border-radius: $borderRadius;
-	position: relative;
+.epochRewardsEstimatorModal {
+	.modal-content {
+		width: 900px;
+		max-width: 100%;
+		height: 800px;
+		max-height: 100%;
+		overflow-y: auto;
+		background-color: $white;
+		border-radius: $borderRadius;
+		position: relative;
 
-	.modal-close {
-		position: absolute;
-		top: 16px;
-		right: 16px;
-		transition: background-color 150ms ease-in-out;
+		.modal-close {
+			position: absolute;
+			top: 16px;
+			right: 16px;
+			transition: background-color 150ms ease-in-out;
 
-		&:before, &:after {
-			background-color: $grey-darker;
+			&:before, &:after {
+				background-color: $grey-darker;
+			}
 		}
 	}
 }
@@ -26,15 +28,21 @@
 .epochRewardsEstimator {
 	display: flex;
 	flex-direction: column;
-	height: 100%;
+	padding: 24px;
+
+	@media screen and (max-width: $tablet) {
+		padding: 4px;
+	}
 
 	h2 {
 		margin-top: 0;
 	}
 
-	.informationSection {
-		padding: 24px;
+	section + section {
+		margin-top: 20px;
+	}
 
+	.informationSection {
 		.disclaimer {
 			border-left: 3px solid $orange;
 			background-color: $grey-lightest;
@@ -42,32 +50,225 @@
 			border-radius: $borderRadius;
 			font-size: 12px;
 		}
+	}
 
+	.inputSection {
+		background-color: $grey-lightest;
+		padding: 12px;
+		border-radius: $borderRadius;
+		margin-top: 24px;
+		width: 100%;
 
-		.poolInput {
-			background-color: $grey-lightest;
-			padding: 12px;
+		@media screen and (max-width: $tablet) {
+			padding: 8px 4px;
+		}
+
+		h4 {
+			font-size: 14px;
+			line-height: 14px;
+			font-weight: bold;
+		}
+
+		small {
+			display: block;
+			margin: 4px 0 6px 0;
+		}
+
+		.react-datepicker-wrapper {
+			display: inline-block;
+		}
+
+		button {
+			display: inline-block;
+		}
+
+		label {
+			font-weight: unset;
+		}
+
+		section.stakeInput {
+			i.icon {
+				margin-top: -2px;
+				margin-left: -2px;
+				font-style: normal;
+				font-size: 18px;
+				color: $grey-light;
+			}
+		}
+	}
+
+	.resultsSection {
+		$rowHeight: 80px;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+
+		.placeholder {
+			height: 100%;
+			display: flex;
+			align-items: center;
+			flex-direction: column;
+			margin-top: 64px;
+			opacity: 0.75;
+
+			.placeholderIcon {
+				text-align: center;
+				font-size: 64px;
+				margin-bottom: 32px;
+
+				&.loading {
+					.fa-spinner {
+						animation: rotation 2s infinite linear;
+					}
+				}
+			}
+
+			.placeholderText {
+				font-size: 18px;
+				user-select: none;
+				-moz-user-select: none;
+				-webkit-user-select: none;
+			}
+		}
+
+		>.card {
+			@media screen and (max-width: $tablet) {
+				border: none;
+				box-shadow: none;
+			}
+
+			>.card-content {
+				padding: 12px;
+
+				@media screen and (max-width: $tablet) {
+					padding: 4px;
+				}
+			}
+		}
+
+		.feesTable {
+			.card-content {
+				background-color: $white;
+				padding: 14px;
+			}
+
+			.column {
+				padding: 4px 12px;
+			}
+		}
+
+		.plus {
+			color: $green;
+		}
+
+		.minus {
+			color: $red;
+		}
+
+		div.calcSection {
+			background-color: $white;
+			margin-bottom: 12px;
+			border: 1px solid $grey-lightest;
 			border-radius: $borderRadius;
-			margin-top: 24px;
-			width: 100%;
+		}
 
-			h4 {
-				font-size: 14px;
-				line-height: 14px;
+		div.itemRow {
+			min-height: $rowHeight;
+			padding: 0;
+			position: relative;
+
+			@media screen and (max-width: $tablet) {
+				min-height: calc(#{$rowHeight} + 10px);
+			}
+
+			div.columns {
+				height: 100%;
+			}
+
+			&.totalRow {
+				div.itemHeaderColumn {
+					font-size: 18px;
+				}
+			}
+
+			&.totalRow, &.feesRow, &.totalRewardsRow {
+				border-left: 3px solid $blue;
+			}
+
+			&.rewardsRow {
+				border-left: 3px solid $purple;
+			}
+
+			&.yourRewardsRow {
+				margin-top: 12px;
+				background-color: darken($green, 15%);
+				color: $white-ter;
+				border: 1px solid transparentize($green, 0.7);
+				border-radius: $borderRadius;
+				border-left: 5px solid $green;
+				min-height: 100px;
+				height: unset;
+				padding: 12px 0;
+
+				div.itemHeaderColumn {
+					font-size: 20px;
+					line-height: 20px;
+				}
+
+				div.itemHeaderColumn, div.itemValueColumn, div.itemExplanation {
+					color: $white-ter;
+				}
+			}
+
+			div.columns {
+				margin: 0;
+			}
+
+			div.column {
+				height: 100%;
+			}
+
+			div.itemHeaderColumn {
+				color: $grey-darker;
 				font-weight: bold;
+				font-size: 16px;
+				line-height: 16px;
+				opacity: 0.9;
+				display: flex;
+				flex-direction: column;
+
+				padding: 18px 12px 12px 12px;
 			}
 
-			small {
-				display: block;
-				margin: 4px 0 6px 0;
-			}
+			div.itemValueColumn {
+				color: $grey-darker;
+				font-size: 18px;
+				line-height: 18px;
+				display: flex;
+				flex-direction: column;
 
-			.react-datepicker-wrapper {
-				display: inline-block;
-			}
+				padding: 18px 12px 12px 12px;
 
-			button {
-				display: inline-block;
+				div.sign {
+					width: 20px;
+					display: inline-block;
+				}
+
+				div.itemValue {
+
+				}
+
+				div.itemExplanation {
+					position: relative;
+					top: 10px;
+
+					opacity: 0.8;
+					font-size: 13px;
+
+					padding: 0 12px;
+					margin-left: 8px;
+				}
 			}
 		}
 	}
