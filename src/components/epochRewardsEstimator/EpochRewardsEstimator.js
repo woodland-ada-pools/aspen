@@ -526,9 +526,8 @@ export class EpochRewardsEstimator extends Component {
 								<div className="disclaimer">
 									This tool describes how pool fees work on a per-epoch basis and gives you a rough
 									estimate, based on your stake amount, of the rewards you can expect to earn in a
-									given epoch, utilizing historical data for the pool you select. None of this
-									information should be relied upon for accuracy or considered financial or
-									investment advice.
+									given epoch, utilizing historical data for the pool you select. Your individual results may vary. None of this
+									information should be considered financial or investment advice.
 								</div>
 							</section>
 
