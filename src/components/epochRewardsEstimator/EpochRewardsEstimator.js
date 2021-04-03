@@ -526,64 +526,67 @@ export class EpochRewardsEstimator extends Component {
 								<div className="disclaimer">
 									This tool describes how pool fees work on a per-epoch basis and gives you a rough
 									estimate, based on your stake amount, of the rewards you can expect to earn in a
-									given epoch, utilizing historical data for the pool you select. Your individual results may vary. None of this
+									given epoch, utilizing historical data for the pool you select. Your individual
+									results may vary. None of this
 									information should be considered financial or investment advice.
 								</div>
 							</section>
 
 							<section className="inputSection">
-								<section className="poolInput">
-									<Autocomplete
-										name="pool"
-										label={(
-											<>
-												<h4>Select your pool</h4>
-												<small>
-													Type in a ticker (for example, ASPEN) and select your stake pool
-													from the results.
-												</small>
-											</>
-										)}
-										placeholder="Begin typing a stake pool ticker"
-										matches={poolResults}
-										onChange={(searchValue) => this.searchPoolsByTicker(searchValue)}
-										onClear={() => this.onSelectedPoolCleared()}
-										onDropdownClose={() => this.onPoolDropdownClosed()}
-										onSelect={selectedPool => this.onPoolSelected(selectedPool)}
-										width="300px"
-									/>
-								</section>
+								<form action="javascript:void(0)" autoComplete="off">
+									<section className="poolInput">
+										<Autocomplete
+											name="pool"
+											label={(
+												<>
+													<h4>Select your pool</h4>
+													<small>
+														Type in a ticker (for example, ASPEN) and select your stake pool
+														from the results.
+													</small>
+												</>
+											)}
+											placeholder="Begin typing a stake pool ticker"
+											matches={poolResults}
+											onChange={(searchValue) => this.searchPoolsByTicker(searchValue)}
+											onClear={() => this.onSelectedPoolCleared()}
+											onDropdownClose={() => this.onPoolDropdownClosed()}
+											onSelect={selectedPool => this.onPoolSelected(selectedPool)}
+											width="300px"
+										/>
+									</section>
 
-								<section className="stakeInput">
-									<label className="label">
-										<h4>Your stake amount</h4>
-										<small>
-											This is the amount you might have delegated to the selected stake
-											pool.
-										</small>
-									</label>
+									<section className="stakeInput">
+										<label className="label">
+											<h4>Your stake amount</h4>
+											<small>
+												This is the amount you might have delegated to the selected stake
+												pool.
+											</small>
+										</label>
 
-									<div className="field">
-										<div className="control has-icons-left">
-											<i className="icon">₳</i>
-											<input
-												type="number"
-												className="input"
-												placeholder="Enter your stake amount"
-												onChange={(event) => this.onStakeAmountChanged(event)}
-											/>
+										<div className="field">
+											<div className="control has-icons-left">
+												<i className="icon">₳</i>
+												<input
+													type="number"
+													className="input"
+													placeholder="Enter your stake amount"
+													onChange={(event) => this.onStakeAmountChanged(event)}
+												/>
+											</div>
 										</div>
-									</div>
-								</section>
+									</section>
 
-								<section>
-									<button className="button is-info"
-									        onClick={() => this.calculate()}
-									        disabled={!selectedPool || !stakeAmount}
-									>
-										Calculate
-									</button>
-								</section>
+									<section>
+										<button className="button is-info"
+										        onClick={() => this.calculate()}
+										        disabled={!selectedPool || !stakeAmount}
+										>
+											Calculate
+										</button>
+									</section>
+								</form>
 							</section>
 
 							<section className="resultsSection">
