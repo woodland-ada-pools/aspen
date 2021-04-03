@@ -113,8 +113,8 @@ class Autocomplete extends Component {
 	}
 
 	render() {
-		const {label, name, placeholder, matches, width = '100%'} = this.props;
-		const {activeIndex, query, selected}                      = this.state;
+		const {label, name, placeholder, matches, className} = this.props;
+		const {activeIndex, query, selected}                 = this.state;
 
 		return (
 			<div className="autocomplete-wrapper">
@@ -126,15 +126,12 @@ class Autocomplete extends Component {
 							<div className="dropdown-trigger">
 								<input
 									type="text"
-									className={`input${!!selected ? ' is-locked': ''}`}
+									className={`input ${!!selected ? 'is-locked' : ''} ${className}`}
 									name={name}
 									value={query}
 									onChange={!selected ? this.updateQuery : noop}
 									onKeyDown={this.handleKeyPress}
 									placeholder={placeholder}
-									style={{
-										width
-									}}
 								/>
 							</div>
 							<div className="dropdown-menu">
@@ -162,6 +159,7 @@ class Autocomplete extends Component {
 						<button className="button"
 						        onClick={() => this.clear()}
 						        title="Clear selection"
+						        tabIndex="-1"
 						        disabled={!selected}>
 							<span className="icon clearButton">
 								<FontAwesomeIcon icon={faTimes}/>

@@ -1,9 +1,9 @@
-import {Component} from "react";
+import React, {Component} from "react";
 import {CSSTransition} from "react-transition-group";
 import {findPoolsByTicker, getPoolRewardsAndFees} from "../../api/WoodlandPoolsApi";
 import Autocomplete from "../common/autocomplete/Autocomplete";
 import './EpochRewardsEstimator.scss';
-import {debounce} from 'lodash';
+import {debounce, noop} from 'lodash';
 import {findEpochStartDateFromEpochNumber} from "../payoutCalendar/PayoutCalendarFunctions";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAngleDown} from '@fortawesome/free-solid-svg-icons/faAngleDown';
@@ -12,25 +12,36 @@ import {adaToLovelace, formatAdaValue, lovelaceToAda} from "../../helpers/string
 import {orderBy, round} from 'lodash';
 import {faSpinner} from "@fortawesome/free-solid-svg-icons/faSpinner";
 import {faCalculator} from "@fortawesome/free-solid-svg-icons/faCalculator";
+import {faHeartBroken} from "@fortawesome/free-solid-svg-icons/faHeartBroken";
 
 const EPOCH_DATE_FORMAT = 'PP';
 
+const INITIAL_CALC_STATE = {
+	poolResults:        [],
+	selectedPool:       null,
+	stakeAmount:        null,
+	selectedEpoch:      null,
+	currentCalculation: {
+		rewards: null,
+		fees:    null,
+		stake:   null
+	},
+	results:            null,
+	calculated:         false,
+	noBlocks:           false
+}
+
+const INITIAL_STATE = {
+	...INITIAL_CALC_STATE,
+	epochDropdownOpen: false,
+	loading:           false,
+	loadingSearch:     false
+};
+
 export class EpochRewardsEstimator extends Component {
-	state = {
-		poolResults:        [],
-		selectedPool:       {},
-		stakeAmount:        0,
-		selectedEpoch:      null,
-		currentCalculation: {
-			rewards: null,
-			fees:    null,
-			stake:   null
-		},
-		results:            null,
-		epochDropdownOpen:  false,
-		loading:            false,
-		loadingSearch:      false
-	};
+	state = INITIAL_STATE;
+
+	autocompleteRef = React.createRef();
 
 	constructor(props) {
 		super(props);
@@ -80,7 +91,7 @@ export class EpochRewardsEstimator extends Component {
 			});
 		} else {
 			this.setState({
-				selectedPool:  {},
+				selectedPool:  null,
 				poolResults:   [],
 				loadingSearch: false
 			});
@@ -104,17 +115,11 @@ export class EpochRewardsEstimator extends Component {
 	}
 
 	onSelectedPoolCleared() {
+		const {stakeAmount} = this.state;
+
 		this.setState({
-			poolResults:        [],
-			selectedPool:       {},
-			selectedEpoch:      null,
-			currentCalculation: {
-				rewards: null,
-				fees:    null,
-				stake:   null
-			},
-			results:            null,
-			epochDropdownOpen:  false
+			...INITIAL_CALC_STATE,
+			stakeAmount
 		});
 	}
 
@@ -129,8 +134,14 @@ export class EpochRewardsEstimator extends Component {
 	}
 
 	onStakeAmountChanged(event) {
+		const {currentCalculation, selectedEpoch} = this.state;
+
 		this.setState({
 			stakeAmount: event.target.value
+		}, () => {
+			if (!!currentCalculation.rewards) {
+				this.calculateForEpoch(selectedEpoch);
+			}
 		});
 	}
 
@@ -139,12 +150,28 @@ export class EpochRewardsEstimator extends Component {
 		this.closeEpochDropdown();
 	}
 
+	onStakeInputKeyPress(event) {
+		if (event.which === 13) {
+			event.preventDefault();
+			this.calculate();
+		}
+	}
+
+	reset() {
+		this.autocompleteRef.current.clear();
+		this.setState(INITIAL_CALC_STATE);
+	}
+
 	async calculate() {
+		const {selectedPool} = this.state;
+
+		if (!selectedPool) {
+			return;
+		}
+
 		this.setState({
 			loading: true
 		});
-
-		const {selectedPool} = this.state;
 
 		await this.getPoolRewardsAndFeesByTicker(selectedPool.id);
 
@@ -155,16 +182,24 @@ export class EpochRewardsEstimator extends Component {
 				      .sort((a, b) => a - b),
 			      latestEpochWithRewards = sortedEpochs.reverse()[0];
 
-			this.setState({
-				currentCalculation: {
-					allEpochs: sortedEpochs
-				}
-			}, () => {
-				this.calculateForEpoch(latestEpochWithRewards);
+			if (!!latestEpochWithRewards) {
 				this.setState({
-					loading: false
+					currentCalculation: {
+						allEpochs: sortedEpochs
+					}
+				}, () => {
+					this.calculateForEpoch(latestEpochWithRewards);
+					this.setState({
+						loading: false
+					});
 				});
-			});
+			} else {
+				this.setState({
+					loading:    false,
+					calculated: true,
+					noBlocks:   true
+				});
+			}
 		}
 	}
 
@@ -210,7 +245,8 @@ export class EpochRewardsEstimator extends Component {
 				stake,
 				total,
 				ros
-			}
+			},
+			calculated:         true
 		});
 	}
 
@@ -235,7 +271,7 @@ export class EpochRewardsEstimator extends Component {
 	onClose() {
 		const {close} = this.props;
 
-		this.onSelectedPoolCleared();
+		this.reset();
 
 		close();
 	}
@@ -253,6 +289,19 @@ export class EpochRewardsEstimator extends Component {
 		)
 	}
 
+	renderNoBlocksPlaceholder() {
+		return (
+			<div className="placeholder">
+				<div className="placeholderIcon">
+					<FontAwesomeIcon icon={faHeartBroken}/>
+				</div>
+				<div className="placeholderText">
+					This pool hasn't produced any blocks yet. Why not try another?
+				</div>
+			</div>
+		)
+	}
+
 	renderResults() {
 		const {currentCalculation, stakeAmount, epochDropdownOpen} = this.state;
 
@@ -262,7 +311,7 @@ export class EpochRewardsEstimator extends Component {
 
 		const stakeAmountInLovelace = adaToLovelace(stakeAmount),
 		      stakeRatio            = (stakeAmountInLovelace / currentCalculation.stake),
-		      approximateRewards    = round(currentCalculation.rewards * stakeRatio, 4);
+		      approximateRewards    = round(currentCalculation.rewards * stakeRatio, 6);
 
 		return (
 			<div className="card">
@@ -323,7 +372,7 @@ export class EpochRewardsEstimator extends Component {
 							<div className="itemRow totalRow">
 								<div className="columns is-mobile">
 									<div className="column is-one-third itemHeaderColumn">
-										Total live stake for epoch
+										Total active stake for epoch
 									</div>
 									<div className="column is-two-thirds itemValueColumn">
 										<div className="itemValue">
@@ -451,11 +500,11 @@ export class EpochRewardsEstimator extends Component {
 										<div className="itemValue">
 											<div className="sign">=</div>
 											<span>
-												{round(stakeRatio, 4)}%
+												{round(stakeRatio, 6)}%
 											</span>
 										</div>
 										<div className="itemExplanation">
-											Your stake as a percentage of total live stake.
+											Your stake as a percentage of total active stake.
 										</div>
 									</div>
 								</div>
@@ -475,7 +524,7 @@ export class EpochRewardsEstimator extends Component {
 										</span>
 									</div>
 									<div className="itemExplanation">
-										Your stake ratio ({round(stakeRatio, 4)}%) multiplied by the total delegator
+										Your stake ratio ({round(stakeRatio, 6)}%) multiplied by the total delegator
 										rewards ({formatAdaValue(lovelaceToAda(currentCalculation.rewards))}).
 									</div>
 								</div>
@@ -489,7 +538,7 @@ export class EpochRewardsEstimator extends Component {
 									<div className="itemValue">
 										<div className="sign">=</div>
 										<span>
-											{round(currentCalculation.ros, 3) * 100}%
+											{round(currentCalculation.ros * 100, 3)}%
 										</span>
 									</div>
 									<div className="itemExplanation">
@@ -506,8 +555,8 @@ export class EpochRewardsEstimator extends Component {
 	}
 
 	render() {
-		const {isOpen}                                                   = this.props,
-		      {loading, poolResults, selectedPool, stakeAmount, results} = this.state;
+		const {isOpen}                                                                = this.props,
+		      {loading, poolResults, selectedPool, stakeAmount, noBlocks, calculated} = this.state;
 
 		return (
 			<CSSTransition in={isOpen}
@@ -533,67 +582,73 @@ export class EpochRewardsEstimator extends Component {
 							</section>
 
 							<section className="inputSection">
-								<form action="javascript:void(0)" autoComplete="off">
-									<section className="poolInput">
-										<Autocomplete
-											name="pool"
-											label={(
-												<>
-													<h4>Select your pool</h4>
-													<small>
-														Type in a ticker (for example, ASPEN) and select your stake pool
-														from the results.
-													</small>
-												</>
-											)}
-											placeholder="Begin typing a stake pool ticker"
-											matches={poolResults}
-											onChange={(searchValue) => this.searchPoolsByTicker(searchValue)}
-											onClear={() => this.onSelectedPoolCleared()}
-											onDropdownClose={() => this.onPoolDropdownClosed()}
-											onSelect={selectedPool => this.onPoolSelected(selectedPool)}
-											width="300px"
-										/>
-									</section>
+								<section className="poolInput">
+									<Autocomplete
+										ref={this.autocompleteRef}
+										name="pool"
+										className="poolSearchBox"
+										label={(
+											<>
+												<h4>Select your pool</h4>
+												<small>
+													Type in a ticker (for example, ASPEN) and select your stake pool
+													from the results.
+												</small>
+											</>
+										)}
+										placeholder="Begin typing a stake pool ticker"
+										matches={poolResults}
+										onChange={(searchValue) => this.searchPoolsByTicker(searchValue)}
+										onClear={() => this.onSelectedPoolCleared()}
+										onDropdownClose={() => this.onPoolDropdownClosed()}
+										onSelect={selectedPool => this.onPoolSelected(selectedPool)}
+										autoComplete="off"
+										value={selectedPool?.label}
+									/>
+								</section>
 
-									<section className="stakeInput">
-										<label className="label">
-											<h4>Your stake amount</h4>
-											<small>
-												This is the amount you might have delegated to the selected stake
-												pool.
-											</small>
-										</label>
+								<section className="stakeInput">
+									<label className="label">
+										<h4>Your stake amount</h4>
+										<small>
+											This is the amount you might have delegated to the selected stake
+											pool.
+										</small>
+									</label>
 
-										<div className="field">
-											<div className="control has-icons-left">
-												<i className="icon">₳</i>
-												<input
-													type="number"
-													className="input"
-													placeholder="Enter your stake amount"
-													onChange={(event) => this.onStakeAmountChanged(event)}
-												/>
-											</div>
+									<div className="field">
+										<div className="control has-icons-left">
+											<i className="icon">₳</i>
+											<input
+												type="number"
+												className="input"
+												placeholder="Enter your stake amount"
+												onChange={(event) => this.onStakeAmountChanged(event)}
+												onKeyPress={event => this.onStakeInputKeyPress(event)}
+												autoComplete="off"
+												value={stakeAmount === null ? '' : stakeAmount}
+											/>
 										</div>
-									</section>
+									</div>
+								</section>
 
-									<section>
-										<button className="button is-info"
-										        onClick={() => this.calculate()}
-										        disabled={!selectedPool || !stakeAmount}
-										>
-											Calculate
-										</button>
-									</section>
-								</form>
+								<section>
+									<button className="button is-info"
+									        onClick={(event) => this.calculate()}
+									        disabled={!selectedPool || !stakeAmount}
+									>
+										Calculate
+									</button>
+
+									<button className="button"
+									        onClick={(event) => this.reset(event)}
+									>
+										Reset
+									</button>
+								</section>
 							</section>
 
 							<section className="resultsSection">
-								{!!results && this.renderResults()}
-
-								{!loading && !results && this.renderPlaceholder()}
-
 								{loading && (
 									<div className="placeholder">
 										<div className="placeholderIcon loading">
@@ -601,6 +656,12 @@ export class EpochRewardsEstimator extends Component {
 										</div>
 									</div>
 								)}
+
+								{!loading && !!calculated && this.renderResults()}
+
+								{!loading && !calculated && this.renderPlaceholder()}
+
+								{!loading && noBlocks && this.renderNoBlocksPlaceholder()}
 							</section>
 
 						</div>

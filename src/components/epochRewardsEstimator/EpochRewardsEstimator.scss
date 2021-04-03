@@ -12,6 +12,10 @@
 		border-radius: $borderRadius;
 		position: relative;
 
+		@media screen and (max-width: $tablet) {
+			padding: 10px 10px 80px 10px;
+		}
+
 		.modal-close {
 			position: absolute;
 			top: 16px;
@@ -60,7 +64,7 @@
 		width: 100%;
 
 		@media screen and (max-width: $tablet) {
-			padding: 8px 4px;
+			padding: 10px;
 		}
 
 		h4 {
@@ -74,16 +78,20 @@
 			margin: 4px 0 6px 0;
 		}
 
-		.react-datepicker-wrapper {
-			display: inline-block;
-		}
-
 		button {
 			display: inline-block;
 		}
 
 		label {
 			font-weight: unset;
+		}
+
+		input.poolSearchBox {
+			width: 220px;
+
+			@media screen and (min-width: $phone) {
+				width: 250px;
+			}
 		}
 
 		section.stakeInput {
@@ -115,7 +123,6 @@
 			.placeholderIcon {
 				text-align: center;
 				font-size: 64px;
-				margin-bottom: 32px;
 
 				&.loading {
 					.fa-spinner {
@@ -129,6 +136,8 @@
 				user-select: none;
 				-moz-user-select: none;
 				-webkit-user-select: none;
+
+				text-align: center;
 			}
 		}
 
