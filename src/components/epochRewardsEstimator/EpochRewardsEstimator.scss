@@ -212,7 +212,7 @@
 			&.yourRewardsRow {
 				margin-top: 12px;
 				background-color: darken($green, 15%);
-				color: $white-ter;
+				color: $white-ter !important;
 				border: 1px solid transparentize($green, 0.7);
 				border-radius: $borderRadius;
 				border-left: 5px solid $green;
@@ -226,6 +226,10 @@
 				}
 
 				div.itemHeaderColumn, div.itemValueColumn, div.itemExplanation {
+					color: $white-ter;
+				}
+
+				strong {
 					color: $white-ter;
 				}
 			}

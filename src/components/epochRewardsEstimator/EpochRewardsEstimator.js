@@ -3,13 +3,12 @@ import {CSSTransition} from "react-transition-group";
 import {findPoolsByTicker, getPoolRewardsAndFees} from "../../api/WoodlandPoolsApi";
 import Autocomplete from "../common/autocomplete/Autocomplete";
 import './EpochRewardsEstimator.scss';
-import {debounce, noop} from 'lodash';
-import {findEpochStartDateFromEpochNumber} from "../payoutCalendar/PayoutCalendarFunctions";
+import {debounce, orderBy, round, sum, minBy} from 'lodash';
+import {findEpochStartDateFromEpochNumber, getEpochNumber} from "../payoutCalendar/PayoutCalendarFunctions";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAngleDown} from '@fortawesome/free-solid-svg-icons/faAngleDown';
 import format from 'date-fns/format';
 import {adaToLovelace, formatAdaValue, lovelaceToAda} from "../../helpers/stringHelpers";
-import {orderBy, round} from 'lodash';
 import {faSpinner} from "@fortawesome/free-solid-svg-icons/faSpinner";
 import {faCalculator} from "@fortawesome/free-solid-svg-icons/faCalculator";
 import {faHeartBroken} from "@fortawesome/free-solid-svg-icons/faHeartBroken";
@@ -231,6 +230,24 @@ export class EpochRewardsEstimator extends Component {
 		return sortedMargins[0]?.margin || 0.025;
 	}
 
+	calculateRoS(rewards, stake) {
+		return Math.pow((rewards / stake) + 1, (365 / 5)) - 1;
+	}
+
+	getAverageRoS() {
+		const {results} = this.state;
+
+		const rosPerEpoch = Object.keys(results.rewards).map(epochNumber => {
+			      return this.calculateRoS(results.rewards[epochNumber], results.stake[epochNumber]);
+		      }),
+		      rosSum      = sum(rosPerEpoch),
+		      currentEpoch = getEpochNumber(new Date()),
+		      oldestMarginChange = minBy(results.marginHistory, 'epoch') || (currentEpoch - 10),
+		      poolAgeInEpochs = currentEpoch - oldestMarginChange.epoch;
+
+		return rosSum / Math.min(poolAgeInEpochs, 10);
+	}
+
 	calculateForEpoch(epochNumber) {
 		const {results, currentCalculation} = this.state;
 
@@ -239,7 +256,8 @@ export class EpochRewardsEstimator extends Component {
 		      margin        = this.getMarginForEpoch(epochNumber),
 		      stake         = parseFloat(results.stake[epochNumber]),
 		      total         = parseFloat(results.rewards[epochNumber] + results.fees[epochNumber]),
-		      ros           = Math.pow((rewards / stake) + 1, (365 / 5)) - 1,
+		      ros           = this.calculateRoS(rewards, stake),
+		      averageRos    = this.getAverageRoS(),
 		      marginRewards = lovelaceToAda(results.fees[epochNumber] - fixedFee);
 
 		this.setState({
@@ -252,7 +270,8 @@ export class EpochRewardsEstimator extends Component {
 				marginRewards,
 				stake,
 				total,
-				ros
+				ros,
+				averageRos
 			},
 			calculated:         true
 		});
@@ -319,7 +338,8 @@ export class EpochRewardsEstimator extends Component {
 
 		const stakeAmountInLovelace = adaToLovelace(stakeAmount),
 		      stakeRatio            = (stakeAmountInLovelace / currentCalculation.stake),
-		      approximateRewards    = round(currentCalculation.rewards * stakeRatio, 6);
+		      approximateRewards    = round(currentCalculation.rewards * stakeRatio, 6),
+		      averageRos            = round(currentCalculation.averageRos * 100, 3);
 
 		return (
 			<div className="card">
@@ -367,6 +387,13 @@ export class EpochRewardsEstimator extends Component {
 											</div>
 											<div className="column is-two-thirds-desktop is-half-mobile">
 												{round(currentCalculation.margin * 100, 2)}%
+											</div>
+
+											<div className="column is-one-third-desktop is-half-mobile">
+												<strong>Average RoS</strong>
+											</div>
+											<div className="column is-two-thirds-desktop is-half-mobile">
+												{averageRos}%
 											</div>
 										</div>
 									</div>
@@ -540,7 +567,7 @@ export class EpochRewardsEstimator extends Component {
 
 							<div className="columns is-mobile">
 								<div className="column is-one-third itemHeaderColumn">
-									Your estimated RoS
+									RoS for Epoch {currentCalculation.epoch}
 								</div>
 								<div className="column is-two-thirds itemValueColumn">
 									<div className="itemValue">
@@ -550,8 +577,24 @@ export class EpochRewardsEstimator extends Component {
 										</span>
 									</div>
 									<div className="itemExplanation">
-										Around 5% RoS (Return on Stake) is typical. This is the annualized rate of
-										return extrapolated from this epoch's rewards.
+										This is the annualized rate of return extrapolated from this epoch's rewards.
+									</div>
+								</div>
+							</div>
+
+							<div className="columns is-mobile">
+								<div className="column is-one-third itemHeaderColumn">
+									Average RoS for Pool
+								</div>
+								<div className="column is-two-thirds itemValueColumn">
+									<div className="itemValue">
+										<div className="sign">=</div>
+										<span>
+											{averageRos}%
+										</span>
+									</div>
+									<div className="itemExplanation">
+										Around 5% RoS (Return on Stake) is typical. This is the average for the previous 10 epochs.
 									</div>
 								</div>
 							</div>
