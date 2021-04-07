@@ -132,7 +132,7 @@ class Autocomplete extends Component {
 									onChange={!selected ? this.updateQuery : noop}
 									onKeyDown={this.handleKeyPress}
 									placeholder={placeholder}
-									autoComplete="false"
+									autoComplete="off"
 								/>
 							</div>
 							<div className="dropdown-menu">
