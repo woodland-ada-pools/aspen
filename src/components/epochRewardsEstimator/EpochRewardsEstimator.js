@@ -237,13 +237,13 @@ export class EpochRewardsEstimator extends Component {
 	getAverageRoS() {
 		const {results} = this.state;
 
-		const rosPerEpoch = Object.keys(results.rewards).map(epochNumber => {
+		const rosPerEpoch        = Object.keys(results.rewards).map(epochNumber => {
 			      return this.calculateRoS(results.rewards[epochNumber], results.stake[epochNumber]);
 		      }),
-		      rosSum      = sum(rosPerEpoch),
-		      currentEpoch = getEpochNumber(new Date()),
+		      rosSum             = sum(rosPerEpoch),
+		      currentEpoch       = getEpochNumber(new Date()),
 		      oldestMarginChange = minBy(results.marginHistory, 'epoch') || (currentEpoch - 10),
-		      poolAgeInEpochs = currentEpoch - oldestMarginChange.epoch;
+		      poolAgeInEpochs    = currentEpoch - oldestMarginChange.epoch;
 
 		return rosSum / Math.min(poolAgeInEpochs, 10);
 	}
@@ -338,6 +338,7 @@ export class EpochRewardsEstimator extends Component {
 
 		const stakeAmountInLovelace = adaToLovelace(stakeAmount),
 		      stakeRatio            = (stakeAmountInLovelace / currentCalculation.stake),
+		      stakePercentage       = round(stakeRatio * 100, 6),
 		      approximateRewards    = round(currentCalculation.rewards * stakeRatio, 6),
 		      averageRos            = round(currentCalculation.averageRos * 100, 3);
 
@@ -535,7 +536,7 @@ export class EpochRewardsEstimator extends Component {
 										<div className="itemValue">
 											<div className="sign">=</div>
 											<span>
-												{round(stakeRatio, 6)}%
+												{stakePercentage}%
 											</span>
 										</div>
 										<div className="itemExplanation">
@@ -559,7 +560,7 @@ export class EpochRewardsEstimator extends Component {
 										</span>
 									</div>
 									<div className="itemExplanation">
-										Your stake ratio ({round(stakeRatio, 6)}%) multiplied by the total delegator
+										Your stake ratio ({stakePercentage}%) multiplied by the total delegator
 										rewards ({formatAdaValue(lovelaceToAda(currentCalculation.rewards))}).
 									</div>
 								</div>
@@ -594,7 +595,8 @@ export class EpochRewardsEstimator extends Component {
 										</span>
 									</div>
 									<div className="itemExplanation">
-										Around 5% RoS (Return on Stake) is typical. This is the average for the previous 10 epochs.
+										Around 5% RoS (Return on Stake) is typical. This is the average for the previous
+										10 epochs.
 									</div>
 								</div>
 							</div>
