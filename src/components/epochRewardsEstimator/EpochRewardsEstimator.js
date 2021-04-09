@@ -336,11 +336,18 @@ export class EpochRewardsEstimator extends Component {
 			return;
 		}
 
-		const stakeAmountInLovelace = adaToLovelace(stakeAmount),
-		      stakeRatio            = (stakeAmountInLovelace / currentCalculation.stake),
-		      stakePercentage       = round(stakeRatio * 100, 6),
-		      approximateRewards    = round(currentCalculation.rewards * stakeRatio, 6),
-		      averageRos            = round(currentCalculation.averageRos * 100, 3);
+		const stakeAmountInLovelace   = adaToLovelace(stakeAmount),
+		      stakeRatio              = (stakeAmountInLovelace / currentCalculation.stake),
+		      stakePercentage         = round(stakeRatio * 100, 6),
+		      approximateRewards      = round(currentCalculation.rewards * stakeRatio, 6),
+		      approximateRewardsInAda = lovelaceToAda(approximateRewards, 6),
+		      averageRos              = round(currentCalculation.averageRos * 100, 3),
+		      epochRos                = round(currentCalculation.ros * 100, 3),
+		      totalRewardsInAda       = lovelaceToAda(currentCalculation.rewards),
+		      delegatorRewardsInAda   = lovelaceToAda(currentCalculation.rewards),
+		      fixedFeeInAda           = lovelaceToAda(currentCalculation.fixedFee),
+		      variableFee             = round(currentCalculation.margin * 100, 2),
+		      activeStakeInAda        = lovelaceToAda(currentCalculation.stake);
 
 		return (
 			<div className="card">
@@ -380,14 +387,14 @@ export class EpochRewardsEstimator extends Component {
 												<strong>Fixed Fee</strong>
 											</div>
 											<div className="column is-two-thirds-desktop is-half-mobile">
-												{formatAdaValue(lovelaceToAda(currentCalculation.fixedFee))}
+												{formatAdaValue(fixedFeeInAda)}
 											</div>
 
 											<div className="column is-one-third-desktop is-half-mobile">
 												<strong>Variable Fee</strong>
 											</div>
 											<div className="column is-two-thirds-desktop is-half-mobile">
-												{round(currentCalculation.margin * 100, 2)}%
+												{variableFee}%
 											</div>
 
 											<div className="column is-one-third-desktop is-half-mobile">
@@ -414,7 +421,7 @@ export class EpochRewardsEstimator extends Component {
 										<div className="itemValue">
 											<div className="sign">=</div>
 											<span>
-												{formatAdaValue(lovelaceToAda(currentCalculation.stake))}
+												{formatAdaValue(activeStakeInAda)}
 											</span>
 										</div>
 										<div className="itemExplanation">
@@ -433,7 +440,7 @@ export class EpochRewardsEstimator extends Component {
 										<div className="itemValue">
 											<div className="sign">=</div>
 											<span>
-												{formatAdaValue(lovelaceToAda(currentCalculation.total))}
+												{formatAdaValue(totalRewardsInAda)}
 											</span>
 										</div>
 										<div className="itemExplanation">
@@ -453,7 +460,7 @@ export class EpochRewardsEstimator extends Component {
 										<div className="itemValue">
 											<div className="sign minus">-</div>
 											<span className="minus">
-												{formatAdaValue(lovelaceToAda(currentCalculation.fixedFee))}
+												{formatAdaValue(fixedFeeInAda)}
 											</span>
 										</div>
 										<div className="itemExplanation">
@@ -496,7 +503,7 @@ export class EpochRewardsEstimator extends Component {
 										<div className="itemValue">
 											<div className="sign">=</div>
 											<span>
-												{formatAdaValue(lovelaceToAda(currentCalculation.rewards))}
+												{formatAdaValue(delegatorRewardsInAda)}
 											</span>
 										</div>
 										<div className="itemExplanation">
@@ -556,12 +563,12 @@ export class EpochRewardsEstimator extends Component {
 									<div className="itemValue">
 										<div className="sign">=</div>
 										<span>
-											{formatAdaValue(lovelaceToAda(approximateRewards))}
+											{formatAdaValue(approximateRewardsInAda)}
 										</span>
 									</div>
 									<div className="itemExplanation">
 										Your stake ratio ({stakePercentage}%) multiplied by the total delegator
-										rewards ({formatAdaValue(lovelaceToAda(currentCalculation.rewards))}).
+										rewards ({formatAdaValue(delegatorRewardsInAda)}).
 									</div>
 								</div>
 							</div>
@@ -574,7 +581,7 @@ export class EpochRewardsEstimator extends Component {
 									<div className="itemValue">
 										<div className="sign">=</div>
 										<span>
-											{round(currentCalculation.ros * 100, 3)}%
+											{epochRos}%
 										</span>
 									</div>
 									<div className="itemExplanation">

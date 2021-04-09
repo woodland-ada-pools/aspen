@@ -28,7 +28,7 @@ export function adaToLovelace(ada, roundResult = false, precision = 1) {
 }
 
 export function formatAdaValue(adaValue, small = false) {
-	const formattedNumber = parseInt(adaValue).toLocaleString();
+	const formattedNumber = parseFloat(adaValue).toLocaleString();
 
 	return <span><span className={`adaSign${small ? ' small': ''}`}>₳</span>{formattedNumber}</span>;
 }
