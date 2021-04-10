@@ -350,6 +350,7 @@ export class EpochRewardsEstimator extends Component {
 		      variableFee             = round(currentCalculation.margin * 100, 2),
 		      activeStakeInAda        = lovelaceToAda(currentCalculation.stake);
 
+
 		return (
 			<div className="card">
 				<div className="card-content">
