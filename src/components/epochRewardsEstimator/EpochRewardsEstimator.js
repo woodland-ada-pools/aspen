@@ -12,6 +12,7 @@ import {adaToLovelace, formatAdaValue, lovelaceToAda} from "../../helpers/string
 import {faSpinner} from "@fortawesome/free-solid-svg-icons/faSpinner";
 import {faCalculator} from "@fortawesome/free-solid-svg-icons/faCalculator";
 import {faHeartBroken} from "@fortawesome/free-solid-svg-icons/faHeartBroken";
+import {sigFigs} from "../../helpers/numberHelpers";
 
 const EPOCH_DATE_FORMAT = 'PP';
 
@@ -338,9 +339,9 @@ export class EpochRewardsEstimator extends Component {
 
 		const stakeAmountInLovelace   = adaToLovelace(stakeAmount),
 		      stakeRatio              = (stakeAmountInLovelace / currentCalculation.stake),
-		      stakePercentage         = round(stakeRatio * 100, 6),
-		      approximateRewards      = round(currentCalculation.rewards * stakeRatio, 6),
-		      approximateRewardsInAda = lovelaceToAda(approximateRewards, 6),
+		      stakePercentage         = sigFigs(stakeRatio * 100, 1),
+		      approximateRewards      = sigFigs(currentCalculation.rewards * stakeRatio, 6),
+		      approximateRewardsInAda = sigFigs(lovelaceToAda(approximateRewards), 6),
 		      averageRos              = round(currentCalculation.averageRos * 100, 3),
 		      epochRos                = round(currentCalculation.ros * 100, 3),
 		      totalRewardsInAda       = lovelaceToAda(currentCalculation.rewards),
