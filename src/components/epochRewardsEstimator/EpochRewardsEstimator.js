@@ -340,6 +340,7 @@ export class EpochRewardsEstimator extends Component {
 		const stakeAmountInLovelace   = adaToLovelace(stakeAmount),
 		      stakeRatio              = (stakeAmountInLovelace / currentCalculation.stake),
 		      stakePercentage         = sigFigs(stakeRatio * 100, 1),
+		      activeStakeInAda        = lovelaceToAda(currentCalculation.stake),
 		      approximateRewards      = sigFigs(currentCalculation.rewards * stakeRatio, 6),
 		      approximateRewardsInAda = sigFigs(lovelaceToAda(approximateRewards), 6),
 		      averageRos              = round(currentCalculation.averageRos * 100, 3),
@@ -347,9 +348,7 @@ export class EpochRewardsEstimator extends Component {
 		      totalRewardsInAda       = lovelaceToAda(currentCalculation.rewards),
 		      delegatorRewardsInAda   = lovelaceToAda(currentCalculation.rewards),
 		      fixedFeeInAda           = lovelaceToAda(currentCalculation.fixedFee),
-		      variableFee             = round(currentCalculation.margin * 100, 2),
-		      activeStakeInAda        = lovelaceToAda(currentCalculation.stake);
-
+		      variableFee             = round(currentCalculation.margin * 100, 2);
 
 		return (
 			<div className="card">
