@@ -1,5 +1,12 @@
 const {src, dest, series} = require('gulp'),
-      ghPages = require('gulp-gh-pages');
+      ghPages = require('gulp-gh-pages'),
+      clean = require('gulp-clean');
+
+function cleanBuild() {
+	return src('./build')
+		.pipe(clean());
+}
+
 
 function copyCname() {
 	return src('./CNAME')
@@ -12,3 +19,4 @@ function deploy() {
 }
 
 exports.deploy = series(copyCname, deploy);
+exports.clean = cleanBuild;

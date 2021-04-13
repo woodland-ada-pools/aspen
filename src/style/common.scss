@@ -43,20 +43,12 @@ h3 {
 }
 
 .externalLink {
-	a, a:active {
+	a, a:active, a:visited {
 		color: $cyan;
 	}
 
-	a:hover {
+	a:hover, a:visited:hover {
 		color: lighten($cyan, 12%);
-	}
-
-	a:visited {
-		color: $blue;
-	}
-
-	a:visited:hover {
-		color: darken($blue, 10%);
 	}
 
 	.material-icons {
@@ -76,10 +68,32 @@ button {
 			color: $blue !important;
 		}
 	}
+
+	+button {
+		margin-left: 5px;
+	}
 }
 
 small {
 	font-size: 12px;
+}
+
+.adaSign {
+	padding-right: 3px;
+
+	&.small {
+		padding-right: 1px;
+	}
+}
+
+.card {
+	border-radius: $borderRadius;
+	background-color: $white-bis;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+
+	&.has-light-shadow {
+		box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 1px rgba(0,0,0,0.16);
+	}
 }
 
 @keyframes rotation {

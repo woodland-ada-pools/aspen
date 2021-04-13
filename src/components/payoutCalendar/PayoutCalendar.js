@@ -1,11 +1,11 @@
 import {Component} from "react";
 import DatePicker, {registerLocale} from "react-datepicker";
-import {getNextFourEpochsFromDate, startEpochDate} from './payoutFunctions';
+import {getNextFourEpochsFromDate, startEpochDate} from './PayoutCalendarFunctions';
 import {format, isAfter} from 'date-fns';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faStar} from "@fortawesome/free-solid-svg-icons/faStar";
 import {faSpinner} from "@fortawesome/free-solid-svg-icons/faSpinner";
-import './PayoutCalculator.scss';
+import './PayoutCalendar.scss';
 import {faCalendar} from "@fortawesome/free-regular-svg-icons/faCalendar";
 import {CSSTransition} from 'react-transition-group';
 import enUS from 'date-fns/locale/en-US';
@@ -55,7 +55,7 @@ Object.entries(supportedLocales).forEach(async ([localeCode, locale]) => {
 
 const maxDate = new Date(Date.UTC(2100, 12, 31));
 
-export class PayoutCalculator extends Component {
+export class PayoutCalendar extends Component {
 	state = {
 		stakeDate:    new Date(),
 		result:       [],
@@ -177,7 +177,7 @@ export class PayoutCalculator extends Component {
 			               classNames="fade"
 			               mountOnEnter
 			               unmountOnExit>
-				<div className={`modal fade is-active`}>
+				<div className={`modal fade is-active payoutCalendarModal`}>
 					<div className="modal-background" onClick={close}/>
 					<div className="modal-content">
 						<button className="modal-close is-large" aria-label="close" onClick={close}/>

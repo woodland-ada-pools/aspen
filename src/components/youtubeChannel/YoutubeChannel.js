@@ -1,8 +1,9 @@
 import {Component} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faYoutube} from "@fortawesome/free-brands-svg-icons";
+import {faYoutube} from "@fortawesome/free-brands-svg-icons/faYoutube";
 import {ExternalLink} from '../CommonComponent';
 import './YoutubeChannel.scss';
+import {decodeHTMLEntities} from "../../helpers/stringHelpers";
 
 const {youtubeUrl, youtubeApiKey, youtubeChannelID} = require('../../config/config.json'),
       isLikelyBot = /bot|crawl|spider|google|baidu|bing|msn|teoma|slurp|yandex/i.test(navigator.userAgent);
@@ -69,11 +70,11 @@ export default class YoutubeChannel extends Component {
 													<div className="videoTitle">
 														<a href={`https://www.youtube.com/v/${video.id.videoId}`}
 														   target="_blank" rel="noreferrer noopener">
-															{video.snippet.title}
+															{decodeHTMLEntities(video.snippet.title)}
 														</a>
 													</div>
 													<div className="videoDesc">
-														{video.snippet.description}
+														{decodeHTMLEntities(video.snippet.description)}
 													</div>
 												</div>
 											</div>

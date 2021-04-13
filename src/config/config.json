@@ -3,5 +3,7 @@
 	"twitterUrl": "https://twitter.com/WoodlandPools",
 	"youtubeApiKey": "AIzaSyD1qVHQsFzoKHFjTchBZ0Kr1aPSI4Mr2pk",
 	"youtubeChannelID": "UCuJTfA0vHfG3Fy4_VtFrpYw",
-	"poolID": "pool1qku2yhky7sv4dfjfv42uyvauhehuqevk25aw952d7ulzqzx3jcu"
+	"poolID": "pool1qku2yhky7sv4dfjfv42uyvauhehuqevk25aw952d7ulzqzx3jcu",
+
+	"wpApiUrl": "https://api.woodlandpools.net"
 }
