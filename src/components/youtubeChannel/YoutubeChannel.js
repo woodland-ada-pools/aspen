@@ -1,7 +1,7 @@
 import {Component} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faYoutube} from "@fortawesome/free-brands-svg-icons/faYoutube";
-import {ExternalLink} from '../CommonComponent';
+import {ExternalLink} from '../common/MiscComponents';
 import './YoutubeChannel.scss';
 import {decodeHTMLEntities} from "../../helpers/stringHelpers";
 

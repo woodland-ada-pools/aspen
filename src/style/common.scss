@@ -2,7 +2,21 @@
 
 p {
 	margin: 12px 0;
-	font-size: 14px;
+	font-size: 16px;
+	font-family: Inter, sans-serif;
+	color: $textColor;
+	font-weight: 300;
+}
+
+h1 {
+	font-size: 32px;
+	font-weight: bold;
+	margin-top: 8px;
+	margin-bottom: 24px;
+	font-family: Lato, sans-serif;
+	font-variant: all-small-caps;
+	color: $woodlandBrown;
+	letter-spacing: 1px;
 }
 
 h2 {
@@ -10,7 +24,7 @@ h2 {
 	font-weight: bold;
 	margin-top: 8px;
 	margin-bottom: 24px;
-	font-family: 'Noto Sans', sans-serif;
+	font-family: Roboto, sans-serif;
 	font-variant: all-small-caps;
 	color: #5A6173;
 
@@ -103,4 +117,12 @@ small {
 	to {
 		transform: rotate(359deg);
 	}
+}
+
+.has-width-80 {
+	width: 80%;
+}
+
+.has-width-100 {
+	width: 100%;
 }

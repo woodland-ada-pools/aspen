@@ -9,9 +9,11 @@ import {faCalendar} from '@fortawesome/free-regular-svg-icons/faCalendar';
 import {faYoutube} from '@fortawesome/free-brands-svg-icons/faYoutube';
 import {faTwitter} from '@fortawesome/free-brands-svg-icons/faTwitter';
 import YoutubeChannel from './components/youtubeChannel/YoutubeChannel';
-import {ExternalLink} from "./components/CommonComponent";
+import {ExternalLink} from "./components/common/MiscComponents";
 import {PayoutCalendar} from "./components/payoutCalendar/PayoutCalendar";
 import {EpochRewardsEstimator} from "./components/epochRewardsEstimator/EpochRewardsEstimator";
+import {Header} from "./components/common/header/Header";
+import {Home} from "./pages/home/Home";
 
 const {youtubeUrl, twitterUrl, poolID} = require('./config/config.json');
 
@@ -27,7 +29,7 @@ function LogoText() {
 	)
 }
 
-function Header() {
+/*function Header() {
 	return (
 		<header>
 			<div className="columns">
@@ -69,7 +71,7 @@ function Header() {
 			</div>
 		</header>
 	)
-}
+}*/
 
 class PoolID extends Component {
 	state = {
@@ -194,11 +196,17 @@ class App extends Component {
 
 		return (
 			<div className={`App${modalIsOpen ? ' modal-open' : ''}`}>
-				<Header/>
+
 
 				<main>
+
+
 					<div className="mainContentWrapper">
-						<div className="mainContent">
+						<Header/>
+
+						<Home />
+
+{/*						<div className="mainContent">
 							<Navigation
 								openPayoutCalendar={() => this.openPayoutCalendar()}
 								openEpochRewardsEstimator={() => this.openEpochRewardsEstimator()}
@@ -294,7 +302,7 @@ class App extends Component {
 
 							<Footer/>
 
-						</div>
+						</div>*/}
 					</div>
 				</main>
 
