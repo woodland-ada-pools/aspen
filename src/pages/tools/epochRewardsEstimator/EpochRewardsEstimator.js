@@ -1,18 +1,18 @@
 import React, {Component} from "react";
 import {CSSTransition} from "react-transition-group";
-import {findPoolsByTicker, getPoolRewardsAndFees} from "../../api/WoodlandPoolsApi";
-import Autocomplete from "../common/autocomplete/Autocomplete";
+import {findPoolsByTicker, getPoolRewardsAndFees} from "../../../api/WoodlandPoolsApi";
+import Autocomplete from "../../../components/common/autocomplete/Autocomplete";
 import './EpochRewardsEstimator.scss';
 import {debounce, orderBy, round, sum, minBy} from 'lodash';
 import {findEpochStartDateFromEpochNumber, getEpochNumber} from "../payoutCalendar/PayoutCalendarFunctions";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAngleDown} from '@fortawesome/free-solid-svg-icons/faAngleDown';
 import format from 'date-fns/format';
-import {adaToLovelace, formatAdaValue, lovelaceToAda} from "../../helpers/stringHelpers";
+import {adaToLovelace, formatAdaValue, lovelaceToAda} from "../../../helpers/stringHelpers";
 import {faSpinner} from "@fortawesome/free-solid-svg-icons/faSpinner";
 import {faCalculator} from "@fortawesome/free-solid-svg-icons/faCalculator";
 import {faHeartBroken} from "@fortawesome/free-solid-svg-icons/faHeartBroken";
-import {sigFigs} from "../../helpers/numberHelpers";
+import {sigFigs} from "../../../helpers/numberHelpers";
 
 const EPOCH_DATE_FORMAT = 'PP';
 

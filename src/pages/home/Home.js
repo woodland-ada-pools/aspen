@@ -85,7 +85,7 @@ function StakeUnit() {
 	const stakingGuideColumnClasses = classNames(styles.stakingGuideColumn, 'column', 'is-half-desktop', 'is-full-mobile');
 
 	return (
-		<div className={styles.stakeUnit}>
+		<div id="delegate" className={styles.stakeUnit}>
 			<h1>Delegate</h1>
 
 			<p>

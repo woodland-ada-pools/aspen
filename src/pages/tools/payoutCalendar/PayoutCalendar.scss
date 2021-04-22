@@ -1,5 +1,5 @@
-@import '../../style/variables.scss';
-@import "~react-datepicker/dist/react-datepicker.css";
+@import '../../../style/variables';
+@import "../../../../node_modules/react-datepicker/dist/react-datepicker.css";
 
 .payoutCalendarModal {
 	.modal-content {
@@ -29,14 +29,13 @@
 	display: flex;
 	flex-direction: column;
 	height: 100%;
+	max-width: 80%;
 
 	h2 {
 		margin-top: 0;
 	}
 
 	.informationSection {
-		padding: 24px;
-
 		.disclaimer {
 			border-left: 3px solid $orange;
 			background-color: $grey-lightest;
@@ -77,6 +76,7 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		margin-top: 32px;
 
 		.placeholder {
 			height: 100%;
@@ -119,7 +119,7 @@
 			}
 
 			.epochNumber {
-				width: 80px;
+				width: 120px;
 				min-width: 80px;
 				display: flex;
 				align-items: center;

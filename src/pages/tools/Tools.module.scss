@@ -1,0 +1,108 @@
+@import '../../style/common';
+
+$toolsHeight: calc(100vh - #{$headerHeight});
+
+.Tools {
+	background-color: $white-ter;
+
+	.navColumn {
+		z-index: 2;
+	}
+
+	.navInner {
+		background-color: lighten($woodlandBlue, 3%);
+		height: $toolsHeight;
+		position: relative;
+
+		.navHeader {
+			background-color: darken($woodlandBlue, 12%);
+			border-top: 1px solid darken($woodlandBlue, 15%);
+			padding: 0 24px;
+			position: relative;
+			top: 12px;
+			box-shadow: 0 4px 1px rgba(0, 0, 0, 0.1);
+			height: 50px;
+			display: flex;
+			align-items: center;
+
+			h2 {
+				margin: 0;
+				color: $white;
+				position: relative;
+				top: -2px;
+			}
+		}
+
+		nav {
+			position: relative;
+			top: 32px;
+
+			ul {
+				list-style-type: none;
+			}
+
+			li {
+				font-family: Inter, sans-serif;
+				color: $grey-lightest;
+				cursor: pointer;
+				transition: all 100ms ease-in-out;
+				font-weight: 500;
+				padding: 16px;
+
+				&:hover {
+					color: $woodlandBlue;
+					background-color: $grey-lightest;
+					margin-right: -1px;
+
+					&:before {
+						color: $woodlandBlue;
+					}
+				}
+
+				&:before {
+					content: "\25AA";
+					color: $white-ter;
+					font-weight: bold;
+					display: inline-block;
+					width: 12px;
+					transition: all 100ms ease-in-out;
+				}
+			}
+		}
+	}
+
+	.toolContent {
+		height: $toolsHeight;
+		width: 100%;
+		background-color: $white;
+
+		.toolHeader {
+			height: 50px;
+			position: relative;
+			top: 18px;
+
+			.toolHeaderInner {
+				width: 100%;
+				background-color: saturate(darken($woodlandBlue, 18%), 10%);
+				border-top: 1px solid darken($woodlandBlue, 22%);
+				padding: 0 24px;
+
+				box-shadow: 0 4px 1px rgba(0, 0, 0, 0.1), inset 4px 0 2px rgba(0, 0, 0, 0.08);
+				display: flex;
+				align-items: center;
+
+				h1 {
+					height: 50px;
+					margin: 0;
+					color: $grey-lightest;
+					position: relative;
+					top: -2px;
+				}
+			}
+		}
+
+		.toolContentInner {
+			padding: 50px 32px 32px 32px;
+		}
+	}
+}

@@ -172,73 +172,59 @@ export class PayoutCalendar extends Component {
 		      {stakeDate, result, localeString, loading} = this.state;
 
 		return (
-			<CSSTransition in={isOpen}
-			               timeout={250}
-			               classNames="fade"
-			               mountOnEnter
-			               unmountOnExit>
-				<div className={`modal fade is-active payoutCalendarModal`}>
-					<div className="modal-background" onClick={close}/>
-					<div className="modal-content">
-						<button className="modal-close is-large" aria-label="close" onClick={close}/>
+			<div id="payoutCalculator" className="payoutCalculator">
+				<div className="informationSection">
+					<div className="disclaimer">
+						This tool provides a "best guess" as to when your rewards will be distributed based
+						on
+						the date you input.
+						The estimate provided here is not guaranteed to be accurate nor a guarantee of any
+						rewards. None of this
+						information should be considered financial or investment advice.
+					</div>
 
-						<div id="payoutCalculator" className="payoutCalculator">
-							<div className="informationSection">
-								<h2 className="sectionHeader">Payout Date Estimator</h2>
-								<div className="disclaimer">
-									This tool provides a "best guess" as to when your rewards will be distributed based
-									on
-									the date you input.
-									The estimate provided here is not guaranteed to be accurate nor a guarantee of any
-									rewards. None of this
-									information should be considered financial or investment advice.
-								</div>
+					<div className="dateInput">
+						<h4>Staking Start Date</h4>
+						<small>When did you start or intend to start staking?</small>
 
-								<div className="dateInput">
-									<h4>Staking Start Date</h4>
-									<small>When did you start or intend to start staking?</small>
-
-									<div className="columns is-mobile">
-										<div className="column is-narrow">
-											<DatePicker
-												selected={stakeDate}
-												onChange={date => this.updateStakeDate(date)}
-												className="input"
-												dateFormat="P"
-												locale={localeString}
-												minDate={startEpochDate}
-												maxDate={maxDate}
-												utcOffset="0"
-												disabled={loading}
-											/>
-										</div>
-										<div className="column">
-											<button className="button is-info"
-											        onClick={() => this.updateStakeDate()}
-											        disabled={loading}
-											>Go
-											</button>
-										</div>
-									</div>
-								</div>
+						<div className="columns is-mobile">
+							<div className="column is-narrow">
+								<DatePicker
+									selected={stakeDate}
+									onChange={date => this.updateStakeDate(date)}
+									className="input"
+									dateFormat="P"
+									locale={localeString}
+									minDate={startEpochDate}
+									maxDate={maxDate}
+									utcOffset="0"
+									disabled={loading}
+								/>
 							</div>
-
-							<div className="results">
-								{!loading && !result.length && this.renderPlaceholder()}
-								{!loading && result.map((epoch, index) => this.renderEpochRow(epoch, index))}
-
-								{loading && (
-									<div className="placeholder">
-										<div className="placeholderIcon loading">
-											<FontAwesomeIcon icon={faSpinner}/>
-										</div>
-									</div>
-								)}
+							<div className="column">
+								<button className="button is-info"
+								        onClick={() => this.updateStakeDate()}
+								        disabled={loading}
+								>Go
+								</button>
 							</div>
 						</div>
 					</div>
 				</div>
-			</CSSTransition>
+
+				<div className="results">
+					{!loading && !result.length && this.renderPlaceholder()}
+					{!loading && result.map((epoch, index) => this.renderEpochRow(epoch, index))}
+
+					{loading && (
+						<div className="placeholder">
+							<div className="placeholderIcon loading">
+								<FontAwesomeIcon icon={faSpinner}/>
+							</div>
+						</div>
+					)}
+				</div>
+			</div>
 		)
 	}
 }

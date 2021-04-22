@@ -91,6 +91,16 @@
 					font-weight: 700;
 					color: $woodlandYellow;
 					letter-spacing: 2px;
+
+					a {
+						color: inherit;
+						transition: color 100ms ease-in-out;
+						position: relative;
+
+						&:hover {
+							color: darken($woodlandYellow, 10%);
+						}
+					}
 				}
 			}
 		}

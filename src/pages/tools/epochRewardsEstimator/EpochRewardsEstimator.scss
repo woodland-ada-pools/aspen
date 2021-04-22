@@ -1,5 +1,5 @@
-@import '../../style/variables.scss';
-@import "~react-datepicker/dist/react-datepicker.css";
+@import '../../../style/variables';
+@import "../../../../node_modules/react-datepicker/dist/react-datepicker.css";
 
 .epochRewardsEstimatorModal {
 	.modal-content {
