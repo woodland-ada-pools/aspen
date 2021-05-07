@@ -346,8 +346,8 @@ export class EpochRewardsEstimator extends Component {
 		      averageRos              = round(currentCalculation.averageRos * 100, 3),
 		      epochRos                = round(currentCalculation.ros * 100, 3),
 		      totalRewardsInAda       = lovelaceToAda(currentCalculation.rewards),
-		      delegatorRewardsInAda   = lovelaceToAda(currentCalculation.rewards),
 		      fixedFeeInAda           = lovelaceToAda(currentCalculation.fixedFee),
+		      delegatorRewardsInAda   = lovelaceToAda(currentCalculation.rewards) - currentCalculation.marginRewards - fixedFeeInAda,
 		      variableFee             = round(currentCalculation.margin * 100, 2);
 
 		return (
