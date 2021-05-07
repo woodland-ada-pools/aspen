@@ -5,6 +5,7 @@
 
 :root {
 	--page-margin: #{$pageMargin};
+	overflow-y: hidden;
 
 	@media screen and (max-width: $tablet) {
 		--page-margin: 0px;

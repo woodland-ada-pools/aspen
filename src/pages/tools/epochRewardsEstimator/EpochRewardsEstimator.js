@@ -616,119 +616,104 @@ export class EpochRewardsEstimator extends Component {
 	}
 
 	render() {
-		const {isOpen}                                                                = this.props,
-		      {loading, poolResults, selectedPool, stakeAmount, noBlocks, calculated} = this.state;
+		const {loading, poolResults, selectedPool, stakeAmount, noBlocks, calculated} = this.state;
 
 		return (
-			<CSSTransition in={isOpen}
-			               timeout={250}
-			               classNames="fade"
-			               mountOnEnter
-			               unmountOnExit>
-				<div className={`modal fade is-active epochRewardsEstimatorModal`}>
-					<div className="modal-background" onClick={() => this.onClose()}/>
-					<div className="modal-content">
-						<button className="modal-close is-large" aria-label="close" onClick={() => this.onClose()}/>
-
-						<div id="epochRewardsEstimator" className="epochRewardsEstimator">
-							<section className="informationSection">
-								<h2 className="sectionHeader">Epoch Rewards Estimator</h2>
-								<div className="disclaimer">
-									This tool describes how pool fees work on a per-epoch basis and gives you a rough
-									estimate, based on your stake amount, of the rewards you can expect to earn in a
-									given epoch, utilizing historical data for the pool you select. Your individual
-									results may vary. None of this
-									information should be considered financial or investment advice.
-								</div>
-							</section>
-
-							<section className="inputSection">
-								<section className="poolInput">
-									<Autocomplete
-										ref={this.autocompleteRef}
-										name="pool"
-										className="poolSearchBox"
-										label={(
-											<>
-												<h4>Select your pool</h4>
-												<small>
-													Type in a ticker (for example, ASPEN) and select your stake pool
-													from the results.
-												</small>
-											</>
-										)}
-										placeholder="Begin typing a stake pool ticker"
-										matches={poolResults}
-										onChange={(searchValue) => this.searchPoolsByTicker(searchValue)}
-										onClear={() => this.onSelectedPoolCleared()}
-										onDropdownClose={() => this.onPoolDropdownClosed()}
-										onSelect={selectedPool => this.onPoolSelected(selectedPool)}
-										autoComplete="off"
-										value={selectedPool?.label}
-									/>
-								</section>
-
-								<section className="stakeInput">
-									<label className="label">
-										<h4>Your stake amount</h4>
-										<small>
-											This is the amount you might have delegated to the selected stake
-											pool.
-										</small>
-									</label>
-
-									<div className="field">
-										<div className="control has-icons-left">
-											<i className="icon">₳</i>
-											<input
-												type="number"
-												className="input"
-												placeholder="Enter your stake amount"
-												onChange={(event) => this.onStakeAmountChanged(event)}
-												onKeyPress={event => this.onStakeInputKeyPress(event)}
-												autoComplete="off"
-												value={stakeAmount === null ? '' : stakeAmount}
-											/>
-										</div>
-									</div>
-								</section>
-
-								<section>
-									<button className="button is-info"
-									        onClick={(event) => this.calculate()}
-									        disabled={!selectedPool || !stakeAmount}
-									>
-										Calculate
-									</button>
-
-									<button className="button"
-									        onClick={(event) => this.reset(event)}
-									>
-										Reset
-									</button>
-								</section>
-							</section>
-
-							<section className="resultsSection">
-								{loading && (
-									<div className="placeholder">
-										<div className="placeholderIcon loading">
-											<FontAwesomeIcon icon={faSpinner}/>
-										</div>
-									</div>
-								)}
-
-								{!loading && !!calculated && this.renderResults()}
-
-								{!loading && !calculated && this.renderPlaceholder()}
-
-								{!loading && noBlocks && this.renderNoBlocksPlaceholder()}
-							</section>
-
-						</div>
+			<div id="epochRewardsEstimator" className="epochRewardsEstimator">
+				<section className="informationSection">
+					<div className="disclaimer">
+						This tool describes how pool fees work on a per-epoch basis and gives you a rough
+						estimate, based on your stake amount, of the rewards you can expect to earn in a
+						given epoch, utilizing historical data for the pool you select. Your individual
+						results may vary. None of this
+						information should be considered financial or investment advice.
 					</div>
-				</div>
-			</CSSTransition>
+				</section>
+
+				<section className="inputSection">
+					<section className="poolInput">
+						<Autocomplete
+							ref={this.autocompleteRef}
+							name="pool"
+							className="poolSearchBox"
+							label={(
+								<>
+									<h4>Select your pool</h4>
+									<small>
+										Type in a ticker (for example, ASPEN) and select your stake pool
+										from the results.
+									</small>
+								</>
+							)}
+							placeholder="Begin typing a stake pool ticker"
+							matches={poolResults}
+							onChange={(searchValue) => this.searchPoolsByTicker(searchValue)}
+							onClear={() => this.onSelectedPoolCleared()}
+							onDropdownClose={() => this.onPoolDropdownClosed()}
+							onSelect={selectedPool => this.onPoolSelected(selectedPool)}
+							autoComplete="off"
+							value={selectedPool?.label}
+						/>
+					</section>
+
+					<section className="stakeInput">
+						<label className="label">
+							<h4>Your stake amount</h4>
+							<small>
+								This is the amount you might have delegated to the selected stake
+								pool.
+							</small>
+						</label>
+
+						<div className="field">
+							<div className="control has-icons-left">
+								<i className="icon">₳</i>
+								<input
+									type="number"
+									className="input"
+									placeholder="Enter your stake amount"
+									onChange={(event) => this.onStakeAmountChanged(event)}
+									onKeyPress={event => this.onStakeInputKeyPress(event)}
+									autoComplete="off"
+									value={stakeAmount === null ? '' : stakeAmount}
+								/>
+							</div>
+						</div>
+					</section>
+
+					<section>
+						<button className="button is-info"
+						        onClick={(event) => this.calculate()}
+						        disabled={!selectedPool || !stakeAmount}
+						>
+							Calculate
+						</button>
+
+						<button className="button"
+						        onClick={(event) => this.reset(event)}
+						>
+							Reset
+						</button>
+					</section>
+				</section>
+
+				<section className="resultsSection">
+					{loading && (
+						<div className="placeholder">
+							<div className="placeholderIcon loading">
+								<FontAwesomeIcon icon={faSpinner}/>
+							</div>
+						</div>
+					)}
+
+					{!loading && !!calculated && this.renderResults()}
+
+					{!loading && !calculated && this.renderPlaceholder()}
+
+					{!loading && noBlocks && this.renderNoBlocksPlaceholder()}
+				</section>
+
+			</div>
 		)
 	}
 }

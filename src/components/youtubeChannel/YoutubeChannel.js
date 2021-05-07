@@ -4,8 +4,9 @@ import {faYoutube} from "@fortawesome/free-brands-svg-icons/faYoutube";
 import {ExternalLink} from '../common/MiscComponents';
 import './YoutubeChannel.scss';
 import {decodeHTMLEntities} from "../../helpers/stringHelpers";
+import config from '../../config/config.json';
 
-const {youtubeUrl, youtubeApiKey, youtubeChannelID} = require('../../config/config.json'),
+const {youtubeUrl} = require('../../config/config.json'),
       isLikelyBot = /bot|crawl|spider|google|baidu|bing|msn|teoma|slurp|yandex/i.test(navigator.userAgent);
 
 function getRecentVideos() {
@@ -13,10 +14,10 @@ function getRecentVideos() {
 		return Promise.reject();
 	}
 
-	return fetch(`https://www.googleapis.com/youtube/v3/search?key=${youtubeApiKey}&channelId=${youtubeChannelID}&part=snippet,id&order=date&maxResults=3`)
+	return fetch(`${config.wpApiUrl}/yt/recent?apiKey=${config.wpApiKey}`)
 		.then(response => response.json())
 		.then(response => {
-			return (response.items || [])
+			return (response || [])
 				.filter(item => item.id.kind === 'youtube#video');
 		})
 		.then(videos => {
