@@ -87,9 +87,10 @@
 				align-items: center;
 				justify-content: center;
 				height: 100%;
+				flex-wrap: wrap;
 
 				li {
-					display: flex;
+					display: inline-flex;
 					align-items: center;
 					justify-content: center;
 					height: 100%;

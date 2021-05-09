@@ -31,16 +31,17 @@ function HeroUnit() {
 				<div className={styles.lowerText}>
 					<div className={styles.lowerTextWords}>
 						<ul>
-							<li>Invest with confidence.</li>
+							<li>Invest with confidence</li>
 						</ul>
 					</div>
-					<div className={styles.callToAction}>
-						<div className={styles.callToActionButton}>
-							<HashLink to="/#delegate" smooth>Get started</HashLink>
-						</div>
-						<div className={styles.callToActionArrow}>
-							<HashLink to="/#delegate" smooth><FontAwesomeIcon icon={faAngleDoubleDown}/></HashLink>
-						</div>
+				</div>
+
+				<div className={styles.callToAction}>
+					<div className={styles.callToActionButton}>
+						<HashLink to="/#about" smooth>Get started</HashLink>
+					</div>
+					<div className={styles.callToActionArrow}>
+						<HashLink to="/#about" smooth><FontAwesomeIcon icon={faAngleDoubleDown}/></HashLink>
 					</div>
 				</div>
 			</div>
@@ -50,7 +51,7 @@ function HeroUnit() {
 
 function IntroUnit() {
 	return (
-		<div className={styles.introUnit}>
+		<div id="about" className={styles.introUnit}>
 			<div className={styles.introUnitInner}>
 				<div className={styles.introUnitInner2}>
 					<div className="columns is-gapless">
@@ -60,10 +61,9 @@ function IntroUnit() {
 							<div className={styles.benefits}>
 								<h2>We have...</h2>
 								<ul>
-									<li>15+ years of IT experience</li>
-									<li>20 years combined software development experience</li>
+									<li>15+ years of IT experience and 20 years combined software development experience</li>
 									<li>A passion for educating the Cardano community</li>
-									<li>A YouTube channel dedicated to Cardano and cryptocurrencies</li>
+									<li>An informative YouTube channel dedicated to Cardano and cryptocurrencies</li>
 									<li>The drive to succeed and help you succeed!</li>
 								</ul>
 							</div>
@@ -71,7 +71,7 @@ function IntroUnit() {
 							<div className={styles.benefits}>
 								<h2>You get...</h2>
 								<ul>
-									<li>New tutorials and cryptocurrency videos on a regular schedule</li>
+									<li>New tutorials, cryptocurrency videos, and Q&A live streams on a regular schedule</li>
 									<li>Multiple delegator-oriented tools to help you make informed staking decisions
 									</li>
 									<li>A community of like-minded rational investors like yourself</li>
@@ -112,10 +112,11 @@ function StakeUnit() {
 			</p>
 
 			<p>
-				Staking your ADA is completely safe - your coins never leave your wallet, and there are no lock-in
+				Staking your ADA from your own wallet is completely safe - your coins never leave your wallet, and there are no lock-in
 				periods; you may unstake, withdraw, sell,
 				or trade your staked ADA at any time. This flexibility is what gives Cardano an advantage over other
-				proof-of-stake cryptocurrencies.
+				proof-of-stake cryptocurrencies. No matter the amount of ADA you hold, staking is <i>always</i> worth doing,
+				as you gain compound interest and help the Cardano network at the same time. Read on if you'd like to stake with us!
 			</p>
 
 
@@ -127,8 +128,7 @@ function StakeUnit() {
 						<div>
 							<h2>1</h2>
 							<p>
-								Download and install <a href="https://daedaluswallet.io/en/download/">Daedalus</a>
-								<u>or</u> <a href="https://yoroi-wallet.com/#/">Yoroi</a>. These are the two major
+								Download and install <a href="https://daedaluswallet.io/en/download/">Daedalus</a> <u>or</u> <a href="https://yoroi-wallet.com/#/">Yoroi</a>. These are the two major
 								wallets that support staking.
 							</p>
 
