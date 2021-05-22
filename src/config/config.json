@@ -3,6 +3,6 @@
 	"twitterUrl": "https://twitter.com/WoodlandPools",
 	"poolID": "pool1qku2yhky7sv4dfjfv42uyvauhehuqevk25aw952d7ulzqzx3jcu",
 
-	"wpApiUrl": "http://localhost:1285",
+	"wpApiUrl": "https://api.woodlandpools.net",
 	"wpApiKey": "WmJ7I9XKY0hxfprj4BzKOCe1aaYTZ0LO"
 }
