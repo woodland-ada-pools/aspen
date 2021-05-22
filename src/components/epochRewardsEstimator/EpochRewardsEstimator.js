@@ -228,7 +228,7 @@ export class EpochRewardsEstimator extends Component {
 
 		const sortedMargins = orderBy(possibleMargins, event => parseInt(event.timestamp), 'desc');
 
-		return sortedMargins[0]?.margin || 0.025;
+		return typeof sortedMargins[0]?.margin === 'number' ? sortedMargins[0]?.margin : 0.025;
 	}
 
 	calculateRoS(rewards, stake) {
@@ -348,7 +348,7 @@ export class EpochRewardsEstimator extends Component {
 		      totalRewardsInAda       = lovelaceToAda(currentCalculation.rewards),
 		      fixedFeeInAda           = lovelaceToAda(currentCalculation.fixedFee),
 		      delegatorRewardsInAda   = lovelaceToAda(currentCalculation.rewards) - currentCalculation.marginRewards - fixedFeeInAda,
-		      variableFee             = round(currentCalculation.margin * 100, 2);
+		      variableFee             = sigFigs(currentCalculation.margin * 100, 2);
 
 		return (
 			<div className="card">
