@@ -3,7 +3,7 @@ import {CSSTransition} from "react-transition-group";
 import {findPoolsByTicker, getPoolRewardsAndFees} from "../../api/WoodlandPoolsApi";
 import Autocomplete from "../common/autocomplete/Autocomplete";
 import './EpochRewardsEstimator.scss';
-import {debounce, orderBy, round, sum, minBy} from 'lodash';
+import {debounce, orderBy, round, sum, minBy, isNaN} from 'lodash';
 import {findEpochStartDateFromEpochNumber, getEpochNumber} from "../payoutCalendar/PayoutCalendarFunctions";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAngleDown} from '@fortawesome/free-solid-svg-icons/faAngleDown';
@@ -228,7 +228,7 @@ export class EpochRewardsEstimator extends Component {
 
 		const sortedMargins = orderBy(possibleMargins, event => parseInt(event.timestamp), 'desc');
 
-		return typeof sortedMargins[0]?.margin === 'number' ? sortedMargins[0]?.margin : 0.025;
+		return !isNaN(sortedMargins[0]?.margin) ? sortedMargins[0].margin : 0.025;
 	}
 
 	calculateRoS(rewards, stake) {
