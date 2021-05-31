@@ -1,28 +1,30 @@
 {
   "files": {
-    "main.css": "/static/css/main.a84ef145.chunk.css",
-    "main.js": "/static/js/main.d44b4321.chunk.js",
-    "main.js.map": "/static/js/main.d44b4321.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.8ef6f4aa.js",
-    "runtime-main.js.map": "/static/js/runtime-main.8ef6f4aa.js.map",
+    "main.css": "/static/css/main.0d35a765.chunk.css",
+    "main.js": "/static/js/main.d048be4f.chunk.js",
+    "main.js.map": "/static/js/main.d048be4f.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.a33a95ac.js",
+    "runtime-main.js.map": "/static/js/runtime-main.a33a95ac.js.map",
     "static/css/2.4b8228b5.chunk.css": "/static/css/2.4b8228b5.chunk.css",
-    "static/js/2.9e4cad1b.chunk.js": "/static/js/2.9e4cad1b.chunk.js",
-    "static/js/2.9e4cad1b.chunk.js.map": "/static/js/2.9e4cad1b.chunk.js.map",
-    "static/js/3.863be4bc.chunk.js": "/static/js/3.863be4bc.chunk.js",
-    "static/js/3.863be4bc.chunk.js.map": "/static/js/3.863be4bc.chunk.js.map",
+    "static/js/2.da79561f.chunk.js": "/static/js/2.da79561f.chunk.js",
+    "static/js/2.da79561f.chunk.js.map": "/static/js/2.da79561f.chunk.js.map",
+    "static/js/3.2d4f249f.chunk.js": "/static/js/3.2d4f249f.chunk.js",
+    "static/js/3.2d4f249f.chunk.js.map": "/static/js/3.2d4f249f.chunk.js.map",
     "index.html": "/index.html",
     "static/css/2.4b8228b5.chunk.css.map": "/static/css/2.4b8228b5.chunk.css.map",
-    "static/css/main.a84ef145.chunk.css.map": "/static/css/main.a84ef145.chunk.css.map",
-    "static/js/2.9e4cad1b.chunk.js.LICENSE.txt": "/static/js/2.9e4cad1b.chunk.js.LICENSE.txt",
-    "static/media/App.scss": "/static/media/background.9ddebee2.png",
-    "static/media/logo_no_text.5de3a2f8.svg": "/static/media/logo_no_text.5de3a2f8.svg",
-    "static/media/logo_text.ae6be94a.svg": "/static/media/logo_text.ae6be94a.svg"
+    "static/css/main.0d35a765.chunk.css.map": "/static/css/main.0d35a765.chunk.css.map",
+    "static/js/2.da79561f.chunk.js.LICENSE.txt": "/static/js/2.da79561f.chunk.js.LICENSE.txt",
+    "static/media/HeroUnit.module.scss": "/static/media/welcome-background.1a646873.jpg",
+    "static/media/IntroUnit.module.scss": "/static/media/bright-squares.79000482.png",
+    "static/media/logo_no_text.0b62e2d2.svg": "/static/media/logo_no_text.0b62e2d2.svg",
+    "static/media/logo_text.d6772914.svg": "/static/media/logo_text.d6772914.svg",
+    "static/media/tagline.40539159.svg": "/static/media/tagline.40539159.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.8ef6f4aa.js",
+    "static/js/runtime-main.a33a95ac.js",
     "static/css/2.4b8228b5.chunk.css",
-    "static/js/2.9e4cad1b.chunk.js",
-    "static/css/main.a84ef145.chunk.css",
-    "static/js/main.d44b4321.chunk.js"
+    "static/js/2.da79561f.chunk.js",
+    "static/css/main.0d35a765.chunk.css",
+    "static/js/main.d048be4f.chunk.js"
   ]
 }
