@@ -350,267 +350,267 @@ export class EpochRewardsEstimator extends Component {
 		      variableFee             = round(currentCalculation.margin * 100, 2);
 
 		return (
-			<div className="card">
-				<div className="card-content">
-					<section>
-						<div className="columns is-multiline">
-							<div className="column is-half-desktop is-half-tablet is-full-mobile">
-								<div className={`dropdown${epochDropdownOpen ? ' is-active' : ''} epochDropdown`}>
-									<div className="dropdown-trigger">
-										<button className="button" aria-haspopup="true" aria-controls="dropdown-menu"
-										        onClick={() => this.toggleEpochDropdown()}>
-											<strong>Epoch {currentCalculation.epoch} - {this.formatEpochDate(currentCalculation.epoch)}</strong>
-											<span className="icon is-small">
-												<FontAwesomeIcon icon={faAngleDown}/>
-											</span>
-										</button>
-									</div>
-									<div className="dropdown-menu" id="dropdown-menu" role="menu">
-										<div className="dropdown-content">
-											{currentCalculation.allEpochs.map(epochNumber => {
-												return (
-													<a href="#" className="dropdown-item"
-													   onClick={() => this.onEpochDropdownItemClick(epochNumber)}>
-														Epoch {epochNumber} - {this.formatEpochDate(epochNumber)}
-													</a>
-												)
-											})}
-										</div>
-									</div>
-								</div>
-							</div>
-							<div className="column is-half-desktop is-half-tablet is-full-mobile">
-								<div className="card has-light-shadow feesTable">
-									<div className="card-content">
-										<div className="columns is-mobile is-multiline">
-											<div className="column is-one-third-desktop is-half-mobile">
-												<strong>Fixed Fee</strong>
-											</div>
-											<div className="column is-two-thirds-desktop is-half-mobile">
-												{formatAdaValue(fixedFeeInAda)}
-											</div>
-
-											<div className="column is-one-third-desktop is-half-mobile">
-												<strong>Variable Fee</strong>
-											</div>
-											<div className="column is-two-thirds-desktop is-half-mobile">
-												{variableFee}%
-											</div>
-
-											<div className="column is-one-third-desktop is-half-mobile">
-												<strong>Average RoS</strong>
-											</div>
-											<div className="column is-two-thirds-desktop is-half-mobile">
-												{averageRos}%
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</section>
-
-					<section className="calculations">
-						<div className="calcSection">
-							<div className="itemRow totalRow">
-								<div className="columns is-mobile">
-									<div className="column is-one-third itemHeaderColumn">
-										Total active stake for epoch
-									</div>
-									<div className="column is-two-thirds itemValueColumn">
-										<div className="itemValue">
-											<div className="sign">=</div>
-											<span>
-												{formatAdaValue(activeStakeInAda)}
-											</span>
-										</div>
-										<div className="itemExplanation">
-											The total amount of ADA delegated to the pool for this epoch.
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<div className="itemRow totalRow">
-								<div className="columns is-mobile">
-									<div className="column is-one-third itemHeaderColumn">
-										Total rewards for epoch
-									</div>
-									<div className="column is-two-thirds itemValueColumn">
-										<div className="itemValue">
-											<div className="sign">=</div>
-											<span>
-												{formatAdaValue(totalRewardsInAda)}
-											</span>
-										</div>
-										<div className="itemExplanation">
-											The total amount of rewards and fees granted to the stake pool for this
-											epoch.
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<div className="itemRow feesRow">
-								<div className="columns is-mobile">
-									<div className="column is-one-third itemHeaderColumn">
-										<div className="minus">Pool operation fees</div>
-									</div>
-									<div className="column is-two-thirds itemValueColumn">
-										<div className="itemValue">
-											<div className="sign minus">-</div>
-											<span className="minus">
-												{formatAdaValue(fixedFeeInAda)}
-											</span>
-										</div>
-										<div className="itemExplanation">
-											The fixed fee charged by the stake pool -
-											typically {formatAdaValue(340, true)}. This fee is intended to cover
-											infrastructure costs.
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<div className="itemRow feesRow">
-								<div className="columns is-mobile">
-									<div className="column is-one-third itemHeaderColumn subHeader">
-										<div className="minus">Pool operator rewards</div>
-									</div>
-									<div className="column is-two-thirds itemValueColumn">
-										<div className="itemValue">
-											<div className="sign minus">-</div>
-											<span className="minus">
-												{formatAdaValue(currentCalculation.marginRewards)}
-											</span>
-										</div>
-										<div className="itemExplanation">
-											The rewards given to the pool operators - fee varies by stake
-											pool. The selected pool's variable fee
-											is <strong>{currentCalculation.margin * 100}%</strong> (less than 5% is
-											typical for non-private pools).
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<div className="itemRow totalRewardsRow">
-								<div className="columns is-mobile">
-									<div className="column is-one-third itemHeaderColumn">
-										Total delegator rewards
-									</div>
-									<div className="column is-two-thirds itemValueColumn">
-										<div className="itemValue">
-											<div className="sign">=</div>
-											<span>
-												{formatAdaValue(delegatorRewardsInAda)}
-											</span>
-										</div>
-										<div className="itemExplanation">
-											The total amount to be distributed to delegators.
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div className="calcSection">
-							<div className="itemRow rewardsRow">
-								<div className="columns is-mobile">
-									<div className="column is-one-third itemHeaderColumn">
-										Your stake
-									</div>
-									<div className="column is-two-thirds itemValueColumn">
-										<div className="itemValue">
-											<div className="sign">=</div>
-											<span>
-												{formatAdaValue(stakeAmount)}
-											</span>
-										</div>
-										<div className="itemExplanation">
-											The amount you've delegated to the stake pool.
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<div className="itemRow rewardsRow">
-								<div className="columns is-mobile">
-									<div className="column is-one-third itemHeaderColumn">
-										Your stake ratio
-									</div>
-									<div className="column is-two-thirds itemValueColumn">
-										<div className="itemValue">
-											<div className="sign">=</div>
-											<span>
-												{stakePercentage}%
-											</span>
-										</div>
-										<div className="itemExplanation">
-											Your stake as a percentage of total active stake.
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div className="itemRow yourRewardsRow">
-							<div className="columns is-mobile">
-								<div className="column is-one-third itemHeaderColumn">
-									Your estimated rewards
-								</div>
-								<div className="column is-two-thirds itemValueColumn">
-									<div className="itemValue">
-										<div className="sign">=</div>
-										<span>
-											{formatAdaValue(approximateRewardsInAda)}
+			<>
+				<section>
+					<div className="columns is-multiline">
+						<div className="column is-half-desktop is-half-tablet is-full-mobile">
+							<div className={`dropdown${epochDropdownOpen ? ' is-active' : ''} epochDropdown`}>
+								<div className="dropdown-trigger">
+									<button className="button" aria-haspopup="true" aria-controls="dropdown-menu"
+									        onClick={() => this.toggleEpochDropdown()}>
+										<strong>Epoch {currentCalculation.epoch} - {this.formatEpochDate(currentCalculation.epoch)}</strong>
+										<span className="icon is-small">
+											<FontAwesomeIcon icon={faAngleDown}/>
 										</span>
-									</div>
-									<div className="itemExplanation">
-										Your stake ratio ({stakePercentage}%) multiplied by the total delegator
-										rewards ({formatAdaValue(delegatorRewardsInAda)}).
-									</div>
+									</button>
 								</div>
-							</div>
-
-							<div className="columns is-mobile">
-								<div className="column is-one-third itemHeaderColumn">
-									RoS for Epoch {currentCalculation.epoch}
-								</div>
-								<div className="column is-two-thirds itemValueColumn">
-									<div className="itemValue">
-										<div className="sign">=</div>
-										<span>
-											{epochRos}%
-										</span>
-									</div>
-									<div className="itemExplanation">
-										This is the annualized rate of return extrapolated from this epoch's rewards.
+								<div className="dropdown-menu" id="dropdown-menu" role="menu">
+									<div className="dropdown-content">
+										{currentCalculation.allEpochs.map(epochNumber => {
+											return (
+												<a href="#" className="dropdown-item"
+												   onClick={() => this.onEpochDropdownItemClick(epochNumber)}>
+													Epoch {epochNumber} - {this.formatEpochDate(epochNumber)}
+												</a>
+											)
+										})}
 									</div>
 								</div>
 							</div>
+						</div>
+						<div className="column is-half-desktop is-half-tablet is-full-mobile is-justify-content-flex-start">
+							<div className="card has-light-shadow feesTable">
+								<div className="card-content">
+									<div className="columns is-mobile is-multiline">
+										<div className="column is-one-third-desktop is-half-mobile">
+											<strong>Fixed Fee</strong>
+										</div>
+										<div className="column is-two-thirds-desktop is-half-mobile">
+											{formatAdaValue(fixedFeeInAda)}
+										</div>
 
-							<div className="columns is-mobile">
-								<div className="column is-one-third itemHeaderColumn">
-									Average RoS for Pool
-								</div>
-								<div className="column is-two-thirds itemValueColumn">
-									<div className="itemValue">
-										<div className="sign">=</div>
-										<span>
+										<div className="column is-one-third-desktop is-half-mobile">
+											<strong>Variable Fee</strong>
+										</div>
+										<div className="column is-two-thirds-desktop is-half-mobile">
+											{variableFee}%
+										</div>
+
+										<div className="column is-one-third-desktop is-half-mobile">
+											<strong>Average RoS</strong>
+										</div>
+										<div className="column is-two-thirds-desktop is-half-mobile">
 											{averageRos}%
-										</span>
-									</div>
-									<div className="itemExplanation">
-										Around 5% RoS (Return on Stake) is typical. This is the average for the previous
-										10 epochs.
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					</section>
-				</div>
-			</div>
+					</div>
+				</section>
+
+				<section className="calculations">
+					<div className="calcSection">
+						<div className="itemRow totalRow">
+							<div className="columns is-mobile">
+								<div className="column is-one-third itemHeaderColumn">
+									Total active stake for epoch
+								</div>
+								<div className="column is-two-thirds itemValueColumn">
+									<div className="itemValue">
+										<div className="sign">=</div>
+										<span>
+											{formatAdaValue(activeStakeInAda)}
+										</span>
+									</div>
+									<div className="itemExplanation">
+										The total amount of ADA delegated to the pool for this epoch.
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div className="itemRow totalRow">
+							<div className="columns is-mobile">
+								<div className="column is-one-third itemHeaderColumn">
+									Total rewards for epoch
+								</div>
+								<div className="column is-two-thirds itemValueColumn">
+									<div className="itemValue">
+										<div className="sign">=</div>
+										<span>
+											{formatAdaValue(totalRewardsInAda)}
+										</span>
+									</div>
+									<div className="itemExplanation">
+										The total amount of rewards and fees granted to the stake pool for this
+										epoch.
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div className="itemRow feesRow">
+							<div className="columns is-mobile">
+								<div className="column is-one-third itemHeaderColumn">
+									<div className="minus">Pool operation fees</div>
+								</div>
+								<div className="column is-two-thirds itemValueColumn">
+									<div className="itemValue">
+										<div className="sign minus">-</div>
+										<span className="minus">
+											{formatAdaValue(fixedFeeInAda)}
+										</span>
+									</div>
+									<div className="itemExplanation">
+										The fixed fee charged by the stake pool -
+										typically {formatAdaValue(340, true)}. This fee is intended to cover
+										infrastructure costs.
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div className="itemRow feesRow">
+							<div className="columns is-mobile">
+								<div className="column is-one-third itemHeaderColumn subHeader">
+									<div className="minus">Pool operator rewards</div>
+								</div>
+								<div className="column is-two-thirds itemValueColumn">
+									<div className="itemValue">
+										<div className="sign minus">-</div>
+										<span className="minus">
+											{formatAdaValue(currentCalculation.marginRewards)}
+										</span>
+									</div>
+									<div className="itemExplanation">
+										The rewards given to the pool operators - fee varies by stake
+										pool. The selected pool's variable fee
+										is <strong>{currentCalculation.margin * 100}%</strong> (less than 5% is
+										typical for non-private pools).
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div className="itemRow totalRewardsRow">
+							<div className="columns is-mobile">
+								<div className="column is-one-third itemHeaderColumn">
+									Total delegator rewards
+								</div>
+								<div className="column is-two-thirds itemValueColumn">
+									<div className="itemValue">
+										<div className="sign">=</div>
+										<span>
+											{formatAdaValue(delegatorRewardsInAda)}
+										</span>
+									</div>
+									<div className="itemExplanation">
+										The total amount to be distributed to delegators.
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div className="calcSection">
+						<div className="itemRow rewardsRow">
+							<div className="columns is-mobile">
+								<div className="column is-one-third itemHeaderColumn">
+									Your stake
+								</div>
+								<div className="column is-two-thirds itemValueColumn">
+									<div className="itemValue">
+										<div className="sign">=</div>
+										<span>
+											{formatAdaValue(stakeAmount)}
+										</span>
+									</div>
+									<div className="itemExplanation">
+										The amount you've delegated to the stake pool.
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div className="itemRow rewardsRow">
+							<div className="columns is-mobile">
+								<div className="column is-one-third itemHeaderColumn">
+									Your stake ratio
+								</div>
+								<div className="column is-two-thirds itemValueColumn">
+									<div className="itemValue">
+										<div className="sign">=</div>
+										<span>
+											{stakePercentage}%
+										</span>
+									</div>
+									<div className="itemExplanation">
+										Your stake as a percentage of total active stake.
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div className="itemRow yourRewardsRow">
+						<div className="columns is-mobile">
+							<div className="column is-one-third itemHeaderColumn">
+								Your estimated rewards
+								<div><small>For epoch {currentCalculation.epoch}</small></div>
+							</div>
+							<div className="column is-two-thirds itemValueColumn">
+								<div className="itemValue">
+									<div className="sign">=</div>
+									<span>
+										{formatAdaValue(approximateRewardsInAda)}
+									</span>
+								</div>
+								<div className="itemExplanation">
+									Your stake ratio ({stakePercentage}%) multiplied by the total delegator
+									rewards ({formatAdaValue(delegatorRewardsInAda)}).
+								</div>
+							</div>
+						</div>
+
+						<div className="columns is-mobile">
+							<div className="column is-one-third itemHeaderColumn">
+								RoS
+								<div><small>For epoch {currentCalculation.epoch}</small></div>
+							</div>
+							<div className="column is-two-thirds itemValueColumn">
+								<div className="itemValue">
+									<div className="sign">=</div>
+									<span>
+										{epochRos}%
+									</span>
+								</div>
+								<div className="itemExplanation">
+									This is the annualized rate of return extrapolated from this epoch's rewards.
+								</div>
+							</div>
+						</div>
+
+						<div className="columns is-mobile">
+							<div className="column is-one-third itemHeaderColumn">
+								Average RoS for Pool
+							</div>
+							<div className="column is-two-thirds itemValueColumn">
+								<div className="itemValue">
+									<div className="sign">=</div>
+									<span>
+										{averageRos}%
+									</span>
+								</div>
+								<div className="itemExplanation">
+									Around 5% RoS (Return on Stake) is typical. This is the average for the previous
+									10 epochs.
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+			</>
 		)
 	}
 

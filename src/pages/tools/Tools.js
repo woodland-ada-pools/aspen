@@ -52,7 +52,7 @@ export function Tools() {
 						<nav>
 							<ul>
 								<li><Link to={`${url}/payout-date-estimator`}>Payout Date Estimator</Link></li>
-								<li><Link to={`${url}/epoch-rewards-estimator`}>Epoch Reward Estimator</Link></li>
+								<li><Link to={`${url}/epoch-rewards-estimator`}>Epoch Rewards Estimator</Link></li>
 							</ul>
 						</nav>
 					</div>

@@ -88,6 +88,7 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		margin-top: 32px;
 
 		.placeholder {
 			height: 100%;
@@ -118,19 +119,8 @@
 			}
 		}
 
-		>.card {
-			@media screen and (max-width: $tablet) {
-				border: none;
-				box-shadow: none;
-			}
-
-			>.card-content {
-				padding: 12px;
-
-				@media screen and (max-width: $tablet) {
-					padding: 4px;
-				}
-			}
+		> section {
+			width: 100%;
 		}
 
 		.feesTable {

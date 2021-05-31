@@ -14,7 +14,8 @@ $toolsHeight: calc(100vh - #{$headerHeight});
 	}
 
 	.navInner {
-		background-color: lighten($woodlandBlue, 3%);
+		background-color: $white-bis;
+		border-right: 1px solid $grey-lighter;
 		height: $toolsHeight;
 		position: relative;
 
@@ -28,8 +29,9 @@ $toolsHeight: calc(100vh - #{$headerHeight});
 			padding: 0 24px;
 			position: relative;
 			top: 12px;
+			width: calc(100% + 1px);
 			box-shadow: 0 4px 1px rgba(0, 0, 0, 0.1);
-			height: 50px;
+			height: 51px;
 			display: flex;
 			align-items: center;
 
@@ -62,22 +64,23 @@ $toolsHeight: calc(100vh - #{$headerHeight});
 				a {
 					display: block;
 					font-family: Inter, sans-serif;
-					color: $white-ter;
+					color: $woodlandBrown;
 					cursor: pointer;
-					transition: all 100ms ease-in-out;
+					transition: all 50ms ease-in-out;
 					font-weight: 500;
-					padding: 16px 24px;
+					padding: 12px 24px;
+					width: calc(100% + 1px);
 
 					&:active, &:visited {
-						color: $white-ter;
+						color: $woodlandBrown;
 					}
 
 					&:hover {
-						color: $woodlandBlue;
-						background-color: $white;
+						color: $white-bis;
+						background-color: saturate($woodlandBlue, 10%);
 
 						&:before {
-							color: $woodlandBlue;
+							color: $white-bis;
 						}
 					}
 				}
