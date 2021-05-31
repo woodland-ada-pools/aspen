@@ -25,7 +25,7 @@
 			background-color: $grey-lightest;
 			padding: 4px 4px 4px 8px;
 			border-radius: $borderRadius;
-			font-size: 12px;
+			font-size: 0.9rem;
 		}
 	}
 
@@ -41,7 +41,7 @@
 		}
 
 		h4 {
-			font-size: 14px;
+			font-size: 1rem;
 			line-height: 14px;
 			font-weight: bold;
 		}
@@ -76,7 +76,7 @@
 				margin-top: -2px;
 				margin-left: -2px;
 				font-style: normal;
-				font-size: 18px;
+				font-size: 1.1rem;
 				color: $grey-light;
 			}
 		}
@@ -99,7 +99,7 @@
 
 			.placeholderIcon {
 				text-align: center;
-				font-size: 64px;
+				font-size: 5rem;
 
 				&.loading {
 					.fa-spinner {
@@ -109,7 +109,7 @@
 			}
 
 			.placeholderText {
-				font-size: 18px;
+				font-size: 1.5rem;
 				user-select: none;
 				-moz-user-select: none;
 				-webkit-user-select: none;
@@ -174,7 +174,7 @@
 
 			&.totalRow {
 				div.itemHeaderColumn {
-					font-size: 18px;
+					font-size: 1.25rem;
 				}
 			}
 
@@ -198,7 +198,7 @@
 				padding: 12px 0;
 
 				div.itemHeaderColumn {
-					font-size: 20px;
+					font-size: 1.5rem;
 					line-height: 20px;
 				}
 
@@ -222,7 +222,7 @@
 			div.itemHeaderColumn {
 				color: $grey-darker;
 				font-weight: bold;
-				font-size: 16px;
+				font-size: 1rem;
 				line-height: 16px;
 				opacity: 0.9;
 				display: flex;
@@ -233,7 +233,7 @@
 
 			div.itemValueColumn {
 				color: $grey-darker;
-				font-size: 18px;
+				font-size: 1.25rem;
 				line-height: 18px;
 				display: flex;
 				flex-direction: column;
@@ -254,7 +254,7 @@
 					top: 10px;
 
 					opacity: 0.8;
-					font-size: 13px;
+					font-size: 0.9rem;
 
 					padding: 0 12px;
 					margin-left: 8px;

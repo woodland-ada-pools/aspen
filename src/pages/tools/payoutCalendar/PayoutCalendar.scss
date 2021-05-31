@@ -21,7 +21,7 @@
 			background-color: $grey-lightest;
 			padding: 4px 4px 4px 8px;
 			border-radius: $borderRadius;
-			font-size: 12px;
+			font-size: 0.9rem;
 		}
 
 		.dateInput {
@@ -31,7 +31,7 @@
 			margin-top: 24px;
 
 			h4 {
-				font-size: 14px;
+				font-size: 1rem;
 				line-height: 14px;
 				font-weight: bold;
 			}
@@ -73,7 +73,7 @@
 
 			.placeholderIcon {
 				text-align: center;
-				font-size: 64px;
+				font-size: 5rem;
 				margin-bottom: 32px;
 
 				&.loading {
@@ -84,7 +84,7 @@
 			}
 
 			.placeholderText {
-				font-size: 18px;
+				font-size: 1.5rem;
 				user-select: none;
 				-moz-user-select: none;
 				-webkit-user-select: none;
@@ -108,7 +108,7 @@
 				min-width: 80px;
 				display: flex;
 				align-items: center;
-				font-size: 16px;
+				font-size: 1rem;
 				font-weight: bold;
 				font-family: 'Noto Sans', sans-serif;
 				font-variant: all-small-caps;
@@ -128,11 +128,11 @@
 
 				.epochHeader {
 					width: 100%;
-					font-size: 12px;
+					font-size: 0.9rem;
 				}
 
 				p {
-					font-size: 14px;
+					font-size: 1rem;
 					opacity: 0.9;
 				}
 

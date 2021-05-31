@@ -28,7 +28,6 @@ export class Header extends Component {
 							<li><HashLink to="/#delegate" smooth>DELEGATE</HashLink></li>
 							<li><HashLink to="/#channel" smooth>CHANNEL</HashLink></li>
 							<li><Link to="/tools">TOOLS</Link></li>
-							<li><Link to="/faq">FAQs</Link></li>
 						</ul>
 					</nav>
 				</div>

@@ -1,0 +1,129 @@
+@import '../../../../style/variables';
+
+.heroUnit {
+	position: relative;
+	padding: 36px;
+	background-color: $grey-dark;
+	background-image: url('../../../../static/background.png');
+
+	@media screen and (max-width: $tablet) {
+		padding: 0;
+	}
+
+	.heroParticles {
+		position: absolute;
+		top: 0;
+		width: 100%;
+		height: 512px;
+		z-index: 5;
+	}
+
+	.heroParticlesCanvas {
+		position: absolute !important;
+		top: 0 !important;
+		left: 0 !important;
+		bottom: 0 !important;
+		right: 0 !important;
+		padding: 0;
+		margin: 0;
+	}
+
+	.heroUnitInner {
+		border: 1px solid transparentize($grey-lighter, 0.85);
+		width: 100%;
+		height: 440px;
+		display: flex;
+		justify-content: center;
+		position: relative;
+		border-radius: $borderRadius;
+		box-shadow: 0 5px 3px 1px rgba(0, 0, 0, 0.6);
+	}
+
+	.heroUnitBg {
+		width: 100%;
+		height: 438px;
+		background-image: url('../../../../static/welcome-background.jpg');
+		background-size: cover;
+		filter: blur(1.5px);
+		-webkit-filter: blur(1.5px);
+		z-index: 1;
+	}
+
+	.upperText {
+		font-family: Roboto, sans-serif;
+		font-weight: 700;
+		font-size: 2.5rem;
+		color: $white-ter;
+		opacity: 0.9;
+		display: flex;
+		justify-content: center;
+		text-align: center;
+		position: absolute;
+		top: 8px;
+		font-variant: all-small-caps;
+		letter-spacing: 3px;
+		z-index: 6;
+	}
+
+	.lowerText {
+		position: absolute;
+		top: 64px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		z-index: 6;
+
+		.lowerTextWords {
+			opacity: 0.5;
+			font-weight: 500;
+			font-family: Roboto, sans-serif;
+			font-size: 1.4rem;
+			color: $white-ter;
+			display: flex;
+			justify-content: center;
+			text-align: center;
+			margin-bottom: 50px;
+		}
+	}
+
+	.callToAction {
+		position: absolute;
+		bottom: 10px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		z-index: 6;
+
+		.callToActionButton {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding: 0 12px;
+			border-radius: 6px;
+			margin-top: 24px;
+			font-weight: 700;
+			font-family: Lato, sans-serif;
+			font-size: 1.3rem;
+			letter-spacing: 1px;
+			text-transform: uppercase;
+			color: $grey-lighter;
+		}
+
+		.callToActionArrow {
+			width: 100%;
+			display: flex;
+			justify-content: center;
+			font-size: 3rem;
+			color: $grey-lighter;
+		}
+
+		a, a:active, a:focus, a:visited {
+			color: inherit;
+			transition: color 200ms ease-in-out;
+		}
+
+		&:hover a {
+			color: $white;
+		}
+	}
+}
