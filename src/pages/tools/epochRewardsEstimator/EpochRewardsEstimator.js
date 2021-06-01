@@ -152,7 +152,9 @@ export class EpochRewardsEstimator extends Component {
 		});
 	}
 
-	onEpochDropdownItemClick(epochNumber) {
+	onEpochDropdownItemClick(event, epochNumber) {
+		event.preventDefault();
+
 		this.calculateForEpoch(epochNumber);
 		this.closeEpochDropdown();
 	}
@@ -369,7 +371,7 @@ export class EpochRewardsEstimator extends Component {
 										{currentCalculation.allEpochs.map(epochNumber => {
 											return (
 												<a href="#" className="dropdown-item"
-												   onClick={() => this.onEpochDropdownItemClick(epochNumber)}>
+												   onClick={(event) => this.onEpochDropdownItemClick(event, epochNumber)}>
 													Epoch {epochNumber} - {this.formatEpochDate(epochNumber)}
 												</a>
 											)

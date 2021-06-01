@@ -126,3 +126,7 @@ small {
 .has-width-100 {
 	width: 100%;
 }
+
+.dropdown-item {
+	user-select: none;
+}
