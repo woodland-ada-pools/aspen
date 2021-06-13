@@ -2,7 +2,7 @@ import './App.scss';
 import {Component} from "react/cjs/react.production.min";
 import {Header} from "./components/common/header/Header";
 import {Home} from "./pages/home/Home";
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import {HashRouter as Router, Switch, Route} from 'react-router-dom';
 import {Tools} from "./pages/tools/Tools";
 
 /*function Header() {
