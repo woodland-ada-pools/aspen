@@ -8,6 +8,7 @@ import {HashLink} from 'react-router-hash-link';
 import {faTwitter} from "@fortawesome/free-brands-svg-icons/faTwitter";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faYoutube} from "@fortawesome/free-brands-svg-icons/faYoutube";
+import {faTelegram} from "@fortawesome/free-brands-svg-icons/faTelegram";
 
 export class Header extends Component {
 	render() {
@@ -39,6 +40,11 @@ export class Header extends Component {
 							<li>
 								<a href="https://www.youtube.com/c/WoodlandPools">
 									<FontAwesomeIcon icon={faYoutube} />
+								</a>
+							</li>
+							<li>
+								<a href="https://t.me/WoodlandPools">
+									<FontAwesomeIcon icon={faTelegram} />
 								</a>
 							</li>
 						</ul>
