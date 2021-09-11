@@ -36,8 +36,23 @@ export function StakeUnit() {
 							</p>
 
 							<p>
-								<small><a href="https://www.youtube.com/watch?v=pbZx0O4f0uw">Which wallet should I
-									choose?</a></small>
+								Using a hardware wallet? Check out <a href="https://adalite.io/">AdaLite</a>!
+							</p>
+
+							<p>
+								<small>
+									<a href="https://www.youtube.com/watch?v=pbZx0O4f0uw">
+										Which software wallet should I choose?
+									</a>
+								</small>
+							</p>
+
+							<p>
+								<small>
+									<a href="https://www.youtube.com/watch?v=Q_tomPEgfxE">
+										Which hardware wallet should I buy?
+									</a>
+								</small>
 							</p>
 						</div>
 					</div>
@@ -49,9 +64,11 @@ export function StakeUnit() {
 							</p>
 
 							<p>
-								<small><a
-									href="https://www.youtube.com/watch?v=H2iI9huNuzU&list=PL3DtqUjro7uG7O8Oy_dnBrg73Sy8AGd6n">Not
-									sure how exchanges work?</a></small>
+								<small>
+									<a href="https://www.youtube.com/watch?v=H2iI9huNuzU&list=PL3DtqUjro7uG7O8Oy_dnBrg73Sy8AGd6n">
+										Not sure how exchanges work?
+									</a>
+								</small>
 							</p>
 						</div>
 					</div>
@@ -61,6 +78,10 @@ export function StakeUnit() {
 							<p>
 								In Daedalus, select the "Stake Pools" tab, or in Yoroi, select the "Delegation List"
 								tab. Search for the <strong>ASPEN</strong> stake pool.
+							</p>
+							<p>
+								<small>Using AdaLite? You'll need our pool ID: </small>
+								<pre>05b8a25ec4f41956a6496555c233bcbe6fc06596553ae2d14df73e20</pre>
 							</p>
 						</div>
 					</div>

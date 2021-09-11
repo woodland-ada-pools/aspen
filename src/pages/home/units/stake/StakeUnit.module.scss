@@ -130,5 +130,12 @@
 		strong {
 			color: $woodlandBrown;
 		}
+
+		pre {
+			padding: 4px;
+			margin-top: 4px;
+			white-space: normal;
+			word-break: break-all;
+		}
 	}
 }
