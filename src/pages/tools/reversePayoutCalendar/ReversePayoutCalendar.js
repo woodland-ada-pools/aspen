@@ -99,6 +99,10 @@ export class ReversePayoutCalendar extends Component {
 	updateStakeDate() {
 		const {payoutEpoch} = this.state;
 
+		if (!payoutEpoch) {
+			return;
+		}
+
 		const payoutEpochDate = findEpochStartDateFromEpochNumber(payoutEpoch);
 
 		const priorFourEpochs = findPriorNEpochsFromDate(payoutEpochDate, 4);
@@ -267,7 +271,7 @@ export class ReversePayoutCalendar extends Component {
 							<div className="column">
 								<button className="button is-info"
 								        onClick={() => this.updateStakeDate()}
-								        disabled={loading}
+								        disabled={loading || !payoutEpoch}
 								>Go
 								</button>
 							</div>
