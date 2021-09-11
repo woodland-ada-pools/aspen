@@ -7,7 +7,6 @@ import {faStar} from "@fortawesome/free-solid-svg-icons/faStar";
 import {faSpinner} from "@fortawesome/free-solid-svg-icons/faSpinner";
 import './PayoutCalendar.scss';
 import {faCalendar} from "@fortawesome/free-regular-svg-icons/faCalendar";
-import {CSSTransition} from 'react-transition-group';
 import enUS from 'date-fns/locale/en-US';
 import enGB from 'date-fns/locale/en-GB';
 import enCA from 'date-fns/locale/en-CA';
@@ -52,6 +51,9 @@ const supportedLocales = {
 Object.entries(supportedLocales).forEach(async ([localeCode, locale]) => {
 	registerLocale(localeCode, locale);
 });
+
+const EPOCH_DATE_FORMAT      = 'PP';
+const EPOCH_DATE_TIME_FORMAT = `Pp`;
 
 const maxDate = new Date(Date.UTC(2100, 12, 31));
 
@@ -106,10 +108,22 @@ export class PayoutCalendar extends Component {
 		}, 500);
 	}
 
-	renderEpochRow(epoch, index) {
-		const {formattedStakeDate, result, locale} = this.state;
+	formatEpochDate(date) {
+		const {locale} = this.state;
 
-		const formattedDate = format(epoch.date, `P 'at' H:m zzzz`, {locale}),
+		return format(date, EPOCH_DATE_FORMAT, {locale});
+	}
+
+	formatEpochDateAndTime(date) {
+		const {locale} = this.state;
+
+		return format(date, EPOCH_DATE_TIME_FORMAT, {locale});
+	}
+
+	renderEpochRow(epoch, index) {
+		const {formattedStakeDate, result} = this.state;
+
+		const formattedDate = this.formatEpochDateAndTime(epoch.date),
 		      isFuture      = isAfter(epoch.date, new Date());
 
 		const text = {
@@ -168,8 +182,7 @@ export class PayoutCalendar extends Component {
 	}
 
 	render() {
-		const {isOpen, close}                            = this.props,
-		      {stakeDate, result, localeString, loading} = this.state;
+		const {stakeDate, result, localeString, loading} = this.state;
 
 		return (
 			<div id="payoutCalculator" className="payoutCalculator">

@@ -1,9 +1,10 @@
 import styles from './Tools.module.scss';
 import classNames from "classnames";
-import {PayoutCalendar} from "./payoutCalendar/PayoutCalendar";
+import {PayoutCalendar} from "./payoutCalendarByDate/PayoutCalendar";
 import {Link, Route, Switch} from "react-router-dom";
 import {EpochRewardsEstimator} from "./epochRewardsEstimator/EpochRewardsEstimator";
 import {useRouteMatch, Redirect} from 'react-router-dom';
+import {ReversePayoutCalendar} from "./reversePayoutCalendar/ReversePayoutCalendar";
 
 function ToolsLandingPage() {
 	const {url} = useRouteMatch();
@@ -13,11 +14,20 @@ function ToolsLandingPage() {
 			<div className="tile is-ancestor">
 				<div className="tile is-parent is-half">
 					<div className="tile is-child box">
-						<h2>Payout Date Estimator</h2>
+						<h2>Rewards Payout Date Estimator</h2>
 
 						<p>So you've started staking, and you want to know when you'll get paid? This simple tool will give you an estimated payout date based on the date you started staking.</p>
 
 						<Link to={`${url}/payout-date-estimator`}><button className="button is-info">Open</button></Link>
+					</div>
+				</div>
+				<div className="tile is-parent is-half">
+					<div className="tile is-child box">
+						<h2>Reverse Payout Calculator</h2>
+
+						<p>You know when rewards were paid out, but why wasn't your stake included? Use this tool to figure out when you needed to have delegated to receive rewards during a given epoch.</p>
+
+						<Link to={`${url}/reverse-payout-date-estimator`}><button className="button is-info">Open</button></Link>
 					</div>
 				</div>
 				<div className="tile is-parent is-half">
@@ -51,7 +61,8 @@ export function Tools() {
 
 						<nav>
 							<ul>
-								<li><Link to={`${url}/payout-date-estimator`}>Payout Date Estimator</Link></li>
+								<li><Link to={`${url}/payout-date-estimator`}>Rewards Payout Date Estimator</Link></li>
+								<li><Link to={`${url}/reverse-payout-calculator`}>Reverse Payout Calculator</Link></li>
 								<li><Link to={`${url}/epoch-rewards-estimator`}>Epoch Rewards Estimator</Link></li>
 							</ul>
 						</nav>
@@ -65,12 +76,24 @@ export function Tools() {
 							<Route exact path={`${path}/payout-date-estimator`}>
 								<div className={styles.toolHeader}>
 									<div className={styles.toolHeaderInner}>
-										<h1>Payout Date Estimator</h1>
+										<h1>Rewards Payout Date Estimator</h1>
 									</div>
 								</div>
 
 								<div className={styles.toolContentInner}>
 									<PayoutCalendar/>
+								</div>
+							</Route>
+
+							<Route exact path={`${path}/reverse-payout-calculator`}>
+								<div className={styles.toolHeader}>
+									<div className={styles.toolHeaderInner}>
+										<h1>Reverse Payout Calculator</h1>
+									</div>
+								</div>
+
+								<div className={styles.toolContentInner}>
+									<ReversePayoutCalendar/>
 								</div>
 							</Route>
 

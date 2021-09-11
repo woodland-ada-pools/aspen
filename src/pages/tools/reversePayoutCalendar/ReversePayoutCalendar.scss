@@ -1,0 +1,80 @@
+@import '../../../style/common';
+
+.reversePayoutCalculator {
+	.informationSection {
+		.dateInput {
+			.dropdown-trigger {
+				button {
+					display: inline-flex;
+				}
+			}
+
+			.dropdown-content {
+				max-height: 200px;
+				overflow-y: auto;
+			}
+		}
+	}
+
+	.results {
+		.resultRow {
+			&:nth-child(5) .resultContent {
+				border-left: 3px solid $grey-dark;
+				border-top-left-radius: $borderRadius;
+
+				.resultContent {
+					border-top-right-radius: $borderRadius;
+				}
+
+				&:before {
+					border-color: $grey-dark;
+				}
+			}
+
+			&:nth-child(4) .resultContent {
+				border-left: 3px solid $blue;
+
+				&:before {
+					border-color: $blue;
+				}
+			}
+
+			&:nth-child(3) .resultContent {
+				border-left: 3px solid $purple;
+
+				&:before {
+					border-color: $purple;
+				}
+			}
+
+			&:nth-child(2) .resultContent {
+				border-left: 3px solid $orange;
+
+				&:before {
+					border-color: $orange;
+				}
+			}
+
+			&:nth-child(1) .resultContent {
+				border-left: 3px solid $green;
+				border-bottom-left-radius: $borderRadius;
+
+				&:before {
+					border-color: $green;
+				}
+
+				.resultContent {
+					border-bottom-right-radius: $borderRadius;
+				}
+
+				p {
+					font-weight: bold;
+				}
+
+				.fa-star {
+					color: darken($yellow, 20%);
+				}
+			}
+		}
+	}
+}

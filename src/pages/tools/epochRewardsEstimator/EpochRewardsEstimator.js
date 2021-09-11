@@ -3,7 +3,7 @@ import {findPoolsByTicker, getPoolRewardsAndFees} from "../../../api/WoodlandPoo
 import Autocomplete from "../../../components/common/autocomplete/Autocomplete";
 import './EpochRewardsEstimator.scss';
 import {debounce, orderBy, round, sum, minBy, isNaN} from 'lodash';
-import {findEpochStartDateFromEpochNumber, getEpochNumber} from "../payoutCalendar/PayoutCalendarFunctions";
+import {findEpochStartDateFromEpochNumber, getEpochNumber} from "../payoutCalendarByDate/PayoutCalendarFunctions";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAngleDown} from '@fortawesome/free-solid-svg-icons/faAngleDown';
 import format from 'date-fns/format';
