@@ -27,7 +27,7 @@ function ToolsLandingPage() {
 
 						<p>You know when rewards were paid out, but why wasn't your stake included? Use this tool to figure out when you needed to have delegated to receive rewards during a given epoch.</p>
 
-						<Link to={`${url}/reverse-payout-date-estimator`}><button className="button is-info">Open</button></Link>
+						<Link to={`${url}/reverse-payout-calculator`}><button className="button is-info">Open</button></Link>
 					</div>
 				</div>
 				<div className="tile is-parent is-half">
