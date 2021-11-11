@@ -1,30 +1,30 @@
 {
   "files": {
-    "main.css": "/static/css/main.2c1cea6d.chunk.css",
-    "main.js": "/static/js/main.704b6e5f.chunk.js",
-    "main.js.map": "/static/js/main.704b6e5f.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.29207adb.js",
-    "runtime-main.js.map": "/static/js/runtime-main.29207adb.js.map",
-    "static/css/2.4c4dc36c.chunk.css": "/static/css/2.4c4dc36c.chunk.css",
-    "static/js/2.1917fd53.chunk.js": "/static/js/2.1917fd53.chunk.js",
-    "static/js/2.1917fd53.chunk.js.map": "/static/js/2.1917fd53.chunk.js.map",
-    "static/js/3.2af60260.chunk.js": "/static/js/3.2af60260.chunk.js",
-    "static/js/3.2af60260.chunk.js.map": "/static/js/3.2af60260.chunk.js.map",
+    "main.css": "/static/css/main.ec6b9eb2.chunk.css",
+    "main.js": "/static/js/main.c98b8e1c.chunk.js",
+    "main.js.map": "/static/js/main.c98b8e1c.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.759e6c72.js",
+    "runtime-main.js.map": "/static/js/runtime-main.759e6c72.js.map",
+    "static/css/2.4b8228b5.chunk.css": "/static/css/2.4b8228b5.chunk.css",
+    "static/js/2.d5ac136a.chunk.js": "/static/js/2.d5ac136a.chunk.js",
+    "static/js/2.d5ac136a.chunk.js.map": "/static/js/2.d5ac136a.chunk.js.map",
+    "static/js/3.255afd5c.chunk.js": "/static/js/3.255afd5c.chunk.js",
+    "static/js/3.255afd5c.chunk.js.map": "/static/js/3.255afd5c.chunk.js.map",
     "index.html": "/index.html",
-    "static/css/2.4c4dc36c.chunk.css.map": "/static/css/2.4c4dc36c.chunk.css.map",
-    "static/css/main.2c1cea6d.chunk.css.map": "/static/css/main.2c1cea6d.chunk.css.map",
-    "static/js/2.1917fd53.chunk.js.LICENSE.txt": "/static/js/2.1917fd53.chunk.js.LICENSE.txt",
+    "static/css/2.4b8228b5.chunk.css.map": "/static/css/2.4b8228b5.chunk.css.map",
+    "static/css/main.ec6b9eb2.chunk.css.map": "/static/css/main.ec6b9eb2.chunk.css.map",
+    "static/js/2.d5ac136a.chunk.js.LICENSE.txt": "/static/js/2.d5ac136a.chunk.js.LICENSE.txt",
     "static/media/HeroUnit.module.scss": "/static/media/welcome-background.1a646873.jpg",
     "static/media/IntroUnit.module.scss": "/static/media/bright-squares.79000482.png",
-    "static/media/logo_no_text.0b62e2d2.svg": "/static/media/logo_no_text.0b62e2d2.svg",
-    "static/media/logo_text.d6772914.svg": "/static/media/logo_text.d6772914.svg",
-    "static/media/tagline.40539159.svg": "/static/media/tagline.40539159.svg"
+    "static/media/logo_no_text.235c9f5b.svg": "/static/media/logo_no_text.235c9f5b.svg",
+    "static/media/logo_text.35fd3d25.svg": "/static/media/logo_text.35fd3d25.svg",
+    "static/media/tagline.dd85c4c8.svg": "/static/media/tagline.dd85c4c8.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.29207adb.js",
-    "static/css/2.4c4dc36c.chunk.css",
-    "static/js/2.1917fd53.chunk.js",
-    "static/css/main.2c1cea6d.chunk.css",
-    "static/js/main.704b6e5f.chunk.js"
+    "static/js/runtime-main.759e6c72.js",
+    "static/css/2.4b8228b5.chunk.css",
+    "static/js/2.d5ac136a.chunk.js",
+    "static/css/main.ec6b9eb2.chunk.css",
+    "static/js/main.c98b8e1c.chunk.js"
   ]
 }
