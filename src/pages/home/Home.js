@@ -12,9 +12,9 @@ export class Home extends Component {
 			<section className={styles.Home}>
 				<div id="home" />
 				<HeroUnit/>
+				<YoutubeUnit/>
 				<IntroUnit/>
 				<StakeUnit/>
-				<YoutubeUnit/>
 				<FooterUnit />
 			</section>
 		)

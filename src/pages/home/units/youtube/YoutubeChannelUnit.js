@@ -105,7 +105,7 @@ export function YoutubeUnit() {
 											</div>
 
 											<div className={styles.videoStats}>
-												<span>{video.statistics.viewCount} views</span> • <TimeAgo
+												<span>{video.statistics.viewCount.toLocaleString()} views</span> • <TimeAgo
 												date={video.snippet.publishTime}/>
 											</div>
 										</div>
