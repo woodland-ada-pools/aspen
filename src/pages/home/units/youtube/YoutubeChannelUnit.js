@@ -62,12 +62,18 @@ export function YoutubeUnit() {
             .then(channelData => setChannelData(channelData));
     }, []);
 
+    const onClickLearnWithUs = () => {
+        window.open('https://www.youtube.com/WoodlandPools');
+    }
+
     const renderVideoPreview = (video) => {
         const viewCount = video.statistics.viewCount;
         const formattedViewCount = parseInt(viewCount).toLocaleString();
-
         return (
-            <div className={`column is-flex is-flex-direction-column is-align-items-center ${styles.videoTileColumn}`}>
+            <div
+                key={video.id.videoId}
+                className={`column is-flex is-flex-direction-column is-align-items-center ${styles.videoTileColumn}`}
+            >
                 <div className={styles.youtubeVideoTile}>
                     <a href={`https://www.youtube.com/v/${video.id.videoId}`}
                        target="_blank" rel="noreferrer noopener">
@@ -92,13 +98,13 @@ export function YoutubeUnit() {
 
     return (
         <div id="channel" className={styles.youtubeUnit}>
-            <div className="columns is-mobile">
+            <div className={`columns is-mobile ${styles.learnWithUsWrapper}`} onClick={onClickLearnWithUs}>
                 <div
                     className="column is-flex is-justify-content-center is-flex-direction-column is-narrow is-one-third-mobile">
                     <img className={styles.ytChannelLogo} src="img/wp-block-logo.jpg"/>
                 </div>
                 <div className="column is-flex is-justify-content-center is-flex-direction-column is-two-thirds-mobile">
-                    <h1>Our Channel</h1>
+                    <h1>Learn With Us!</h1>
                     <div className={styles.ytSubscribers}>{channelData.statistics.subscriberCount / 1000}k subscribers
                     </div>
                 </div>

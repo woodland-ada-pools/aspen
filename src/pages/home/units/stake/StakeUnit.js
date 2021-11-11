@@ -31,17 +31,17 @@ export function StakeUnit() {
 						<div>
 							<h2>1</h2>
 							<p>
-								Download and install <a href="https://daedaluswallet.io/en/download/">Daedalus</a> <u>or</u> <a href="https://yoroi-wallet.com/#/">Yoroi</a>. These are the two major
+								Download and install <a href="https://www.youtube.com/watch?v=nbYvXnfPiSM" target="_blank">Daedalus</a> <u>or</u> <a href="https://www.youtube.com/watch?v=Q1ZJS7KvwGc" target="_blank">Yoroi</a>. These are the two major
 								wallets that support staking.
 							</p>
 
 							<p>
-								Using a hardware wallet? Check out <a href="https://adalite.io/">AdaLite</a>!
+								Using a hardware wallet? Check out <a href="https://www.youtube.com/watch?v=8u7ba3FIwi0" target="_blank">AdaLite</a>!
 							</p>
 
 							<p>
 								<small>
-									<a href="https://www.youtube.com/watch?v=pbZx0O4f0uw">
+									<a href="https://www.youtube.com/watch?v=pbZx0O4f0uw" target="_blank">
 										Which software wallet should I choose?
 									</a>
 								</small>
@@ -49,7 +49,7 @@ export function StakeUnit() {
 
 							<p>
 								<small>
-									<a href="https://www.youtube.com/watch?v=Q_tomPEgfxE">
+									<a href="https://www.youtube.com/watch?v=Q_tomPEgfxE" target="_blank">
 										Which hardware wallet should I buy?
 									</a>
 								</small>
@@ -65,7 +65,7 @@ export function StakeUnit() {
 
 							<p>
 								<small>
-									<a href="https://www.youtube.com/watch?v=H2iI9huNuzU&list=PL3DtqUjro7uG7O8Oy_dnBrg73Sy8AGd6n">
+									<a href="https://www.youtube.com/watch?v=H2iI9huNuzU&list=PL3DtqUjro7uG7O8Oy_dnBrg73Sy8AGd6n" target="_blank">
 										Not sure how exchanges work?
 									</a>
 								</small>
@@ -92,9 +92,9 @@ export function StakeUnit() {
 								Click the "Delegate" button and begin earning staking rewards!
 							</p>
 							<p>
-								<small>Check out our video on <a href="https://www.youtube.com/watch?v=4JT-pX-NjHQ">the
+								<small>Check out our video on <a href="https://www.youtube.com/watch?v=4JT-pX-NjHQ" target="_blank">the
 									delegation cycle</a> to gain a better understanding of timeframes,
-									or our video on <a href="https://www.youtube.com/watch?v=jfd2Qg9ZGk0">rewards</a> to
+									or our video on <a href="https://www.youtube.com/watch?v=jfd2Qg9ZGk0" target="_blank">rewards</a> to
 									get an idea of expected reward amounts.</small>
 							</p>
 						</div>
