@@ -12,9 +12,8 @@ export function IntroUnit() {
 							<div className={styles.benefits}>
 								<h2>We have...</h2>
 								<ul>
-									<li>15+ years of IT experience and 20 years combined software development experience</li>
 									<li>A passion for educating the Cardano community</li>
-									<li>An informative YouTube channel dedicated to Cardano and cryptocurrencies</li>
+									<li>A YouTube channel dedicated to Cardano Education</li>
 									<li>The drive to succeed and help you succeed!</li>
 								</ul>
 							</div>
@@ -26,7 +25,7 @@ export function IntroUnit() {
 									<li>Multiple delegator-oriented tools to help you make informed staking decisions
 									</li>
 									<li>A community of like-minded rational investors like yourself</li>
-									<li>And most importantly, staking rewards!</li>
+									<li>And Staking rewards every 5 days 💪🏻</li>
 								</ul>
 							</div>
 						</div>
