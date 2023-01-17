@@ -1,0 +1,11 @@
+@import '../../../../style/variables';
+
+.footerUnit {
+	padding: 32px;
+	background-color: $white-bis;
+
+	p {
+		color: $grey;
+		font-size: 0.8rem;
+	}
+}

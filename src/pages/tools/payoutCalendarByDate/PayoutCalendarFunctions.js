@@ -1,4 +1,4 @@
-const {add} = require('date-fns');
+const {add, sub} = require('date-fns');
 
 export const startEpochDate      = new Date(Date.UTC(2020, 6, 29, 21, 44, 51, 0)), //new Date('2020-07-29T21:44:51+0000'),
              startEpochTimestamp = startEpochDate.getTime(),
@@ -94,7 +94,61 @@ export function findEpochStartDateFromEpochNumber(epochNumber) {
 	}
 
 	const differenceInMillis = epochDifference * fiveDaysInMillis,
-	      epochStartDate = startEpochTimestamp + differenceInMillis;
+	      epochStartDate     = startEpochTimestamp + differenceInMillis;
 
 	return new Date(epochStartDate);
+}
+
+export function findNextNEpochsStartingFromDate(startDate = startEpochDate, numberOfEpochs = null, includeStartEpoch = true) {
+	const mostRecentEpochBoundary = findNearestEpochBoundaryFromDate(new Date());
+
+	startDate = normalizeDateToBoundary(startDate);
+
+	if (!dateIsOnEpochBoundary(startDate)) {
+		startDate = findNearestEpochBoundaryFromDate(startDate);
+	}
+
+	const endDate = add(startDate, {
+		days: (numberOfEpochs * fiveDaysInMillis) / oneDayInMillis
+	});
+
+	return fillEpochsBetweenDates(startDate, endDate, includeStartEpoch, true);
+}
+
+export function findPriorNEpochsFromDate(endDate, numberOfEpochs, includeEndEpoch = true) {
+	if (!dateIsOnEpochBoundary(endDate)) {
+		endDate = findNearestEpochBoundaryFromDate(endDate);
+	}
+
+	const startDate = sub(endDate, {
+		days: (numberOfEpochs * fiveDaysInMillis) / oneDayInMillis
+	});
+
+	return fillEpochsBetweenDates(startDate, endDate, true, includeEndEpoch);
+}
+
+export function fillEpochsBetweenDates(startDate, endDate, includeStartEpoch = true, includeEndEpoch = true) {
+	const startEpochNumber = getEpochNumber(startDate),
+	      endEpochNumber   = getEpochNumber(endDate),
+	      epochsToCount  = (endEpochNumber - startEpochNumber) - (includeEndEpoch ? 0 : 1);
+
+	let date = startDate;
+
+	const epochs = includeStartEpoch ? [{
+		date:   startDate,
+		number: startEpochNumber
+	}] : [];
+
+	for (let x = 0; x < epochsToCount; x++) {
+		date = add(date, {
+			days: 5
+		});
+
+		epochs.push({
+			date:   date,
+			number: getEpochNumber(date)
+		});
+	}
+
+	return epochs;
 }

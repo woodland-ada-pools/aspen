@@ -7,7 +7,6 @@ import {faStar} from "@fortawesome/free-solid-svg-icons/faStar";
 import {faSpinner} from "@fortawesome/free-solid-svg-icons/faSpinner";
 import './PayoutCalendar.scss';
 import {faCalendar} from "@fortawesome/free-regular-svg-icons/faCalendar";
-import {CSSTransition} from 'react-transition-group';
 import enUS from 'date-fns/locale/en-US';
 import enGB from 'date-fns/locale/en-GB';
 import enCA from 'date-fns/locale/en-CA';
@@ -52,6 +51,9 @@ const supportedLocales = {
 Object.entries(supportedLocales).forEach(async ([localeCode, locale]) => {
 	registerLocale(localeCode, locale);
 });
+
+const EPOCH_DATE_FORMAT      = 'PP';
+const EPOCH_DATE_TIME_FORMAT = `Pp`;
 
 const maxDate = new Date(Date.UTC(2100, 12, 31));
 
@@ -106,10 +108,22 @@ export class PayoutCalendar extends Component {
 		}, 500);
 	}
 
-	renderEpochRow(epoch, index) {
-		const {formattedStakeDate, result, locale} = this.state;
+	formatEpochDate(date) {
+		const {locale} = this.state;
 
-		const formattedDate = format(epoch.date, `P 'at' H:m zzzz`, {locale}),
+		return format(date, EPOCH_DATE_FORMAT, {locale});
+	}
+
+	formatEpochDateAndTime(date) {
+		const {locale} = this.state;
+
+		return format(date, EPOCH_DATE_TIME_FORMAT, {locale});
+	}
+
+	renderEpochRow(epoch, index) {
+		const {formattedStakeDate, result} = this.state;
+
+		const formattedDate = this.formatEpochDateAndTime(epoch.date),
 		      isFuture      = isAfter(epoch.date, new Date());
 
 		const text = {
@@ -168,77 +182,62 @@ export class PayoutCalendar extends Component {
 	}
 
 	render() {
-		const {isOpen, close}                            = this.props,
-		      {stakeDate, result, localeString, loading} = this.state;
+		const {stakeDate, result, localeString, loading} = this.state;
 
 		return (
-			<CSSTransition in={isOpen}
-			               timeout={250}
-			               classNames="fade"
-			               mountOnEnter
-			               unmountOnExit>
-				<div className={`modal fade is-active payoutCalendarModal`}>
-					<div className="modal-background" onClick={close}/>
-					<div className="modal-content">
-						<button className="modal-close is-large" aria-label="close" onClick={close}/>
+			<div id="payoutCalculator" className="payoutCalculator">
+				<div className="informationSection">
+					<div className="disclaimer">
+						This tool provides a "best guess" as to when your rewards will be distributed based
+						on
+						the date you input.
+						The estimate provided here is not guaranteed to be accurate nor a guarantee of any
+						rewards. None of this
+						information should be considered financial or investment advice.
+					</div>
 
-						<div id="payoutCalculator" className="payoutCalculator">
-							<div className="informationSection">
-								<h2 className="sectionHeader">Payout Date Estimator</h2>
-								<div className="disclaimer">
-									This tool provides a "best guess" as to when your rewards will be distributed based
-									on
-									the date you input.
-									The estimate provided here is not guaranteed to be accurate nor a guarantee of any
-									rewards. None of this
-									information should be considered financial or investment advice.
-								</div>
+					<div className="dateInput">
+						<h4>Staking Start Date</h4>
+						<small>When did you start or intend to start staking?</small>
 
-								<div className="dateInput">
-									<h4>Staking Start Date</h4>
-									<small>When did you start or intend to start staking?</small>
-
-									<div className="columns is-mobile">
-										<div className="column is-narrow">
-											<DatePicker
-												selected={stakeDate}
-												onChange={date => this.updateStakeDate(date)}
-												className="input"
-												dateFormat="P"
-												locale={localeString}
-												minDate={startEpochDate}
-												maxDate={maxDate}
-												utcOffset="0"
-												disabled={loading}
-											/>
-										</div>
-										<div className="column">
-											<button className="button is-info"
-											        onClick={() => this.updateStakeDate()}
-											        disabled={loading}
-											>Go
-											</button>
-										</div>
-									</div>
-								</div>
+						<div className="columns is-mobile">
+							<div className="column is-narrow">
+								<DatePicker
+									selected={stakeDate}
+									onChange={date => this.updateStakeDate(date)}
+									className="input"
+									dateFormat="P"
+									locale={localeString}
+									minDate={startEpochDate}
+									maxDate={maxDate}
+									utcOffset="0"
+									disabled={loading}
+								/>
 							</div>
-
-							<div className="results">
-								{!loading && !result.length && this.renderPlaceholder()}
-								{!loading && result.map((epoch, index) => this.renderEpochRow(epoch, index))}
-
-								{loading && (
-									<div className="placeholder">
-										<div className="placeholderIcon loading">
-											<FontAwesomeIcon icon={faSpinner}/>
-										</div>
-									</div>
-								)}
+							<div className="column">
+								<button className="button is-info"
+								        onClick={() => this.updateStakeDate()}
+								        disabled={loading}
+								>Go
+								</button>
 							</div>
 						</div>
 					</div>
 				</div>
-			</CSSTransition>
+
+				<div className="results">
+					{!loading && !result.length && this.renderPlaceholder()}
+					{!loading && result.map((epoch, index) => this.renderEpochRow(epoch, index))}
+
+					{loading && (
+						<div className="placeholder">
+							<div className="placeholderIcon loading">
+								<FontAwesomeIcon icon={faSpinner}/>
+							</div>
+						</div>
+					)}
+				</div>
+			</div>
 		)
 	}
 }

@@ -1,0 +1,69 @@
+@import '../../../../style/variables';
+
+.introUnit {
+	background-color: $grey-lighter;
+	position: relative;
+	z-index: 7;
+	padding: 32px;
+	background-image: url('../../../../static/bright-squares.png');
+	border-top: 1px solid $grey-lighter;
+	box-shadow: 0 3px 3px 1px rgba(0, 0, 0, 0.1);
+
+	@media screen and (max-width: $tablet) {
+		padding: 12px;
+	}
+
+	.introUnitInner {
+		background-color: $grey-lightest;
+		border: 1px solid transparentize($woodlandBrown, 0.8);
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		position: relative;
+		border-radius: $borderRadius;
+		box-shadow: 0 3px 3px 1px rgba(0, 0, 0, 0.1);
+		padding: 12px;
+	}
+
+	.introUnitInner2 {
+		width: 100%;
+		border: 1px solid transparentize($woodlandBrown, 0.9);
+		padding: 12px 32px 32px 32px;
+
+		@media screen and (max-width: $tablet) {
+			padding: 12px;
+		}
+	}
+
+	.benefits {
+		h2 {
+			margin: 0 0 12px 0;
+		}
+
+		+ .benefits {
+			margin-top: 32px;
+		}
+
+		ul {
+			list-style-type: none;
+		}
+
+		li {
+			font-family: Inter, sans-serif;
+			font-weight: 300;
+			color: $textColor;
+
+			&:before {
+				content: "\25AA";
+				color: $grey-light;
+				font-weight: bold;
+				display: inline-block;
+				width: 12px;
+			}
+
+			+ li {
+				margin-top: 4px;
+			}
+		}
+	}
+}
