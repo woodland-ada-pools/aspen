@@ -54,7 +54,7 @@ export class Header extends Component {
                                 </a>
                             </li>
                             <li>
-                                <a href="https://t.me/WoodlandPools">
+                                <a href="https://t.me/WoodlandPoolsG">
                                     <FontAwesomeIcon icon={faTelegram}/>
                                 </a>
                             </li>
