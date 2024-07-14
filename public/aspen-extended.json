@@ -9,8 +9,8 @@
       "youtube_handle": "WoodlandPools"
     },
     "about": {
-      "server": "The Aspen pool is configured with 4 relay nodes geographically distributed across the world, continuous backups, and 24/7 monitoring.",
-      "company": "We provide Cardano news, tutorials, & blockchain information. Check out our YouTube channel for more information."
+      "server": "The Aspen pool is configured with 2 relay nodes, continuous backups, and 24/7 monitoring.",
+      "company": "Cardano news, tutorials, & blockchain information. Check out our YouTube channel for more information."
     }
   },
   "my-pool-ids": {
